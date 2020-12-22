@@ -1,17 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
     <title><%= htmlWebpackPlugin.options.title %></title>
+    <style>
+      .box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50vh;
+      }
+      .load-wrapp {
+        float: left;
+        width: 100px;
+        height: 100px;
+        margin: 0 10px 10px 0;
+        padding: 20px 20px 20px;
+        border-radius: 5px;
+        text-align: center;
+      }
+      .line {
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        border-radius: 15px;
+        background-color: #4b9cdb;
+      }
+      .load-3 .line:nth-last-child(1) {
+        animation: loadingC 0.6s 0.1s linear infinite;
+      }
+      .load-3 .line:nth-last-child(2) {
+        animation: loadingC 0.6s 0.2s linear infinite;
+      }
+      .load-3 .line:nth-last-child(3) {
+        animation: loadingC 0.6s 0.3s linear infinite;
+      }
+      @keyframes loadingC {
+        0% {
+          transform: translate(0, 0);
+        }
+        50% {
+          transform: translate(0, 15px);
+        }
+        100% {
+          transform: translate(0, 0);
+        }
+      }
+    </style>
   </head>
   <body>
     <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+      <strong>
+        We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work
+        properly without JavaScript enabled. Please enable it to continue.
+      </strong>
     </noscript>
-    <div id="app"></div>
+    <div id="app">
+      <div class="box">
+        <div class="load-wrapp">
+          <div class="load-3">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- built files will be auto injected -->
   </body>
 </html>
