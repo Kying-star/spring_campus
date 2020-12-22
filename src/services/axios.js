@@ -3,11 +3,8 @@
  */
 
 import axios from "axios";
-
-axios.defaults.baseURL =
-  process.env.NODE_ENV === "production"
-    ? "https://cyxbsmobile.redrock.team/wxapi/nineteenth-committee"
-    : "/api";
+import { baseURL } from "./config";
+axios.defaults.baseURL = baseURL;
 
 axios.defaults.timeout = 6000;
 
