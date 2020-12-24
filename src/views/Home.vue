@@ -4,8 +4,8 @@
     <div class="user_info" v-show="isShowUserInfo"></div>
     <header>
       <div class="icon">
-        <div class="school"></div>
         <div class="study"></div>
+        <div class="school"></div>
         <div class="redrock"></div>
       </div>
       <div class="user" @click="showUserInfo(true)"></div>
@@ -15,7 +15,7 @@
       <div class="start"></div>
     </main>
     <footer>
-      <p class="ref">重庆邮电大学、市学联联合出品</p>
+      <p class="ref">重庆邮电大学、重庆市学生联合会联合出品</p>
       <p class="ref">@红岩网校工作站出品</p>
     </footer>
   </div>
@@ -101,9 +101,9 @@ export default {
   main {
     width: 100%;
     .title {
-      margin: 114px auto 141px;
-      width: 702px;
-      height: 239px;
+      margin: 21px auto 271px;
+      width: 672px;
+      height: 201px;
       background-image: url(~@assets/images/home/title.png);
       background-size: contain;
       background-repeat: no-repeat;
@@ -122,7 +122,8 @@ export default {
     margin: auto 0 0;
     text-align: center;
     font-size: 24px;
-    color: #f5a699;
+    color: #ffb5a9;
+    font-weight: 500;
     .ref {
       margin-bottom: 16px;
     }
