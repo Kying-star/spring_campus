@@ -16,9 +16,10 @@
   "prettier.semi": true,
   "prettier.singleQuote": false,
   "vetur.format.defaultFormatter.html": "js-beautify-html",
+  "vetur.format.defaultFormatter.scss": "prettier",
   "vetur.format.defaultFormatterOptions": {
     "js-beautify-html": {
-      "wrap_line_length": 120,
+      "wrap_line_length":80,
       "wrap_attributes": "auto"
     }
   },
