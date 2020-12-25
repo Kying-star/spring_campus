@@ -1,8 +1,7 @@
 <template>
   <div class="home">
     <div class="bg"></div>
-    <user-info v-show="isShowUserInfo" @after-submit="showUserInfo(false)">
-    </user-info>
+    <user-info v-show="isShowUserInfo" @after-submit="showUserInfo(false)" />
     <header>
       <div class="icon">
         <div class="study"></div>
