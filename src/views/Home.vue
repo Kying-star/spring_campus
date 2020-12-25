@@ -1,7 +1,8 @@
 <template>
   <div class="home">
     <div class="bg"></div>
-    <div class="user_info" v-show="isShowUserInfo"></div>
+    <user-info v-show="isShowUserInfo" @after-submit="showUserInfo(false)">
+    </user-info>
     <header>
       <div class="icon">
         <div class="study"></div>
@@ -22,9 +23,11 @@
 </template>
 
 <script>
+import UserInfo from "@components/UserInfo";
 import { onMounted, ref } from "vue";
 import { getUserInfo } from "@api/api.js";
 export default {
+  components: { UserInfo },
   setup() {
     const isShowUserInfo = ref(false);
     const userInfo = ref({});
@@ -46,7 +49,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" socped>
 .home {
   width: 100%;
   height: 100vh;
