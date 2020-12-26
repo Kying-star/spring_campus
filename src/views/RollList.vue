@@ -1,0 +1,121 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-12-26 15:47:00
+ * @LastEditTime: 2020-12-26 23:22:30
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /the-19th-committee/src/views/RollList.vue
+-->
+<template>
+  <div class="home">
+    <div class="bg"></div>
+    <header>
+      <RollButton v-for="button in buttonList" :key="button" :info="button.info"/>
+    </header>
+    <main>
+      <div class="inner">
+        <div class="title"> 十九届五中全会基本情况答题排行榜</div>
+        <div class="list">
+          <RollItem />
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div class="roll"></div>
+    </footer>
+  </div>
+</template>
+
+<script>
+import { ref } from "vue";
+import RollButton from "@components/RollButton"
+import RollItem from "@components/RollItem"
+export default {
+  components: { RollButton, RollItem },
+  setup() {
+    const buttonList = ref([
+      { info: "总排行" },
+      { info: "全会 情况" },
+      { info: "十三五成就" },
+      { info: "远景 目标" },
+      { info: "十四五规划" }
+      ])
+    return {
+      buttonList
+    };
+  }
+};
+</script>
+
+<style lang="scss" socped>
+.home {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  .bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background-image: url(~@assets/images/BlockSelect/background.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  header {
+    margin: 49px 20px 0px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  main {
+    width: 100%;
+    margin-top: 30px;
+    .inner {
+      margin: 20px auto;
+      width: 683px;
+      height: 877px;
+      background-color: #ffffff;
+      border-radius: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .title {
+        width: 683px;
+        margin-top: 58px;
+        font-size: 35px;
+        font-family: SJbangshu;
+        font-weight: 400;
+        color: #FE4D4D;
+        line-height: 45px;
+        text-align: center;
+      }
+      .list {
+        width: 623px;
+      }
+    }    
+  }
+  footer {
+    width: 100%;
+    margin: auto 0 0;
+    text-align: center;
+    font-size: 24px;
+    color: #ffb5a9;
+    font-weight: 500;
+    .roll {
+      margin: 0 auto 32px auto;
+      width: 249px;
+      height: 109px;
+      background-image: url(~@assets/images/BlockSelect/button.png);
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+    .ref {
+      margin-bottom: 16px;
+    }
+  }
+}
+</style>

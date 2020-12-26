@@ -5,6 +5,14 @@ const routes = [
   {
     path: "/",
     component: () => import("@views/Home.vue")
+  },
+  {
+    path: "/block",
+    component: () => import("@views/BlockSelect.vue")
+  },
+  {
+    path: "/roll",
+    component: () => import("@views/RollList.vue")
   }
 ];
 
