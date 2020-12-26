@@ -309,7 +309,7 @@ export default {
           background-repeat: no-repeat;
           position: relative;
           &:after {
-            content: '';
+            content: "";
             width: 41px;
             height: 27px;
             background: url(~@assets/images/home/user/square.png);

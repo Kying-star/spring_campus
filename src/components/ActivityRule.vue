@@ -55,6 +55,7 @@ export default {
   src: url(~@assets/font/FZYaZhuTiS.OTF);
 }
 .activity-rule {
+  z-index: 999;
   .box {
     box-sizing: border-box;
     margin: 52px 56px 0;
