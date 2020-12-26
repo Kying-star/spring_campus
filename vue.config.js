@@ -1,4 +1,5 @@
 const path = require("path");
+const { webpackExt } = require("apite");
 function resolve(dir) {
   return path.join(__dirname, dir);
 }
@@ -25,7 +26,10 @@ module.exports = {
   //   }
   // },
   devServer: {
-    port: 8088,
+    before: webpackExt({
+      prefix: "/mock"
+    }),
+    port: 8080,
     proxy: {
       "/api": {
         target: "https://cyxbsmobile.redrock.team/wxapi/nineteenth-committee", // 设置调用的接口域名和端口号 ( 设置代理目标)
