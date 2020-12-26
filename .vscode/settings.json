@@ -15,14 +15,6 @@
   "prettier.trailingComma": "none",
   "prettier.semi": true,
   "prettier.singleQuote": false,
-  "vetur.format.defaultFormatter.html": "js-beautify-html",
-  "vetur.format.defaultFormatter.scss": "prettier",
-  "vetur.format.defaultFormatterOptions": {
-    "js-beautify-html": {
-      "wrap_line_length":80,
-      "wrap_attributes": "auto"
-    }
-  },
   "explorer.confirmDelete": false,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true

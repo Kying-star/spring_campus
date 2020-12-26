@@ -46,14 +46,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@font-face {
-  font-family: SJbangshu;
-  src: url(~@assets/font/SJbangshu.TTF);
-}
-@font-face {
-  font-family: FZYaZhuTiS;
-  src: url(~@assets/font/FZYaZhuTiS.OTF);
-}
 .activity-rule {
   .box {
     box-sizing: border-box;
