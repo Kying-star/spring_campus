@@ -31,11 +31,11 @@ export default {
     name: String,
     score: String,
     rank: String,
-    percent: String,
+    percent: String
   },
   setup(props, ctx) {
     const close = () => ctx.emit("close");
-    const complete = (router) => ctx.emit("complete", router);
+    const complete = router => ctx.emit("complete", router);
     return {
       close,
       complete

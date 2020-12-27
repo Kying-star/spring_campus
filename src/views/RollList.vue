@@ -51,20 +51,20 @@ export default {
       { info: "十三五成就" },
       { info: "远景 目标" },
       { info: "十四五规划" }
-      ])
+    ]);
     const router = useRouter();
     const rollList = ref([
-      {order:1,nickname:"卷卷一号",time:"00:10:20",avatar:""},
-      {order:2,nickname:"卷卷一号",time:"00:10:20",avatar:""},
-      {order:3,nickname:"卷卷一号",time:"00:10:20",avatar:""},
-      {order:4,nickname:"卷卷一号",time:"00:10:20",avatar:""},
-      {order:5,nickname:"卷卷一号",time:"00:10:20",avatar:""},
-      {order:6,nickname:"卷卷一号",time:"00:10:20",avatar:""},
-      {order:7,nickname:"卷卷一号",time:"00:10:20",avatar:""},
-      {order:8,nickname:"卷卷一号",time:"00:10:20",avatar:""},
-      {order:9,nickname:"卷卷一号",time:"00:10:20",avatar:""},
-      {order:10,nickname:"卷卷一号",time:"00:10:20",avatar:""},
-    ])
+      { order: 1, nickname: "卷卷一号", time: "00:10:20", avatar: "" },
+      { order: 2, nickname: "卷卷一号", time: "00:10:20", avatar: "" },
+      { order: 3, nickname: "卷卷一号", time: "00:10:20", avatar: "" },
+      { order: 4, nickname: "卷卷一号", time: "00:10:20", avatar: "" },
+      { order: 5, nickname: "卷卷一号", time: "00:10:20", avatar: "" },
+      { order: 6, nickname: "卷卷一号", time: "00:10:20", avatar: "" },
+      { order: 7, nickname: "卷卷一号", time: "00:10:20", avatar: "" },
+      { order: 8, nickname: "卷卷一号", time: "00:10:20", avatar: "" },
+      { order: 9, nickname: "卷卷一号", time: "00:10:20", avatar: "" },
+      { order: 10, nickname: "卷卷一号", time: "00:10:20", avatar: "" }
+    ]);
     const back = () => router.push("/block");
     return {
       buttonList,

@@ -9,63 +9,69 @@
 <template>
   <div class="item">
     <div class="personDetail">
-      <div :class="getRankClass()" >{{isShowNum?rank:' '}}</div>
-      <img class="Avatar"  src="~@assets/images/BlockSelect/avatar.png" />
-      <div class="nickname">{{nick}}</div>
+      <div :class="getRankClass()">{{ isShowNum ? rank : " " }}</div>
+      <img class="Avatar" src="~@assets/images/BlockSelect/avatar.png" />
+      <div class="nickname">{{ nick }}</div>
     </div>
 
     <div class="times">
-      <div :class="getClockClass()"  alt=""></div>
-      <div class="time">{{time}}</div>
+      <div :class="getClockClass()" alt=""></div>
+      <div class="time">{{ time }}</div>
     </div>
-    
   </div>
 </template>
 
 <script>
 import { ref } from "vue";
 export default {
-  props:{
+  props: {
     order: Number,
     nickname: String,
     time: String,
     Avatar: String
   },
-  setup(props){
-    const rank = ref(props.order)
-    const nick = ref(props.nickname)
+  setup(props) {
+    const rank = ref(props.order);
+    const nick = ref(props.nickname);
     console.log(nick);
-    const isShowNum = ref(true)
+    const isShowNum = ref(true);
     console.log(rank);
-    const getRankClass = () =>{
-      let style = "default"
+    const getRankClass = () => {
+      let style = "default";
       console.log(rank.value);
-      switch(rank.value) {
-        case 1: style = "default first"; break;
-        case 2: style = "default second"; break;
-        case 3: style = "default third"; break;
-        default: break;
+      switch (rank.value) {
+        case 1:
+          style = "default first";
+          break;
+        case 2:
+          style = "default second";
+          break;
+        case 3:
+          style = "default third";
+          break;
+        default:
+          break;
       }
       if (rank.value <= 3) {
-        isShowNum.value = false
+        isShowNum.value = false;
       }
-      return style
-    }
+      return style;
+    };
     const getClockClass = () => {
       if (rank.value <= 3) {
-        return "clock"
+        return "clock";
       }
-      return "clock lightClock"
-    }
+      return "clock lightClock";
+    };
     return {
       getClockClass,
       getRankClass,
       rank,
       isShowNum,
       nick
-    }
+    };
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -90,7 +96,7 @@ export default {
     font-size: 29px;
     font-family: SJbangshu;
     font-weight: 400;
-    color: #FF5A00;
+    color: #ff5a00;
     line-height: 70px;
     text-align: center;
   }
@@ -107,7 +113,7 @@ export default {
     height: 69px;
     background-image: url("../assets/images/BlockSelect/third.png");
   }
-  .Avatar{
+  .Avatar {
     margin-left: 32px;
     width: 75px;
     height: 75px;

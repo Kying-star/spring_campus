@@ -72,4 +72,13 @@ export default {
   box-sizing: border-box;
   height: 45px;
 }
+.content >>> .tip {
+  border-bottom: 2px solid #ff4d4d;
+  display: inline-block;
+  font-size: 28px;
+  text-align: center;
+  box-sizing: border-box;
+  height: 45px;
+  color: #f3cd84;
+}
 </style>

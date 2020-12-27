@@ -18,6 +18,8 @@
         :answerKey="questions[index].key"
         v-show="questions[index].order === showIndex + 1"
         @next="showQuestionTip(true)"
+        :isShowTip="isShowTip"
+        @onselecting="showTip(false)"
       />
     </main>
     <QuestionTip
@@ -40,13 +42,18 @@
 
 <script>
 import FillBlank from "@components/FillBlank";
-import QuestionTip from "@components/QuestionTip"
-import Score from "@components/Score"
-import Choice from "@components/Choice"
+import QuestionTip from "@components/QuestionTip";
+import Score from "@components/Score";
+import Choice from "@components/Choice";
 import { useRoute } from "vue-router";
 import { computed, onMounted, onUnmounted, reactive, ref } from "vue";
-import { getAnalysis, getQuestion, getScore, updateScore } from '@/services/api';
-import router from '@/router';
+import {
+  getAnalysis,
+  getQuestion,
+  getScore,
+  updateScore
+} from "@/services/api";
+import router from "@/router";
 export default {
   components: { FillBlank, QuestionTip, Score, Choice },
   setup() {
@@ -56,21 +63,25 @@ export default {
     const clock = reactive({
       second: 0,
       ms: 0,
-      timer: null
+      timer: null,
+      enter: 0,
+      timeStamp: 0
     });
     const score = reactive({
       name: "",
       score: "",
       ranking: "",
-      percent: "",
-    })
+      percent: ""
+    });
     const isShowTip = ref(false);
     const isShowQuestionTip = ref(false);
     const isShowScore = ref(false);
     const showIndex = ref(0);
     const questions = ref([]);
     const questionTip = ref([]);
-    const isComplete = computed(() => showIndex.value === 3);
+    const isComplete = computed(
+      () => showIndex.value === questions.value.length - 1
+    );
     const components = computed(() => {
       return questions.value.map(item => {
         if (item.topic_type === "click") return "FillBlank";
@@ -82,7 +93,7 @@ export default {
       isShowScore.value = false;
       destory.value = true;
       router.push(to);
-    }
+    };
     const fetchQuestion = async () => {
       const { data } = await getQuestion(type);
       questions.value = data.data;
@@ -97,10 +108,10 @@ export default {
       score.score = data.score;
       score.ranking = data.ranking;
       score.percent = data.percent;
-    }
+    };
     const postScore = async () => {
-      await updateScore(type, clock.second * 1000 + clock.ms)
-    }
+      await updateScore(type, clock.second * 1000 + clock.ms);
+    };
     const toDub = n => {
       //补0操作
       if (n < 10) {
@@ -113,19 +124,22 @@ export default {
       clearInterval(clock.timer);
     };
     const showTip = status => {
-      isShowTip.value = status;
+      if (clock.timeStamp - clock.enter >= 10000) {
+        isShowTip.value = status;
+      }
     };
-    const showQuestionTip = async (status) => {
+    const showQuestionTip = async status => {
       isShowQuestionTip.value = status;
       if (status) {
         stop();
       } else {
         if (isComplete.value) {
           isShowQuestionTip.value = false;
-          await postScore()
+          await postScore();
           await fetchScore();
           isShowScore.value = true;
         } else {
+          clock.enter = clock.timeStamp;
           start();
           showIndex.value++;
         }
@@ -136,6 +150,7 @@ export default {
     };
     const timer = () => {
       clock.ms += 10;
+      clock.timeStamp += 10;
       if (clock.ms >= 1000) {
         clock.ms = 0;
         clock.second++;
@@ -148,7 +163,7 @@ export default {
     });
     onUnmounted(() => {
       console.log("leave");
-    })
+    });
     return {
       questions,
       showIndex,

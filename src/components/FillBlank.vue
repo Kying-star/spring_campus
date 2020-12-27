@@ -9,7 +9,7 @@
           :class="{
             active: item.selected,
             three: answersForSelect.length === 3,
-            four: answersForSelect.length === 4,
+            four: answersForSelect.length === 4
           }"
           v-for="item of answersForSelect"
           :key="item.index"
@@ -39,7 +39,8 @@ export default {
     answers: {
       type: Array,
       required: true
-    }
+    },
+    isShowTip: Boolean
   },
   setup(props, ctx) {
     const answersForSelect = computed(() => {
@@ -56,13 +57,17 @@ export default {
       for (let i = 0; i < props.answers.length; i++) {
         html = html.replace(
           /keyword/,
-          `<span class="blank" style="width:${20 *
-          props.answers[i].length}px">${selectAnswer.value[i] || ""}</span>`
+          `<span class="blank ${
+            props.isShowTip ? "tip" : ""
+          }" style="width:${20 * props.answers[i].length}px">${
+            props.isShowTip ? props.answers[i] : selectAnswer.value[i] || ""
+          }</span>`
         );
       }
       return html;
     });
     const select = (answer, index) => {
+      ctx.emit("onselecting");
       const item = answersForSelect.value[index];
       if (item.selected) {
         item.selected = false;
