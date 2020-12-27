@@ -15,6 +15,7 @@
         :index="questions[index].order"
         :question="questions[index].question"
         :answers="questions[index].answer"
+        :answerKey="questions[index].key"
         v-show="questions[index].order === showIndex + 1"
         @next="showQuestionTip(true)"
       />
@@ -41,12 +42,13 @@
 import FillBlank from "@components/FillBlank";
 import QuestionTip from "@components/QuestionTip"
 import Score from "@components/Score"
+import Choice from "@components/Choice"
 import { useRoute } from "vue-router";
 import { computed, onMounted, onUnmounted, reactive, ref } from "vue";
 import { getAnalysis, getQuestion, getScore, updateScore } from '@/services/api';
 import router from '@/router';
 export default {
-  components: { FillBlank, QuestionTip, Score },
+  components: { FillBlank, QuestionTip, Score, Choice },
   setup() {
     const route = useRoute();
     const { type } = route.query;
@@ -73,7 +75,7 @@ export default {
       return questions.value.map(item => {
         if (item.topic_type === "click") return "FillBlank";
         else if (item.topic_type === "number") return "FillNumber";
-        else if (item.topic_type === "choice") return "choice";
+        else if (item.topic_type === "choice") return "Choice";
       });
     });
     const hideScore = to => {

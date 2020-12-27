@@ -1,56 +1,142 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 23:04:50
- * @LastEditTime: 2020-12-26 23:53:03
+ * @LastEditTime: 2020-12-27 14:56:49
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/components/RollItem.vue
 -->
 <template>
   <div class="item">
-    <img class="rank" src="~@assets/images/BlockSelect/first.png" />
-    <img class="Avatar" src="~@assets/images/BlockSelect/avatar.png" />
-    <div class="nickname">卷卷一号</div>
-    <img class="clock" src="~@assets/images/BlockSelect/darkClock.png" alt="" />
-    <div class="time">00:10:20</div>
+    <div class="personDetail">
+      <div :class="getRankClass()" >{{isShowNum?rank:' '}}</div>
+      <img class="Avatar"  src="~@assets/images/BlockSelect/avatar.png" />
+      <div class="nickname">{{nick}}</div>
+    </div>
+
+    <div class="times">
+      <div :class="getClockClass()"  alt=""></div>
+      <div class="time">{{time}}</div>
+    </div>
+    
   </div>
 </template>
 
 <script>
-export default {};
+import { ref } from "vue";
+export default {
+  props:{
+    order: Number,
+    nickname: String,
+    time: String,
+    Avatar: String
+  },
+  setup(props){
+    const rank = ref(props.order)
+    const nick = ref(props.nickname)
+    console.log(nick);
+    const isShowNum = ref(true)
+    console.log(rank);
+    const getRankClass = () =>{
+      let style = "default"
+      console.log(rank.value);
+      switch(rank.value) {
+        case 1: style = "default first"; break;
+        case 2: style = "default second"; break;
+        case 3: style = "default third"; break;
+        default: break;
+      }
+      if (rank.value <= 3) {
+        isShowNum.value = false
+      }
+      return style
+    }
+    const getClockClass = () => {
+      if (rank.value <= 3) {
+        return "clock"
+      }
+      return "clock lightClock"
+    }
+    return {
+      getClockClass,
+      getRankClass,
+      rank,
+      isShowNum,
+      nick
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
 .item {
   width: 623px;
   height: 99px;
+  margin: 15px;
   background-color: #ffeeee;
   border-radius: 15px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  .rank {
+  .personDetail {
+    display: flex;
+    align-items: center;
+  }
+  .default {
     width: 61px;
     height: 70px;
+    background-size: cover;
+    margin-left: 20px;
+    font-size: 29px;
+    font-family: SJbangshu;
+    font-weight: 400;
+    color: #FF5A00;
+    line-height: 70px;
+    text-align: center;
   }
-  .Avatar {
+  .first {
+    background-image: url("../assets/images/BlockSelect/first.png");
+  }
+  .second {
+    width: 57px;
+    height: 70px;
+    background-image: url("../assets/images/BlockSelect/second.png");
+  }
+  .third {
+    width: 56px;
+    height: 69px;
+    background-image: url("../assets/images/BlockSelect/third.png");
+  }
+  .Avatar{
+    margin-left: 32px;
     width: 75px;
     height: 75px;
   }
   .nickname {
+    margin-left: 14px;
     font-size: 23px;
-    font-family: FZYaZhuTiS;
+    font-family: SJbangshu;
     font-weight: bold;
     color: #ff2404;
     line-height: 38px;
   }
+  .times {
+    display: flex;
+  }
   .clock {
-    width: 38px;
-    height: 38px;
+    margin-right: 16px;
+    width: 37px;
+    height: 39px;
+    background-image: url(~@assets/images/BlockSelect/darkClock.png);
+    background-size: cover;
+  }
+  .lightClock {
+    background-image: url(~@assets/images/BlockSelect/lightClock.png);
   }
   .time {
+    margin-right: 32px;
     font-size: 22px;
-    font-family: FZYaZhuTiS;
+    font-family: SJbangshu;
     font-weight: bold;
     color: #2064ff;
     line-height: 38px;
