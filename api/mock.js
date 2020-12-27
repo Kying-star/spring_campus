@@ -49,3 +49,43 @@ api.get("/topic", {
     },
   ],
 });
+
+api.get("analysis", {
+  type: "basic",
+  datas: [
+    {
+      order: "1",
+      data:
+        "中国共产党第十九届中央委员会第五次全体会议，于2020年10月26日至29日在北京举行。全会由中央政治局主持。除中央委员、候补中央委员外。",
+      url: "https://picsum.photos/id/83/200/300",
+    },
+    {
+      order: "2",
+      data: "ssss",
+      url: "https://picsum.photos/id/830/200/300",
+    },
+    {
+      order: "3",
+      data: "ssss",
+      url: "https://picsum.photos/id/831/200/300",
+    },
+    {
+      order: "4",
+      data: "ssss",
+      url: "https://picsum.photos/id/834/200/300",
+    },
+  ],
+});
+
+api.get("/score", {
+  name: "十九届五中全会基本情况",
+  score: "31.64秒",
+  ranking: "排行榜（第八名）",
+  percent: "99.9%",
+});
+
+/**
+ * @param {string} type 类型
+ * @param {number} score 分数
+ */
+api.post("/score", "ok");

@@ -1,5 +1,5 @@
 <template>
-  <div class="game">
+  <div class="game" v-if="!destory">
     <header>
       <div class="time">
         <div class="icon"></div>
@@ -16,29 +16,59 @@
         :question="questions[index].question"
         :answers="questions[index].answer"
         v-show="questions[index].order === showIndex + 1"
-        @next="next"
+        @next="showQuestionTip(true)"
       />
     </main>
+    <QuestionTip
+      @close="showQuestionTip(false)"
+      v-show="isShowQuestionTip"
+      :imgUrl="questionTip[showIndex].url"
+      :text="questionTip[showIndex].data"
+      :last="isComplete"
+    />
+    <Score
+      v-show="isShowScore"
+      :name="score.name"
+      :score="score.score"
+      :rank="score.ranking"
+      :percent="score.percent"
+      @complete="hideScore"
+    />
   </div>
 </template>
 
 <script>
 import FillBlank from "@components/FillBlank";
+import QuestionTip from "@components/QuestionTip"
+import Score from "@components/Score"
 import { useRoute } from "vue-router";
-import { getQuestion } from "@api/api.js";
-import { computed, onMounted, reactive, ref } from "vue";
+import { computed, onMounted, onUnmounted, reactive, ref } from "vue";
+import { getAnalysis, getQuestion, getScore, updateScore } from '@/services/api';
+import router from '@/router';
 export default {
-  components: { FillBlank },
+  components: { FillBlank, QuestionTip, Score },
   setup() {
     const route = useRoute();
+    const { type } = route.query;
+    const destory = ref(false);
     const clock = reactive({
       second: 0,
       ms: 0,
       timer: null
     });
+    const score = reactive({
+      name: "",
+      score: "",
+      ranking: "",
+      percent: "",
+    })
     const isShowTip = ref(false);
+    const isShowQuestionTip = ref(false);
+    const isShowScore = ref(false);
     const showIndex = ref(0);
     const questions = ref([]);
+    const questionTip = ref([]);
+    const isComplete = computed(() => showIndex.value === 3);
     const components = computed(() => {
       return questions.value.map(item => {
         if (item.topic_type === "click") return "FillBlank";
@@ -46,14 +76,29 @@ export default {
         else if (item.topic_type === "choice") return "choice";
       });
     });
-    const next = () => {
-      showIndex.value++;
-    };
+    const hideScore = to => {
+      isShowScore.value = false;
+      destory.value = true;
+      router.push(to);
+    }
     const fetchQuestion = async () => {
-      const { type } = route.query;
       const { data } = await getQuestion(type);
       questions.value = data.data;
     };
+    const fetchAnalysis = async () => {
+      const { data } = await getAnalysis(type);
+      questionTip.value = data.datas;
+    };
+    const fetchScore = async () => {
+      const { data } = await getScore(type);
+      score.name = data.name;
+      score.score = data.score;
+      score.ranking = data.ranking;
+      score.percent = data.percent;
+    }
+    const postScore = async () => {
+      await updateScore(type, clock.second * 1000 + clock.ms)
+    }
     const toDub = n => {
       //补0操作
       if (n < 10) {
@@ -67,12 +112,22 @@ export default {
     };
     const showTip = status => {
       isShowTip.value = status;
+    };
+    const showQuestionTip = async (status) => {
+      isShowQuestionTip.value = status;
       if (status) {
         stop();
       } else {
-        start();
+        if (isComplete.value) {
+          isShowQuestionTip.value = false;
+          await postScore()
+          await fetchScore();
+          isShowScore.value = true;
+        } else {
+          start();
+          showIndex.value++;
+        }
       }
-      console.log(+new Date());
     };
     const start = () => {
       clock.timer = setInterval(timer, 10);
@@ -85,18 +140,29 @@ export default {
       }
     };
     fetchQuestion();
+    fetchAnalysis();
     onMounted(() => {
       start();
     });
+    onUnmounted(() => {
+      console.log("leave");
+    })
     return {
       questions,
       showIndex,
       components,
-      next,
       clock,
       showTip,
       toDub,
-      isShowTip
+      isShowTip,
+      showQuestionTip,
+      isShowQuestionTip,
+      isShowScore,
+      questionTip,
+      score,
+      hideScore,
+      destory,
+      isComplete
     };
   }
 };
