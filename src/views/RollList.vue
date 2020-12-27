@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:47:00
- * @LastEditTime: 2020-12-26 23:22:30
+ * @LastEditTime: 2020-12-27 14:31:34
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/views/RollList.vue
@@ -14,9 +14,15 @@
     </header>
     <main>
       <div class="inner">
-        <div class="title"> 十九届五中全会基本情况答题排行榜</div>
+        <div class="tip">十九届五中全会基本情况答题排行榜</div>
         <div class="list">
-          <RollItem />
+          <RollItem
+            v-for="item in rollList"
+            :key="item"
+            :order="item.order"
+            :nickname="item.nickname"
+            :time="item.time"
+          />
         </div>
       </div>
     </main>
@@ -40,8 +46,21 @@ export default {
       { info: "远景 目标" },
       { info: "十四五规划" }
       ])
+    const rollList = ref([
+      {order:1,nickname:"卷卷一号",time:"00:10:20",avatar:""},
+      {order:2,nickname:"卷卷一号",time:"00:10:20",avatar:""},
+      {order:3,nickname:"卷卷一号",time:"00:10:20",avatar:""},
+      {order:4,nickname:"卷卷一号",time:"00:10:20",avatar:""},
+      {order:5,nickname:"卷卷一号",time:"00:10:20",avatar:""},
+      {order:6,nickname:"卷卷一号",time:"00:10:20",avatar:""},
+      {order:7,nickname:"卷卷一号",time:"00:10:20",avatar:""},
+      {order:8,nickname:"卷卷一号",time:"00:10:20",avatar:""},
+      {order:9,nickname:"卷卷一号",time:"00:10:20",avatar:""},
+      {order:10,nickname:"卷卷一号",time:"00:10:20",avatar:""},
+    ])
     return {
-      buttonList
+      buttonList,
+      rollList
     };
   }
 };
@@ -83,9 +102,10 @@ export default {
       display: flex;
       flex-direction: column;
       align-items: center;
-      .title {
+      .tip {
         width: 683px;
         margin-top: 58px;
+        margin-bottom: 48px;
         font-size: 35px;
         font-family: SJbangshu;
         font-weight: 400;
@@ -95,6 +115,9 @@ export default {
       }
       .list {
         width: 623px;
+        height: 660px;
+        overflow-y: scroll;
+        overflow-x: hidden;
       }
     }    
   }
