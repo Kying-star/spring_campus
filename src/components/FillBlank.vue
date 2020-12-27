@@ -6,7 +6,11 @@
       <div class="answers">
         <div
           class="answer"
-          :class="{ active: item.selected }"
+          :class="{
+            active: item.selected,
+            three: answersForSelect.length === 3,
+            four: answersForSelect.length === 4,
+          }"
           v-for="item of answersForSelect"
           :key="item.index"
           @click="select(item.answer, item.index)"
@@ -52,8 +56,8 @@ export default {
       for (let i = 0; i < props.answers.length; i++) {
         html = html.replace(
           /keyword/,
-          `<span class="blank" style="width:${30 *
-            props.answers[i].length}px">${selectAnswer.value[i] || ""}</span>`
+          `<span class="blank" style="width:${20 *
+          props.answers[i].length}px">${selectAnswer.value[i] || ""}</span>`
         );
       }
       return html;
@@ -137,7 +141,6 @@ export default {
     justify-content: center;
     align-items: center;
     border: 1px #fff475 solid;
-
     .answer {
       box-sizing: border-box;
       width: 342px;
@@ -151,7 +154,12 @@ export default {
       background: #ff8033;
       border: 1px solid #a2b2ee;
       border-radius: 20px;
-      margin-bottom: 40px;
+      &.three {
+        margin-bottom: 40px;
+      }
+      &.four {
+        margin-bottom: 18px;
+      }
       &.active {
         background-color: #ff4e00;
       }
