@@ -15,6 +15,7 @@
         :index="questions[index].order"
         :question="questions[index].question"
         :answers="questions[index].answer"
+        :answerKey="questions[index].key"
         v-show="questions[index].order === showIndex + 1"
         @next="next"
       />
@@ -24,11 +25,12 @@
 
 <script>
 import FillBlank from "@components/FillBlank";
+import Choice from "@components/Choice"
 import { useRoute } from "vue-router";
 import { getQuestion } from "@api/api.js";
 import { computed, onMounted, reactive, ref } from "vue";
 export default {
-  components: { FillBlank },
+  components: { FillBlank, Choice },
   setup() {
     const route = useRoute();
     const clock = reactive({
@@ -43,7 +45,7 @@ export default {
       return questions.value.map(item => {
         if (item.topic_type === "click") return "FillBlank";
         else if (item.topic_type === "number") return "FillNumber";
-        else if (item.topic_type === "choice") return "choice";
+        else if (item.topic_type === "choice") return "Choice";
       });
     });
     const next = () => {
