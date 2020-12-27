@@ -27,7 +27,7 @@
       </div>
     </main>
     <footer>
-      <div class="roll"></div>
+      <div class="roll" @click="gotoRoll()"></div>
     </footer>
   </div>
 </template>
@@ -46,6 +46,7 @@ export default {
     const showActivityRule = status => {
       isShowActivityRule.value = status;
     };
+    const gotoRoll = () => router.push(`/roll`);
     const blockList = ref([
       {
         isAnswer: true,
@@ -79,7 +80,8 @@ export default {
       isShowActivityRule,
       showActivityRule,
       blockList,
-      toGame
+      toGame,
+      gotoRoll
     };
   }
 };

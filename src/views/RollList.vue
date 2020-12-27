@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:47:00
- * @LastEditTime: 2020-12-27 14:57:22
+ * @LastEditTime: 2020-12-27 15:29:23
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/views/RollList.vue
@@ -31,7 +31,7 @@
       </div>
     </main>
     <footer>
-      <div class="roll"></div>
+      <div class="back" @click="back()"></div>
     </footer>
   </div>
 </template>
@@ -40,6 +40,8 @@
 import { ref } from "vue";
 import RollButton from "@components/RollButton";
 import RollItem from "@components/RollItem";
+import { useRouter } from "vue-router";
+
 export default {
   components: { RollButton, RollItem },
   setup() {
@@ -50,6 +52,7 @@ export default {
       { info: "远景 目标" },
       { info: "十四五规划" }
       ])
+    const router = useRouter();
     const rollList = ref([
       {order:1,nickname:"卷卷一号",time:"00:10:20",avatar:""},
       {order:2,nickname:"卷卷一号",time:"00:10:20",avatar:""},
@@ -62,9 +65,11 @@ export default {
       {order:9,nickname:"卷卷一号",time:"00:10:20",avatar:""},
       {order:10,nickname:"卷卷一号",time:"00:10:20",avatar:""},
     ])
+    const back = () => router.push("/block");
     return {
       buttonList,
-      rollList
+      rollList,
+      back
     };
   }
 };
@@ -132,7 +137,7 @@ export default {
     font-size: 24px;
     color: #ffb5a9;
     font-weight: 500;
-    .roll {
+    .back {
       margin: 0 auto 32px auto;
       width: 249px;
       height: 109px;
