@@ -36,21 +36,44 @@
 import ActivityRule from "@components/ActivityRule";
 import TipBlock from "@components/TipBlock";
 import { ref } from "vue";
-import { useRouter } from 'vue-router';
+import { useRouter } from "vue-router";
 export default {
   components: { ActivityRule, TipBlock },
   setup() {
     const isShowActivityRule = ref(false);
-    const router = useRouter()
-    const toGame = type => router.push(`/game?type=${type}`)
+    const router = useRouter();
+    const toGame = type => router.push(`/game?type=${type}`);
     const showActivityRule = status => {
       isShowActivityRule.value = status;
     };
     const blockList = ref([
-      { isAnswer: true, count: 1, type: "basic", txt: "全会基本情况", footer: "[等你答题]" },
-      { isAnswer: true, count: 1, type: "Achievements", txt: "“十三五”时期成就" },
-      { isAnswer: true, count: 1, type: "target", txt: "2035年远景目标", footer: "[最终成绩32.54秒]" },
-      { isAnswer: true, count: 1, type: "develop", txt: "“十四五”发展规划", footer: "[解锁时间：2020年12月25日]" }
+      {
+        isAnswer: true,
+        count: 1,
+        type: "basic",
+        txt: "全会基本情况",
+        footer: "[等你答题]"
+      },
+      {
+        isAnswer: true,
+        count: 1,
+        type: "Achievements",
+        txt: "“十三五”时期成就"
+      },
+      {
+        isAnswer: true,
+        count: 1,
+        type: "target",
+        txt: "2035年远景目标",
+        footer: "[最终成绩32.54秒]"
+      },
+      {
+        isAnswer: true,
+        count: 1,
+        type: "develop",
+        txt: "“十四五”发展规划",
+        footer: "[解锁时间：2020年12月25日]"
+      }
     ]);
     return {
       isShowActivityRule,

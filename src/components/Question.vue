@@ -31,9 +31,10 @@ export default {
   width: 100%;
   background-color: #fff;
   border-radius: 20px;
-  padding: 31px 41px 0;
+  padding: 31px 41px 97px;
   text-align: center;
   border: 1px #d1f9e1 solid;
+  position: relative;
   .title {
     font-size: 49px;
     font-family: SJbangshu;
@@ -49,6 +50,15 @@ export default {
     display: flex;
     align-items: flex-end;
     flex-wrap: wrap;
+  }
+  .wrong {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 28px;
+    font-family: SJbangshu;
+    color: #7d8fff;
   }
 }
 </style>

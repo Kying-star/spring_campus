@@ -10,11 +10,15 @@
   <div class="home">
     <div class="bg"></div>
     <header>
-      <RollButton v-for="button in buttonList" :key="button" :info="button.info"/>
+      <RollButton
+        v-for="button in buttonList"
+        :key="button"
+        :info="button.info"
+      />
     </header>
     <main>
       <div class="inner">
-        <div class="title"> 十九届五中全会基本情况答题排行榜</div>
+        <div class="title">十九届五中全会基本情况答题排行榜</div>
         <div class="list">
           <RollItem />
         </div>
@@ -28,8 +32,8 @@
 
 <script>
 import { ref } from "vue";
-import RollButton from "@components/RollButton"
-import RollItem from "@components/RollItem"
+import RollButton from "@components/RollButton";
+import RollItem from "@components/RollItem";
 export default {
   components: { RollButton, RollItem },
   setup() {
@@ -39,7 +43,7 @@ export default {
       { info: "十三五成就" },
       { info: "远景 目标" },
       { info: "十四五规划" }
-      ])
+    ]);
     return {
       buttonList
     };
@@ -89,14 +93,14 @@ export default {
         font-size: 35px;
         font-family: SJbangshu;
         font-weight: 400;
-        color: #FE4D4D;
+        color: #fe4d4d;
         line-height: 45px;
         text-align: center;
       }
       .list {
         width: 623px;
       }
-    }    
+    }
   }
   footer {
     width: 100%;

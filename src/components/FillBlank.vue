@@ -53,7 +53,7 @@ export default {
         html = html.replace(
           /keyword/,
           `<span class="blank" style="width:${30 *
-          props.answers[i].length}px">${selectAnswer.value[i] || ""}</span>`
+            props.answers[i].length}px">${selectAnswer.value[i] || ""}</span>`
         );
       }
       return html;
@@ -78,17 +78,33 @@ export default {
       selectAnswer.value.every((item, index) => {
         return item === props.answers[index];
       });
-    watch(selectAnswer, () => {
-      if (selectAnswer.value.length === props.answers.length && selectAnswer.value.every((item) => item !== "")) {
-        if (check()) {
-          ctx.emit("next");
-        } else {
-          isShowWrong.value = true;
-        }
-      } else {
+    const showWrong = () => {
+      isShowWrong.value = true;
+      console.log(1);
+      setTimeout(() => {
         isShowWrong.value = false;
-      }
-    }, { deep: true, })
+      }, 2000);
+    };
+    watch(
+      selectAnswer,
+      () => {
+        if (
+          selectAnswer.value.length === props.answers.length &&
+          selectAnswer.value.every(item => item !== "")
+        ) {
+          if (check()) {
+            ctx.emit("next");
+          } else {
+            showWrong();
+            selectAnswer.value = selectAnswer.value.map(() => "");
+            for (const item of answersForSelect.value) {
+              item.selected = false;
+            }
+          }
+        }
+      },
+      { deep: true }
+    );
     return {
       showText,
       select,

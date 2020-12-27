@@ -9,20 +9,22 @@
 <template>
   <div class="tip">
     <p>剩余答题</p>
-    <p>次数为<a>{{num}}</a></p>
+    <p>
+      次数为<a>{{ num }}</a>
+    </p>
   </div>
 </template>
 
 <script>
 import { ref } from "vue";
 export default {
-  props:{
+  props: {
     count: Number
   },
   setup(props) {
     console.log(props.count);
     const tip = ref("");
-    const num = ref(props.count)
+    const num = ref(props.count);
     return {
       tip,
       num

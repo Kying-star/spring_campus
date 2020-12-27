@@ -9,17 +9,15 @@
 <template>
   <div class="item">
     <img class="rank" src="~@assets/images/BlockSelect/first.png" />
-    <img class="Avatar"  src="~@assets/images/BlockSelect/avatar.png" />
+    <img class="Avatar" src="~@assets/images/BlockSelect/avatar.png" />
     <div class="nickname">卷卷一号</div>
-    <img class="clock" src="~@assets/images/BlockSelect/darkClock.png"  alt="">
+    <img class="clock" src="~@assets/images/BlockSelect/darkClock.png" alt="" />
     <div class="time">00:10:20</div>
   </div>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style lang="scss" scoped>
@@ -35,7 +33,7 @@ export default {
     width: 61px;
     height: 70px;
   }
-  .Avatar{
+  .Avatar {
     width: 75px;
     height: 75px;
   }
@@ -43,7 +41,7 @@ export default {
     font-size: 23px;
     font-family: FZYaZhuTiS;
     font-weight: bold;
-    color: #FF2404;
+    color: #ff2404;
     line-height: 38px;
   }
   .clock {
@@ -54,7 +52,7 @@ export default {
     font-size: 22px;
     font-family: FZYaZhuTiS;
     font-weight: bold;
-    color: #2064FF;
+    color: #2064ff;
     line-height: 38px;
   }
 }
