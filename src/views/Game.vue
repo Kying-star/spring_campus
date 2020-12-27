@@ -12,10 +12,11 @@
         :is="item"
         v-for="(item, index) of components"
         :key="questions[index].order"
-        :index="index"
+        :index="questions[index].order"
         :question="questions[index].question"
         :answers="questions[index].answer"
-        v-show="questions[index].order == showIndex + 1"
+        v-show="questions[index].order === showIndex + 1"
+        @next="next"
       />
     </main>
   </div>
@@ -39,6 +40,9 @@ export default {
         else if (item.topic_type === "choice") return "choice";
       });
     });
+    const next = () => {
+      showIndex.value++;
+    };
     const fetchQuestion = async () => {
       const { type } = route.query;
       const { data } = await getQuestion(type);
@@ -48,7 +52,8 @@ export default {
     return {
       questions,
       showIndex,
-      components
+      components,
+      next
     };
   }
 };

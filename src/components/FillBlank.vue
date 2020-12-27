@@ -1,6 +1,6 @@
 <template>
   <div class="fill-blank">
-    <Question index="1" :showText="showText" />
+    <Question :index="index" :showText="showText" :isShowWrong="isShowWrong" />
     <div class="edit">
       <div class="tip">请点击选项进行填空</div>
       <div class="answers">
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import Question from "./Question";
 export default {
   components: { Question },
@@ -37,7 +37,7 @@ export default {
       required: true
     }
   },
-  setup(props) {
+  setup(props, ctx) {
     const answersForSelect = computed(() => {
       return props.answers.map((item, index) => ({
         answer: item,
@@ -46,6 +46,7 @@ export default {
       }));
     });
     const selectAnswer = ref([]);
+    const isShowWrong = ref(false);
     const showText = computed(() => {
       let html = props.question;
       for (let i = 0; i < props.answers.length; i++) {
@@ -73,10 +74,27 @@ export default {
         }
       }
     };
+    const check = () =>
+      selectAnswer.value.every((item, index) => {
+        return item === props.answers[index];
+      });
+    watch(selectAnswer, () => {
+      if (selectAnswer.value.length === props.answers.length && selectAnswer.value.every((item) => item !== "")) {
+        if (check()) {
+          ctx.emit("next");
+        } else {
+          isShowWrong.value = true;
+        }
+      } else {
+        isShowWrong.value = false;
+      }
+    }, { deep: true, })
     return {
       showText,
       select,
-      answersForSelect
+      answersForSelect,
+      isShowWrong,
+      selectAnswer
     };
   }
 };

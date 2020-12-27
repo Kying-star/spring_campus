@@ -8,7 +8,7 @@ const { api } = require("apite");
 api.get("/user", {
   name: "王炬欣",
   school: "重庆邮电大学",
-  phone: "17353142976"
+  phone: "17353142976",
 });
 /**
  * @param {string} name 名称
@@ -24,26 +24,21 @@ api.get("/topic", {
       topic_type: "click",
       order: 1,
       question: "坚持keyword工作总基调，坚持keyword，坚定不移推进keyword。",
-      answer: ["稳中求进", "新发展理念", "改革开放"]
+      answer: ["稳中求进", "新发展理念", "改革开放"],
     },
     {
+      topic_type: "click",
       order: 2,
-      topic_type: "number",
       question:
-        "党的十九届五中全会于2020年10月keyword日keyword至keyword日在北京胜利召开。",
-      answer: ["马克思列宁主义", "毛泽东思想", "邓小平理论"]
+        "keyword好于预期，keyword得到有力保障，keyword保持稳定，中国特色大国外交积极推进，党和国家各项事业取得新的重大成就。",
+      answer: ["经济增长", "人民生活", "社会大局"],
     },
     {
+      topic_type: "click",
       order: 3,
-      topic_type: "choice",
       question:
-        "把keyword放在第一位，把握扩大内需这个战略基点，深化供给侧结构性改革，加大宏观政策应对力度，扎实做好“六稳”工作、全面落实“六保”任务，",
-      answer: [
-        "A.经济发展",
-        "B.人民生命安全和身体健康",
-        "C.生态建设",
-        "D.国家统一"
-      ]
-    }
-  ]
+        "坚决维护国家keyword利益，疫情防控工作取得keyword，keyword扎实推进。",
+      answer: ["主权、安全、发展", "重大战略成果", "三大攻坚战"],
+    },
+  ],
 });
