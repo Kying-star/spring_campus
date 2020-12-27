@@ -40,7 +40,7 @@ export default {
       userInfo.value = data;
     };
     const toSelect = () => {
-      router.push("/game?type=basic");
+      router.push("/block");
     };
     onMounted(() => {
       fetchUserInfo();

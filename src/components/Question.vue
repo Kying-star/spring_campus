@@ -2,7 +2,7 @@
   <div class="question">
     <div class="title">第{{ index }}/10题</div>
     <div class="content" v-html="showText"></div>
-    <div class="wrong">回答错误，请重新作答</div>
+    <div class="wrong" v-show="isRight">回答错误，请重新作答</div>
   </div>
 </template>
 
@@ -15,6 +15,10 @@ export default {
     },
     showText: {
       type: String,
+      required: true
+    },
+    isRight: {
+      type: Boolean,
       required: true
     }
   }
