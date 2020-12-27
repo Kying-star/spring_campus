@@ -107,12 +107,8 @@ export default {
     height: 69px;
     background-image: url("../assets/images/BlockSelect/third.png");
   }
-<<<<<<< HEAD
   .Avatar{
     margin-left: 32px;
-=======
-  .Avatar {
->>>>>>> dev-wjx
     width: 75px;
     height: 75px;
   }
