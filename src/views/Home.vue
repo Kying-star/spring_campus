@@ -12,7 +12,7 @@
     </header>
     <main>
       <div class="title"></div>
-      <div class="start"></div>
+      <div class="start" @click="toSelect"></div>
     </main>
     <footer>
       <p class="ref">重庆邮电大学、重庆市学生联合会联合出品</p>
@@ -25,11 +25,13 @@
 import UserInfo from "@components/UserInfo";
 import { onMounted, ref } from "vue";
 import { getUserInfo } from "@api/api.js";
+import { useRouter } from "vue-router";
 export default {
   components: { UserInfo },
   setup() {
     const isShowUserInfo = ref(false);
     const userInfo = ref({});
+    const router = useRouter();
     const showUserInfo = status => {
       isShowUserInfo.value = status;
     };
@@ -37,12 +39,16 @@ export default {
       const { data } = await getUserInfo();
       userInfo.value = data;
     };
+    const toSelect = () => {
+      router.push("/block");
+    };
     onMounted(() => {
       fetchUserInfo();
     });
     return {
       isShowUserInfo,
-      showUserInfo
+      showUserInfo,
+      toSelect
     };
   }
 };

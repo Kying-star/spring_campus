@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 23:04:50
- * @LastEditTime: 2020-12-27 14:40:47
+ * @LastEditTime: 2020-12-27 14:56:49
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/components/RollItem.vue
@@ -107,8 +107,12 @@ export default {
     height: 69px;
     background-image: url("../assets/images/BlockSelect/third.png");
   }
+<<<<<<< HEAD
   .Avatar{
     margin-left: 32px;
+=======
+  .Avatar {
+>>>>>>> dev-wjx
     width: 75px;
     height: 75px;
   }
@@ -117,7 +121,7 @@ export default {
     font-size: 23px;
     font-family: SJbangshu;
     font-weight: bold;
-    color: #FF2404;
+    color: #ff2404;
     line-height: 38px;
   }
   .times {
@@ -138,7 +142,7 @@ export default {
     font-size: 22px;
     font-family: SJbangshu;
     font-weight: bold;
-    color: #2064FF;
+    color: #2064ff;
     line-height: 38px;
   }
 }

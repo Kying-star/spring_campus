@@ -3,11 +3,12 @@
 </template>
 <script>
 import { computed, ref } from "vue";
+import { getQuestion } from "@api/api.js";
 export default {
   setup() {
-    const question = ref("ab{{cd}}ef{{gha}}ijk{{1}}");
+    const question = ref("");
     const reg = /\{\{\w+\}\}/g;
-    const keyword = ref("123");
+    const keyword = ref("");
     const answers = computed(() =>
       question.value.match(reg).map(item => item.slice(2, -2))
     );
@@ -34,6 +35,11 @@ export default {
       }
       return str;
     });
+    const fetchQuestion = async () => {
+      const { data } = await getQuestion("plan");
+      console.log(data);
+    };
+    fetchQuestion();
     return {
       question,
       showText

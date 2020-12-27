@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:47:00
- * @LastEditTime: 2020-12-27 14:31:34
+ * @LastEditTime: 2020-12-27 14:57:13
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/views/RollList.vue
@@ -10,7 +10,11 @@
   <div class="home">
     <div class="bg"></div>
     <header>
-      <RollButton v-for="button in buttonList" :key="button" :info="button.info"/>
+      <RollButton
+        v-for="button in buttonList"
+        :key="button"
+        :info="button.info"
+      />
     </header>
     <main>
       <div class="inner">
@@ -34,8 +38,8 @@
 
 <script>
 import { ref } from "vue";
-import RollButton from "@components/RollButton"
-import RollItem from "@components/RollItem"
+import RollButton from "@components/RollButton";
+import RollItem from "@components/RollItem";
 export default {
   components: { RollButton, RollItem },
   setup() {
@@ -109,7 +113,7 @@ export default {
         font-size: 35px;
         font-family: SJbangshu;
         font-weight: 400;
-        color: #FE4D4D;
+        color: #fe4d4d;
         line-height: 45px;
         text-align: center;
       }
@@ -119,7 +123,7 @@ export default {
         overflow-y: scroll;
         overflow-x: hidden;
       }
-    }    
+    }
   }
   footer {
     width: 100%;

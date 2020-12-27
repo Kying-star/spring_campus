@@ -15,12 +15,18 @@
         </div>
         <div class="item school">
           <div class="label">学校：</div>
-          <div class="select">
-            <select v-model="school">
-              <option :value="item" v-for="item of schoolList" :key="item">
+          <div class="select" @click="selecting = !selecting">
+            {{ school }}
+            <ul class="contaniner" v-show="selecting">
+              <li
+                v-for="item of schoolList"
+                :key="item"
+                class="option"
+                @click="select(item)"
+              >
                 {{ item }}
-              </option>
-            </select>
+              </li>
+            </ul>
           </div>
         </div>
         <div class="item phone">
@@ -37,6 +43,7 @@
 <script>
 import { ref } from "vue";
 import { updateUserInfo, getUserInfo } from "@api/api.js";
+
 export default {
   setup(props, ctx) {
     const schoolList = [
@@ -116,7 +123,11 @@ export default {
     const school = ref("");
     const phone = ref("");
     const toast = ref("");
+    const selecting = ref(false);
     const isShowToast = ref(false);
+    const select = item => {
+      school.value = item;
+    };
     const inputPhone = () => {
       phone.value = phone.value.replace(/[^0-9]/g, "");
     };
@@ -190,23 +201,22 @@ export default {
       submit,
       toast,
       isShowToast,
-      name
+      name,
+      selecting,
+      select
     };
   }
 };
 </script>
 
 <style lang="scss" scoped>
-@font-face {
-  font-family: SJbangshu;
-  src: url(~@assets/font/SJbangshu.TTF);
-}
 .user-info {
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   font-family: SJbangshu;
+  overflow: hidden;
   .toast {
     position: fixed;
     z-index: 999;
@@ -282,24 +292,11 @@ export default {
         }
         .select {
           box-sizing: border-box;
-          select {
-            width: 448px;
-            height: 88px;
-            background-color: transparent;
-            border: none;
-            outline: none;
-            appearance: none;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            font-size: 23px;
-            color: #fff;
-            padding: 30px 0 30px 20px;
-            option {
-              color: #fff;
-              font-size: 23px;
-              background-color: #333;
-            }
-          }
+          font-size: 23px;
+          color: #fff;
+          padding: 30px 0 30px 20px;
+          position: relative;
+          border-radius: 20px;
           box-sizing: border-box;
           width: 448px;
           height: 88px;
@@ -308,6 +305,31 @@ export default {
           background-size: 100% 100%;
           background-repeat: no-repeat;
           position: relative;
+          .contaniner {
+            position: absolute;
+            left: 0;
+            top: 88px;
+            list-style: none;
+            width: 100%;
+            background-color: #ff9c8f;
+            border-radius: 20px;
+            z-index: 0;
+            height: 450px;
+            overflow: auto;
+            padding-bottom: 10px;
+          }
+          .option {
+            color: #fff;
+            width: 100%;
+            font-size: 23px;
+            margin: 20px 20px 0;
+            padding: 10px 0 10px 5px;
+            border-radius: 20px;
+            &:hover,
+            &:active {
+              background-color: #ff533b;
+            }
+          }
           &:after {
             content: "";
             width: 41px;

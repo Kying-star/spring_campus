@@ -8,8 +8,11 @@
 -->
 <template>
   <div class="button">
-    <div :class="isbuttonDown?`inner`:`inner down onclick`" @click="buttonDown()">
-      <div class="txt">{{txt}}</div>
+    <div
+      :class="isbuttonDown ? `inner` : `inner down onclick`"
+      @click="buttonDown()"
+    >
+      <div class="txt">{{ txt }}</div>
     </div>
   </div>
 </template>
@@ -20,23 +23,23 @@ export default {
   props: {
     info: String
   },
-  setup (props) {
-    const isbuttonDown = ref(true)
-    const txt = ref(props.info)
+  setup(props) {
+    const isbuttonDown = ref(true);
+    const txt = ref(props.info);
     console.log(props);
     const buttonDown = () => {
-      isbuttonDown.value = !isbuttonDown.value
-      setTimeout(()=>{
-        isbuttonDown.value = true
-      }, 400)
-    }
+      isbuttonDown.value = !isbuttonDown.value;
+      setTimeout(() => {
+        isbuttonDown.value = true;
+      }, 400);
+    };
     return {
       isbuttonDown,
       buttonDown,
       txt
-    }
+    };
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -49,18 +52,18 @@ export default {
   height: 92px;
   background: #e76c59;
   border-radius: 15px;
-  .inner{
+  .inner {
     width: 135px;
     height: 92px;
     background: #f4806e;
     transform: translateY(-10px);
     border: 1px solid #b3eeff;
     border-radius: 15px;
-    transition:  all 0.4s;
+    transition: all 0.4s;
     font-size: 25px;
     font-family: SJbangshu;
     font-weight: 400;
-    color: #FFFFFF;
+    color: #ffffff;
     line-height: 43px;
     text-align: center;
     display: flex;
@@ -78,7 +81,7 @@ export default {
   }
   .down {
     transform: translateY(0px);
-    transition:  all 0.4s;
+    transition: all 0.4s;
   }
   .onclick {
     background-color: #ff5136;

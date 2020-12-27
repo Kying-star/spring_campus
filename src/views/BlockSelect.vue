@@ -11,11 +11,18 @@
     <main>
       <div class="title"></div>
       <div class="blocks">
-        <div class="block" v-for="block in blockList" :key="block">
+        <div
+          class="block"
+          v-for="block in blockList"
+          :key="block"
+          @click="toGame(block.type)"
+        >
           <TipBlock v-show="block.isAnswer" :count="block.count" />
-          <img :src="require(`../assets/images/BlockSelect/${block.img}.png`)" >
-          <div class="blockTitle">{{block.txt}}</div>
-          <div class="blockFooter">{{block.footer}}</div>
+          <img
+            :src="require(`../assets/images/BlockSelect/${block.type}.png`)"
+          />
+          <div class="blockTitle">{{ block.txt }}</div>
+          <div class="blockFooter">{{ block.footer }}</div>
         </div>
       </div>
     </main>
@@ -29,23 +36,50 @@
 import ActivityRule from "@components/ActivityRule";
 import TipBlock from "@components/TipBlock";
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 export default {
   components: { ActivityRule, TipBlock },
   setup() {
     const isShowActivityRule = ref(false);
+    const router = useRouter();
+    const toGame = type => router.push(`/game?type=${type}`);
     const showActivityRule = status => {
       isShowActivityRule.value = status;
     };
     const blockList = ref([
-      { isAnswer: true, count: 1, img: "basic", txt: "全会基本情况", footer: "[等你答题]" },
-      { isAnswer: true, count: 1, img: "Achievements", txt: "“十三五”时期成就" },
-      { isAnswer: true, count: 1, img: "target", txt: "2035年远景目标", footer: "[最终成绩32.54秒]" },
-      { isAnswer: true, count: 1, img: "develop" , txt: "“十四五”发展规划", footer: "[解锁时间：2020年12月25日]" }
+      {
+        isAnswer: true,
+        count: 1,
+        type: "basic",
+        txt: "全会基本情况",
+        footer: "[等你答题]"
+      },
+      {
+        isAnswer: true,
+        count: 1,
+        type: "Achievements",
+        txt: "“十三五”时期成就"
+      },
+      {
+        isAnswer: true,
+        count: 1,
+        type: "target",
+        txt: "2035年远景目标",
+        footer: "[最终成绩32.54秒]"
+      },
+      {
+        isAnswer: true,
+        count: 1,
+        type: "develop",
+        txt: "“十四五”发展规划",
+        footer: "[解锁时间：2020年12月25日]"
+      }
     ]);
     return {
       isShowActivityRule,
       showActivityRule,
-      blockList
+      blockList,
+      toGame
     };
   }
 };
@@ -116,7 +150,7 @@ export default {
           font-size: 22px;
           font-family: SJbangshu;
           font-weight: bold;
-          color: #FF4F35;
+          color: #ff4f35;
           line-height: 21px;
           text-align: center;
         }
@@ -124,12 +158,12 @@ export default {
           transform: translateY(2px);
           width: 290px;
           height: 40px;
-          background: #FF462A;
+          background: #ff462a;
           border-radius: 0px 0px 15px 15px;
           font-size: 16px;
           font-family: FZYaZhuTiS;
           font-weight: bold;
-          color: #FFEDEA;
+          color: #ffedea;
           line-height: 40px;
           text-align: center;
         }

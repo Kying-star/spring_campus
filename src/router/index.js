@@ -13,6 +13,10 @@ const routes = [
   {
     path: "/roll",
     component: () => import("@views/RollList.vue")
+  },
+  {
+    path: "/game",
+    component: () => import("@views/Game.vue")
   }
 ];
 
