@@ -331,7 +331,7 @@ export default {
             }
           }
           &:after {
-            content: '';
+            content: "";
             width: 41px;
             height: 27px;
             background: url(~@assets/images/home/user/square.png);

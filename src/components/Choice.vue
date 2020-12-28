@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-27 16:02:54
- * @LastEditTime: 2020-12-27 16:39:21
+ * @LastEditTime: 2020-12-28 20:30:03
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/components/Choice.vue
@@ -13,12 +13,7 @@
       <div class="tip">选择正确选项</div>
       <div class="answers">
         <div
-          class="answer"
-          :class="{
-            active: item.selected,
-            three: answersForSelect.length === 3,
-            four: answersForSelect.length === 4
-          }"
+          :class="getClass(item.index)"
           v-for="item of answersForSelect"
           :key="item.index"
           @click="select(item.answer, item.index)"
@@ -71,6 +66,12 @@ export default {
       }
       return html;
     });
+    const getClass = index => {
+      if (props.answerKey === index && props.isShowTip) {
+        return "answer answerRight";
+      }
+      return "answer";
+    };
     const select = (answer, index) => {
       ctx.emit("onselecting");
       const submit = index;
@@ -92,7 +93,8 @@ export default {
       select,
       answersForSelect,
       isShowWrong,
-      selectAnswer
+      selectAnswer,
+      getClass
     };
   }
 };
@@ -108,7 +110,6 @@ export default {
     margin-left: 31px;
   }
   .answers {
-    margin-top: 21px;
     box-sizing: border-box;
     width: 683px;
     height: 562px;
@@ -118,10 +119,14 @@ export default {
     justify-content: center;
     align-items: center;
     border: 1px #fff475 solid;
+    .answerRight {
+      border: #f53012 2px solid;
+    }
     .answer {
       box-sizing: border-box;
       width: 683px;
       height: 131px;
+      margin: 5px;
       line-height: 131px;
       text-align: center;
       font-size: 33px;

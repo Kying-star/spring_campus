@@ -126,6 +126,7 @@ export default {
     const showTip = status => {
       if (clock.timeStamp - clock.enter >= 10000) {
         isShowTip.value = status;
+        console.log(isShowTip.value);
       }
     };
     const showQuestionTip = async status => {
