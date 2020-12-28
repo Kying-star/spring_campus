@@ -1,11 +1,12 @@
 <template>
-  <div class="home">
-    <div class="bg"></div>
+  <div class="block">
+    <div class="background"></div>
     <ActivityRule
       v-show="isShowActivityRule"
       @close="showActivityRule(false)"
     />
     <header>
+      <div class="backHome" @click="gotoHome"></div>
       <div class="catalogue" @click="showActivityRule(true)"></div>
     </header>
     <main>
@@ -76,25 +77,27 @@ export default {
         footer: "[解锁时间：2020年12月25日]"
       }
     ]);
+    const gotoHome = () => router.push("/");
     return {
       isShowActivityRule,
       showActivityRule,
       blockList,
       toGame,
-      gotoRoll
+      gotoRoll,
+      gotoHome
     };
   }
 };
 </script>
 
 <style lang="scss" socped>
-.home {
+.block {
   width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: column;
   position: relative;
-  .bg {
+  .background {
     position: absolute;
     top: 0;
     left: 0;
@@ -108,8 +111,14 @@ export default {
   header {
     margin: 35px 35px 0;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
+    .backHome {
+      width: 39px;
+      height: 42px;
+      background-image: url(~@assets/images/BlockSelect/backHome.png);
+      background-size: cover;
+    }
     .catalogue {
       width: 57px;
       height: 60px;

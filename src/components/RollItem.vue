@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 23:04:50
- * @LastEditTime: 2020-12-27 14:56:49
+ * @LastEditTime: 2020-12-28 20:35:57
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/components/RollItem.vue
@@ -57,12 +57,8 @@ export default {
       }
       return style;
     };
-    const getClockClass = () => {
-      if (rank.value <= 3) {
-        return "clock";
-      }
-      return "clock lightClock";
-    };
+    const getClockClass = () =>
+      rank.value <= 3 ? "clock" : "clock lightClock";
     return {
       getClockClass,
       getRankClass,
