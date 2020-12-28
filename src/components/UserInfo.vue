@@ -42,7 +42,7 @@
 
 <script>
 import { ref } from "vue";
-import { updateUserInfo, getUserInfo } from "@api/api.js";
+import { updateUserInfo, getUserInfo } from "@/services/api";
 
 export default {
   setup(props, ctx) {
@@ -331,7 +331,7 @@ export default {
             }
           }
           &:after {
-            content: "";
+            content: '';
             width: 41px;
             height: 27px;
             background: url(~@assets/images/home/user/square.png);

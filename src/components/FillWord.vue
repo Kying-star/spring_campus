@@ -3,7 +3,7 @@
 </template>
 <script>
 import { computed, ref } from "vue";
-import { getQuestion } from "@api/api.js";
+import { getQuestion } from "@/services/api";
 export default {
   setup() {
     const question = ref("");

@@ -24,8 +24,8 @@
 <script>
 import UserInfo from "@components/UserInfo";
 import { onMounted, ref } from "vue";
-import { getUserInfo } from "@api/api.js";
 import { useRouter } from "vue-router";
+import { setCookie, getUserInfo } from '@/services/api';
 export default {
   components: { UserInfo },
   setup() {
@@ -39,9 +39,13 @@ export default {
       const { data } = await getUserInfo();
       userInfo.value = data;
     };
+    const login = async () => {
+      await setCookie();
+    }
     const toSelect = () => {
       router.push("/block");
     };
+    login();
     onMounted(() => {
       fetchUserInfo();
     });
