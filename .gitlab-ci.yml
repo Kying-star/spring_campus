@@ -31,7 +31,7 @@ build:
       - node_modules/
     policy: pull
   script:
-    - npm clean
+    - npm cache clean
     - npm run build
   artifacts:
     expire_in: 3 days
