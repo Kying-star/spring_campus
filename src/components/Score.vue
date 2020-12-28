@@ -1,5 +1,5 @@
 <template>
-  <div class="activity-rule mask">
+  <div class="score mask">
     <div class="box">
       <div class="title">成绩单</div>
       <div class="text">
@@ -45,7 +45,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.activity-rule {
+.score {
   z-index: 999;
   .box {
     box-sizing: border-box;

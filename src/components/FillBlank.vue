@@ -43,10 +43,18 @@ export default {
     isShowTip: Boolean
   },
   setup(props, ctx) {
+    const upsetAnswers = arr => {
+      return arr.sort(() => 0.5 - Math.random());
+    };
     const answersForSelect = computed(() => {
-      return props.answers.map((item, index) => ({
-        answer: item,
-        selected: false,
+      return upsetAnswers(
+        props.answers.map(item => ({
+          answer: item,
+          selected: false
+        }))
+      ).map((item, index) => ({
+        answer: item.answer,
+        selected: item.selected,
         index
       }));
     });

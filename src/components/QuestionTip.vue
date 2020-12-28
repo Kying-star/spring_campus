@@ -1,5 +1,5 @@
 <template>
-  <div class="activity-rule mask">
+  <div class="question-tip mask">
     <div class="box">
       <div class="title">题目解析</div>
       <div class="content">
@@ -30,14 +30,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.activity-rule {
+.question-tip {
   z-index: 999;
   .box {
     box-sizing: border-box;
     margin: 62px 56px 0;
     background-color: #fff;
     border-radius: 15px;
-    padding: 77px 63px 80px;
+    padding: 77px 63px 30px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -45,12 +45,10 @@ export default {
     color: #ff4f35;
     .title {
       font-size: 59px;
-      margin-bottom: 49px;
       font-family: SJbangshu;
     }
     .content {
       box-sizing: border-box;
-
       width: 100%;
       margin-top: 68px;
       img {
@@ -63,6 +61,7 @@ export default {
         font-family: FZYaZhuTiS;
         color: #ff4f35;
         line-height: 45px;
+        text-align: justify;
       }
     }
   }
