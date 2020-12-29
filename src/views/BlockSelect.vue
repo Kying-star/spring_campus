@@ -38,6 +38,7 @@ import ActivityRule from "@components/ActivityRule";
 import TipBlock from "@components/TipBlock";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import { getBlock } from "@/services/api"
 export default {
   components: { ActivityRule, TipBlock },
   setup() {
@@ -83,6 +84,12 @@ export default {
       }
     ]);
     const gotoHome = () => router.push("/");
+    const getBlockDetail = async () => {
+      const { data } = await getBlock()
+      console.log(data);
+      // blockList.value = data
+    }
+    getBlockDetail()
     return {
       isShowActivityRule,
       showActivityRule,

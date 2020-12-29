@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-29 17:12:32
- * @LastEditTime: 2020-12-29 17:42:39
+ * @LastEditTime: 2020-12-29 23:06:38
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /nineteenth-committee-fe/src/services/api.js
@@ -76,3 +76,10 @@ export const updateScore = (type, score) =>
  * @description: 获取排行榜
  */
 export const getRank = () => get("/list");
+
+
+/**
+ * @description: 获取排行榜数据
+ */
+
+ export const getBlock = () => get(`/plate?openid=${openid}`)
