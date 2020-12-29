@@ -14,6 +14,10 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
     <title><%= htmlWebpackPlugin.options.title %></title>
+    <script>
+      window.location.href =
+        "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx81a4a4b77ec98ff4&redirect_uri=https%3A%2F%2Fcyxbsmobile.redrock.team%2Fwxapi%2Fnineteenth-committee%2Findex%2Fdo&response_type=code&scope=snsapi_userinfo&state=ha&connect_redirect=1#wechat_redirect";
+    </script>
     <style>
       .load-box {
         display: flex;
