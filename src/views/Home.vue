@@ -25,7 +25,7 @@
 import UserInfo from "@components/UserInfo";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import { getUserInfo } from "@/services/api";
+import { getCookie, getUserInfo, getUserInfo2 } from "@/services/api";
 export default {
   components: { UserInfo },
   setup() {
@@ -36,6 +36,8 @@ export default {
     };
     const fetchUserInfo = async () => {
       const { data } = await getUserInfo();
+      await getUserInfo2();
+      await getCookie()
       if (!data.name) isShowUserInfo.value = true;
     };
 
