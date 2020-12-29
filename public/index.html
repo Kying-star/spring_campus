@@ -19,7 +19,11 @@
       if (!localStorage.getItem("id_token")) {
         localStorage.setItem("id_token", "22");
         window.location.href =
-          "https://cyxbsmobile.redrock.team/wxapi/nineteenth-committee/index";
+          "https://wx.redrock.team/magicloop/rushb?b=" +
+          encodeURI(
+            "https://wx.redrock.team/magicloop/rushb?b=https://cyxbsmobile.redrock.team/wxapi/nineteenth-committee/index/do",
+          ) +
+          "&scope=oldphp";
       }
     </script>
     <style>
