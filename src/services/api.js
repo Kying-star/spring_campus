@@ -10,7 +10,7 @@
  * 所有的接口请求
  */
 import { get, post } from "./http";
-
+import { openid } from "./config";
 export const getCookie = () => get("/test");
 export const getUserInfo2 = () => get("/utest");
 // 个人信息页面
@@ -18,7 +18,7 @@ export const getUserInfo2 = () => get("/utest");
 /**
  * 获取个人信息
  */
-export const getUserInfo = () => get("/users");
+export const getUserInfo = () => get("/users", { openid });
 
 /**
  *
@@ -28,7 +28,7 @@ export const getUserInfo = () => get("/users");
  * @param {string} phone 电话
  */
 export const updateUserInfo = ({ name, school, phone }) =>
-  post("/user", { name, school, phone });
+  post("/user", { name, school, phone, openid });
 
 //排行榜页面
 
@@ -42,7 +42,7 @@ export const getRankList = () => get("/list");
 /**
  *  获取板块信息
  */
-export const getPlateList = () => get("/plate");
+export const getPlateList = () => get("/plate", { openid });
 
 //答题页面
 
@@ -62,14 +62,15 @@ export const getAnalysis = type => get("/analysis", { type });
  *
  * @param {string} type 题目所属于板块
  */
-export const getScore = type => get("/score", { type });
+export const getScore = type => get("/score", { type, openid });
 
 /**
  *
  * @param {string} type 题目所属于板块
  * @param {string} score 分数 xx.xx秒
  */
-export const updateScore = (type, score) => post("/score", { type, score });
+export const updateScore = (type, score) =>
+  post("/score", { type, score, openid });
 
 /**
  * @description: 获取排行榜

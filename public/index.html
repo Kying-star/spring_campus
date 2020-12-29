@@ -7,23 +7,18 @@
     <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
     <title><%= htmlWebpackPlugin.options.title %></title>
     <script>
-      const token = document.location.href.split("token=")[1];
-
+      const token =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcGVuaWQiOiJvdVJDeWppeVkzQVZkZ0w3RTZDQlRHTFpzWTNrIiwiZXhwIjo1MjA5MjQ3NzMxLCJpc3MiOiJteS1wcm9qZWN0In0.JCXT0t0y-fKAYcUmqj4rTR_APeEbsCfCsQ8nKUBDMUk#/";
+      // const token = document.location.href.split("token=")[1];
       if (token && token.length) {
-        localStorage.setItem("id_token", "1");
-        // const { exp, stuNum, role } = JSON.parse(atob(token.split(".")[1]));
-        // localStorage.setItem("exp", exp);
-        // localStorage.setItem("stuNum", stuNum);
-        // localStorage.setItem("role", role);
+        localStorage.setItem("id_token", token);
+        const { exp, openid } = JSON.parse(atob(token.split(".")[1]));
+        localStorage.setItem("exp", exp);
+        localStorage.setItem("openid", openid);
       }
       if (!localStorage.getItem("id_token")) {
-        localStorage.setItem("id_token", "22");
         window.location.href =
-          "https://wx.redrock.team/magicloop/rushb?b=" +
-          encodeURI(
-            "https://wx.redrock.team/magicloop/rushb?b=https://cyxbsmobile.redrock.team/wxapi/nineteenth-committee/index/do",
-          ) +
-          "&scope=oldphp";
+          "https://wx.redrock.team/magicloop/rushb?b=https://cyxbsmobile.redrock.team/wxapi/nineteenth-committee/index/do&scope=oldphp";
       }
     </script>
     <style>

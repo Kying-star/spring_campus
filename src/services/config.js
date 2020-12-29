@@ -10,3 +10,5 @@ export const baseURL =
   process.env.NODE_ENV === "production"
     ? "https://cyxbsmobile.redrock.team/wxapi/nineteenth-committee"
     : "/api";
+
+export const openid = localStorage.getItem("openid");
