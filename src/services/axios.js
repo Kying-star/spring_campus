@@ -5,7 +5,7 @@
 import axios from "axios";
 import { baseURL } from "./config";
 axios.defaults.baseURL = baseURL;
-// axios.defaults.withCredentials = true;
+axios.defaults.withCredentials = true;
 axios.defaults.timeout = 6000;
 
 // http request 拦截器
