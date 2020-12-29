@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-27 16:02:54
- * @LastEditTime: 2020-12-28 20:30:03
+ * @LastEditTime: 2020-12-29 17:37:44
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/components/Choice.vue
@@ -13,10 +13,10 @@
       <div class="tip">选择正确选项</div>
       <div class="answers">
         <div
-          :class="getClass(item.index)"
+          :class="getClass(item.answer)"
           v-for="item of answersForSelect"
           :key="item.index"
-          @click="select(item.answer, item.index)"
+          @click="select(item.answer)"
         >
           {{ item.answer }}
         </div>
@@ -44,7 +44,7 @@ export default {
       required: true
     },
     answerKey: {
-      type: Number,
+      type: String,
       required: true
     },
     isShowTip: Boolean
@@ -66,16 +66,15 @@ export default {
       }
       return html;
     });
-    const getClass = index => {
-      if (props.answerKey === index && props.isShowTip) {
+    const getClass = item => {
+      if (props.answerKey === item && props.isShowTip) {
         return "answer answerRight";
       }
       return "answer";
     };
-    const select = (answer, index) => {
+    const select = answer => {
       ctx.emit("onselecting");
-      const submit = index;
-      if (submit === props.answerKey) {
+      if (props.answerKey === answer) {
         ctx.emit("next");
       } else {
         showWrong();

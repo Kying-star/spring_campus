@@ -34,9 +34,9 @@ module.exports = {
         changeOrigin: true,
         ws: true, //代理websockets
         pathRewrite: {
-          "^/api": "", // 这是一个通配符，设置完了之后每个接口都要在前面加上/api（特别注意这一点）
-        },
-      },
-    },
-  },
+          "^/api": "" // 这是一个通配符，设置完了之后每个接口都要在前面加上/api（特别注意这一点）
+        }
+      }
+    }
+  }
 };

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-27 14:56:22
- * @LastEditTime: 2020-12-27 16:38:48
+ * @LastEditTime: 2020-12-29 18:03:22
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/api/mock.js
@@ -205,3 +205,93 @@ api.get("/score", {
  * @param {number} score 分数
  */
 api.post("/score", "ok");
+
+api.get("/list",{
+  data:[
+    {
+        type:"basic",
+        data:[
+            {
+                ranking:1,
+                avatar:"https://www.baidu.com",
+                nickname:"卷卷二号",
+                score:12.12
+            },
+            {
+                ranking:2,
+                avatar:"https://www.baidu.com",
+                nickname:"卷卷三号",
+                score:12.12
+            }
+        ]
+    },
+    {
+        type:"achievement",
+        data:[
+            {
+                ranking:1,
+                avatar:"https://www.baidu.com",
+                nickname:"卷卷二号",
+                score:12.12
+            },
+            {
+                ranking:2,
+                avatar:"https://www.baidu.com",
+                nickname:"卷卷三号",
+                score:12.12
+            }
+        ]
+    },
+    {
+        type:"target",
+        data:[
+            {
+                ranking:1,
+                avatar:"https://www.baidu.com",
+                nickname:"卷卷二号",
+                score:12.12
+            },
+            {
+                ranking:2,
+                avatar:"https://www.baidu.com",
+                nickname:"卷卷三号",
+                score:12.12
+            }
+        ]
+    },
+    {
+        type:"plan",
+        data:[
+            {
+                ranking:1,
+                avatar:"https://www.baidu.com",
+                nickname:"卷卷二号",
+                score:12.12
+            },
+            {
+                ranking:2,
+                avatar:"https://www.baidu.com",
+                nickname:"卷卷三号",
+                score:12.12
+            }
+        ]
+    },
+    {
+        type:"total",
+        data:[
+            {
+                ranking:1,
+                avatar:"https://www.baidu.com",
+                nickname:"卷卷二号",
+                score:12.12
+            },
+            {
+                ranking:2,
+                avatar:"https://www.baidu.com",
+                nickname:"卷卷三号",
+                score:12.12
+            }
+        ]
+    }
+]
+})

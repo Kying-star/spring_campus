@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2020-12-29 17:12:32
+ * @LastEditTime: 2020-12-29 17:42:39
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /nineteenth-committee-fe/src/services/api.js
+ */
 /**
  * 所有的接口请求
  */
@@ -60,3 +68,8 @@ export const getScore = type => get("/score", { type });
  * @param {string} score 分数 xx.xx秒
  */
 export const updateScore = (type, score) => post("/score", { type, score });
+
+/**
+ * @description: 获取排行榜 
+ */
+export const getRank = () => get("/list")

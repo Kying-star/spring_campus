@@ -45,7 +45,6 @@ import { ref } from "vue";
 import { getUserInfo, updateUserInfo } from "@/services/api";
 
 export default {
-
   setup(props, ctx) {
     const schoolList = [
       "重庆大学",
@@ -178,7 +177,7 @@ export default {
       name.value = data.name;
       school.value = data.school;
       phone.value = data.phone;
-    }
+    };
     const submit = () => {
       if (isComplete()) {
         updateUserInfo({
@@ -191,7 +190,7 @@ export default {
         showToast();
       }
     };
-    fetchUserInfo()
+    fetchUserInfo();
     return {
       schoolList,
       school,
@@ -330,7 +329,7 @@ export default {
             }
           }
           &:after {
-            content: '';
+            content: "";
             width: 41px;
             height: 27px;
             background: url(~@assets/images/home/user/square.png);

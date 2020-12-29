@@ -15,7 +15,7 @@
         :index="questions[index].order"
         :question="questions[index].question"
         :answers="questions[index].answer"
-        :answerKey="questions[index].key"
+        :answerKey="questions[index].right_answer.value"
         v-show="questions[index].order === showIndex + 1"
         @next="showQuestionTip(true)"
         :isShowTip="isShowTip"

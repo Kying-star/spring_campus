@@ -46,7 +46,7 @@ export default {
     return {
       isShowUserInfo,
       showUserInfo,
-      toSelect,
+      toSelect
     };
   }
 };

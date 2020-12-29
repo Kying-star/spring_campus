@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:47:00
- * @LastEditTime: 2020-12-27 15:29:23
+ * @LastEditTime: 2020-12-29 18:09:07
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/views/RollList.vue
@@ -14,6 +14,7 @@
         v-for="button in buttonList"
         :key="button"
         :info="button.info"
+        @click="showList(button.index)"
       />
     </header>
     <main>
@@ -41,7 +42,7 @@ import { ref } from "vue";
 import RollButton from "@components/RollButton";
 import RollItem from "@components/RollItem";
 import { useRouter } from "vue-router";
-
+import { getRank } from "@/services/api";
 export default {
   components: { RollButton, RollItem },
   setup() {
@@ -66,6 +67,23 @@ export default {
       { order: 10, nickname: "卷卷一号", time: "00:10:20", avatar: "" }
     ]);
     const back = () => router.push("/block");
+    const fetchRank = async () => {
+      const { data } = await getRank()
+      console.log(data);
+      let temp = []
+      if(data[0].data){
+        data[0].data.forEach((e) => {
+          let item = {};
+          item.order = e.rank;
+          item.nickname = e.nickname;
+          item.avatar = e.avatar;
+          item.time = e.score
+          temp.push(item)
+        });
+        rollList.value = temp
+      }
+    }
+    fetchRank()
     return {
       buttonList,
       rollList,

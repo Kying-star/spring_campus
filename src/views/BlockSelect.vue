@@ -43,7 +43,11 @@ export default {
   setup() {
     const isShowActivityRule = ref(false);
     const router = useRouter();
-    const toGame = type => router.push(`/game?type=${type}`);
+    const toGame = type => {
+      if (type === "basic") {
+        router.push(`/game?type=${type}`);
+      }
+    };
     const showActivityRule = status => {
       isShowActivityRule.value = status;
     };
@@ -60,14 +64,15 @@ export default {
         isAnswer: true,
         count: 1,
         type: "Achievements",
-        txt: "“十三五”时期成就"
+        txt: "“十三五”时期成就",
+        footer: "[解锁时间：2020年12月25日]"
       },
       {
         isAnswer: true,
         count: 1,
         type: "target",
         txt: "2035年远景目标",
-        footer: "[最终成绩32.54秒]"
+        footer: "[解锁时间：2020年12月25日]"
       },
       {
         isAnswer: true,
