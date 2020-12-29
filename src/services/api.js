@@ -18,7 +18,7 @@ export const getUserInfo2 = () => get("/utest");
 /**
  * 获取个人信息
  */
-export const getUserInfo = () => get("/users", { openid });
+export const getUserInfo = () => get("/user", { openid });
 
 /**
  *

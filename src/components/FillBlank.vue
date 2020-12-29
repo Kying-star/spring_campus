@@ -9,7 +9,7 @@
           :class="{
             active: item.selected,
             three: answersForSelect.length === 3,
-            four: answersForSelect.length === 4
+            four: answersForSelect.length === 4,
           }"
           v-for="item of answersForSelect"
           :key="item.index"
@@ -65,10 +65,8 @@ export default {
       for (let i = 0; i < props.answers.length; i++) {
         html = html.replace(
           /keyword/,
-          `<span class="blank ${
-            props.isShowTip ? "tip" : ""
-          }" style="width:${20 * props.answers[i].length}px">${
-            props.isShowTip ? props.answers[i] : selectAnswer.value[i] || ""
+          `<span class="blank ${props.isShowTip ? "tip" : ""
+          }" style="width:${20 * answersForSelect.value[i].length}px">${props.isShowTip ? props.answers[i] : selectAnswer.value[i] || ""
           }</span>`
         );
       }
