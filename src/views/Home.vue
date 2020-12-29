@@ -23,13 +23,12 @@
 
 <script>
 import UserInfo from "@components/UserInfo";
-import { onMounted, ref } from "vue";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { getUserInfo } from "@/services/api";
 export default {
   components: { UserInfo },
   setup() {
-    const logined = JSON.parse(localStorage.getItem("logined"));
     const isShowUserInfo = ref(true);
     const userInfo = ref({});
     const router = useRouter();
@@ -39,15 +38,13 @@ export default {
     const fetchUserInfo = async () => {
       const { data } = await getUserInfo();
       userInfo.value = data;
+      if (userInfo.value.name) isShowUserInfo.value = false;
     };
 
     const toSelect = () => {
       router.push("/block");
     };
-    onMounted(() => {
-      if (logined) isShowUserInfo.value = false;
-      fetchUserInfo();
-    });
+    fetchUserInfo();
     return {
       isShowUserInfo,
       showUserInfo,

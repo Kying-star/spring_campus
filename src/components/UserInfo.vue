@@ -187,7 +187,6 @@ export default {
           school: school.value,
           phone: phone.value
         });
-        localStorage.setItem("logined", "true");
         ctx.emit("after-submit");
       } else {
         showToast();
