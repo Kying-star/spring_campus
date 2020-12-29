@@ -100,6 +100,7 @@ export default {
         item.footer = getMin(e.score);
         item.txt = type.value[index];
         item.type = e.type;
+        item.isAnswer = e.opportunity > 0;
         temp.push(item);
       });
       blockList.value = temp;
