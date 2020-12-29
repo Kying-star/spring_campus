@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:47:00
- * @LastEditTime: 2020-12-29 18:45:39
+ * @LastEditTime: 2020-12-29 18:47:14
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/views/RollList.vue
@@ -89,7 +89,7 @@ export default {
       type_index.value = index;
       fetchRank(type_index);
     }
-    fetchRank(type_index)
+    fetchRank(type_index);
     return {
       buttonList,
       rollList,
