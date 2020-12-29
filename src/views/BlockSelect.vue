@@ -89,6 +89,7 @@ export default {
       "2035年远景目标",
       "“十四五”发展规划"
     ]);
+    const lockTime = ref(['2021年1月6日','2021年1月13日','2021年1月20日'])
     const gotoHome = () => router.push("/");
     const getBlockDetail = async () => {
       const { data } = await getBlock();
@@ -97,7 +98,7 @@ export default {
       data.forEach((e, index) => {
         const item = {};
         item.count = e.opportunity;
-        item.footer = getMin(e.score);
+        item.footer = getMin(e.score,index);
         item.txt = type.value[index];
         item.type = e.type;
         item.isAnswer = e.opportunity > 0;
@@ -106,10 +107,20 @@ export default {
       blockList.value = temp;
       // blockList.value = data
     };
-    const getMin = ms => {
+    const getMin = (ms,index) => {
+      let temp;
       const minutes = parseInt((ms % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = parseInt((ms % (1000 * 60)) / 1000);
-      return `[最终成绩${minutes}:${seconds}]`;
+      if (minutes === 0 && seconds === 0){
+        temp = "[等你答题!]"
+      }
+      else if (index > 0) {
+        temp = lockTime.value[index + 1];
+        return temp;
+      } else {
+        return `[成绩${minutes}:${seconds}]`;
+      } 
+      
     };
     getBlockDetail();
     return {
