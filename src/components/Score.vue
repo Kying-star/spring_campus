@@ -29,23 +29,25 @@
 </template>
 
 <script>
-import { computed } from 'vue';
+import { computed } from "vue";
 export default {
   props: {
     name: String,
     score: String,
     rank: String,
     percent: String,
-    type: String,
+    type: String
   },
   setup(props, ctx) {
     const rankEndTime = {
-      "basic": "2020-01-06 00:00:00",
-      "achievement": "2020-01-06 00:00:00",
-      "target": "2020-01-06 00:00:00",
-      "plan": "2020-01-06 00:00:00",
+      basic: "2020-01-06 00:00:00",
+      achievement: "2020-01-06 00:00:00",
+      target: "2020-01-06 00:00:00",
+      plan: "2020-01-06 00:00:00"
     };
-    const isShowRank = computed(() => +new Date() < +new Date(rankEndTime[props.type]))
+    const isShowRank = computed(
+      () => +new Date() < +new Date(rankEndTime[props.type])
+    );
     const close = () => ctx.emit("close");
     const complete = router => ctx.emit("complete", router);
     return {
