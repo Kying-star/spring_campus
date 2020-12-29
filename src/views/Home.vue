@@ -27,22 +27,28 @@
 
 <script>
 import UserInfo from "@components/UserInfo";
-import { ref } from "vue";
+import { reactive, ref } from "vue";
 import { useRouter } from "vue-router";
 import { getUserInfo } from "@/services/api";
 export default {
   components: { UserInfo },
   setup() {
     const isShowUserInfo = ref(false);
-    const userInfo = ref({});
+    const userInfo = reactive({
+      name: "",
+      school: "",
+      phone: "",
+    });
     const router = useRouter();
     const showUserInfo = status => {
       isShowUserInfo.value = status;
     };
     const fetchUserInfo = async () => {
       const { data } = await getUserInfo();
-      userInfo.value = data;
       if (!data.name) isShowUserInfo.value = true;
+      userInfo.name = data.name;
+      userInfo.school = data.school;
+      userInfo.phone = data.phone
     };
 
     const toSelect = () => {
