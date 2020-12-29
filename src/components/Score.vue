@@ -11,12 +11,12 @@
           你的成绩是<span class="info">{{ score / 1000 }}s</span>
         </p>
         <p>
-          <span v-show="isShowRank">
-            祝贺你进入了
-            <span class="info">{{ name }}(第{{ rank }}名）</span>
-            <span>你的成绩已经超过了
-              <span class="info">{{ percent }}</span
-          >的同学</span>
+          <span v-show="isShowRank"
+            >祝贺你进入了<span class="info"
+              >{{ name }}(第{{ rank }}名）</span
+            ></span
+          >你的成绩已经超过了<span class="info">{{ percent }}</span
+          >的同学
         </p>
         <p>希望你在接下来的学习中继续努力，保持优秀！</p>
       </div>
