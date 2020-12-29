@@ -14,7 +14,7 @@
       <div class="answers">
         <div
           :class="getClass(item.answer)"
-          v-for="(item) of answersForSelect"
+          v-for="item of answersForSelect"
           :key="item.index"
           @click="select(item.answer)"
         >
