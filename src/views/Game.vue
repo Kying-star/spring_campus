@@ -190,10 +190,12 @@ export default {
 <style lang="scss">
 .game {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   background-image: url(~@assets/images/game/bg.png);
   background-repeat: no-repeat;
   background-size: cover;
+  position: relative;
+  overflow: hidden;
   header {
     padding-top: 31px;
     display: flex;

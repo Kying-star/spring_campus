@@ -9,7 +9,8 @@
           :class="{
             active: item.selected,
             three: answersForSelect.length === 3,
-            four: answersForSelect.length === 4
+            four: answersForSelect.length === 4,
+            five: answersForSelect.length === 5,
           }"
           v-for="item of answersForSelect"
           :key="item.index"
@@ -65,10 +66,8 @@ export default {
       for (let i = 0; i < props.answers.length; i++) {
         html = html.replace(
           /keyword/,
-          `<span class="blank ${
-            props.isShowTip ? "tip" : ""
-          }" style="width:${20 * props.answers[i].length}px">${
-            props.isShowTip ? props.answers[i] : selectAnswer.value[i] || ""
+          `<span class="blank ${props.isShowTip ? "tip" : ""
+          }" style="min-width:${20 * props.answers.length}px">${props.isShowTip ? props.answers[i] : selectAnswer.value[i] || ""
           }</span>`
         );
       }
@@ -156,7 +155,7 @@ export default {
     border: 1px #fff475 solid;
     .answer {
       box-sizing: border-box;
-      width: 342px;
+      width: 400px;
       height: 101px;
       line-height: 101px;
       text-align: center;
@@ -172,6 +171,9 @@ export default {
       }
       &.four {
         margin-bottom: 18px;
+      }
+      &.five {
+        margin-bottom: 5px;
       }
       &.active {
         background-color: #ff4e00;

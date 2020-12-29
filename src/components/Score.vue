@@ -4,14 +4,14 @@
       <div class="title">成绩单</div>
       <div class="text">
         <p>
-          恭喜你完成了<span class="type">{{ name }}</span
+          恭喜你完成了<span class="type">{{ name.slice(0, -3) }}</span
           >的学习。
         </p>
         <p>
-          你的成绩是<span class="info">{{ score }}</span>
+          你的成绩是<span class="info">{{ score / 1000 }}s</span>
         </p>
         <p>
-          祝贺你进入了<span class="info">{{ rank }}</span
+          祝贺你进入了<span class="info">{{ name }}(第{{ rank }}名）</span
           >你的成绩已经超过了<span class="info">{{ percent }}</span
           >的同学
         </p>
@@ -109,7 +109,7 @@ export default {
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: -999px;
   background-color: rgba(61, 45, 43, 0.5);
 }
 </style>
