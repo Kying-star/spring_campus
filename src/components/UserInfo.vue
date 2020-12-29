@@ -187,6 +187,7 @@ export default {
           school: school.value,
           phone: phone.value
         });
+        localStorage.setItem("logined", "true");
         ctx.emit("after-submit");
       } else {
         showToast();
@@ -331,7 +332,7 @@ export default {
             }
           }
           &:after {
-            content: "";
+            content: '';
             width: 41px;
             height: 27px;
             background: url(~@assets/images/home/user/square.png);
