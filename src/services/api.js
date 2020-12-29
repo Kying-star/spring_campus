@@ -18,7 +18,7 @@ export const getUserInfo2 = () => get("/utest");
 /**
  * 获取个人信息
  */
-export const getUserInfo = () => get("/user");
+export const getUserInfo = () => get("/users");
 
 /**
  *
@@ -72,6 +72,6 @@ export const getScore = type => get("/score", { type });
 export const updateScore = (type, score) => post("/score", { type, score });
 
 /**
- * @description: 获取排行榜 
+ * @description: 获取排行榜
  */
-export const getRank = () => get("/list")
+export const getRank = () => get("/list");

@@ -7,23 +7,12 @@
     <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
     <title><%= htmlWebpackPlugin.options.title %></title>
     <script>
-      // const Logined = JSON.parse(localStorage.getItem("isLoged"));
-      // if (!Logined) {
-      //   localStorage.setItem("isLoged", "true");
-      //   window.location.href =
-      //     "https://cyxbsmobile.redrock.team/wxapi/nineteenth-committee/index";
-      // }
-      //实例化XMLHttpRequest对象
-      const xhr = new XMLHttpRequest();
-      //初始化一个get请求
-      xhr.open(
-        "get",
-        "https://cyxbsmobile.redrock.team/wxapi/nineteenth-committee/test",
-        true,
-      );
-      //接收返回值
-      //发送请求
-      xhr.send();
+      const Logined = JSON.parse(localStorage.getItem("isLoged"));
+      if (!Logined) {
+        localStorage.setItem("isLoged", "true");
+        window.location.href =
+          "https://cyxbsmobile.redrock.team/wxapi/nineteenth-committee/index";
+      }
     </script>
     <style>
       .load-box {
