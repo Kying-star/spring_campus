@@ -41,10 +41,13 @@
 </template>
 
 <script>
-import { ref } from "vue";
-import { updateUserInfo, getUserInfo } from "@/services/api";
+import { onMounted, ref } from "vue";
+import { updateUserInfo } from "@/services/api";
 
 export default {
+  props: {
+    userInfo: Object,
+  },
   setup(props, ctx) {
     const schoolList = [
       "重庆大学",
@@ -172,14 +175,6 @@ export default {
         }
       }
     };
-    const fetchUserInfo = async () => {
-      const { data } = await getUserInfo();
-      if (data) {
-        name.value = data.name;
-        school.value = data.school;
-        phone.value = data.phone;
-      }
-    };
     const submit = () => {
       if (isComplete()) {
         updateUserInfo({
@@ -192,7 +187,11 @@ export default {
         showToast();
       }
     };
-    fetchUserInfo();
+    onMounted(() => {
+      name.value = props.userInfo.name;
+      school.value = props.userInfo.school;
+      phone.value = props.userInfo.phone;
+    })
     return {
       schoolList,
       school,

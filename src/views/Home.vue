@@ -1,7 +1,11 @@
 <template>
   <div class="home">
     <div class="bg"></div>
-    <UserInfo v-show="isShowUserInfo" @after-submit="showUserInfo(false)" />
+    <UserInfo
+      v-show="isShowUserInfo"
+      @after-submit="showUserInfo(false)"
+      :userInfo="userInfo"
+    />
     <header>
       <div class="icon">
         <div class="study"></div>
@@ -48,7 +52,8 @@ export default {
     return {
       isShowUserInfo,
       showUserInfo,
-      toSelect
+      toSelect,
+      userInfo
     };
   }
 };
