@@ -11,8 +11,8 @@
           你的成绩是<span class="info">{{ score / 1000 }}s</span>
         </p>
         <p>
-          祝贺你进入了<span class="info">{{ name }}(第{{ rank }}名）</span
-          >你的成绩已经超过了<span class="info">{{ percent }}</span
+          <span v-show="isShowRank">祝贺你进入了<span class="info">{{ name }}(第{{ rank }}名）</span
+          ><span>你的成绩已经超过了<span class="info">{{ percent }}</span
           >的同学
         </p>
         <p>希望你在接下来的学习中继续努力，保持优秀！</p>
@@ -26,19 +26,29 @@
 </template>
 
 <script>
+import { computed } from 'vue';
 export default {
   props: {
     name: String,
     score: String,
     rank: String,
-    percent: String
+    percent: String,
+    type: String,
   },
   setup(props, ctx) {
+    const rankEndTime = {
+      "basic": "2020-01-06 00:00:00",
+      "achievement": "2020-01-06 00:00:00",
+      "target": "2020-01-06 00:00:00",
+      "plan": "2020-01-06 00:00:00",
+    };
+    const isShowRank = computed(() => +new Date() < +new Date(rankEndTime[props.type]))
     const close = () => ctx.emit("close");
     const complete = router => ctx.emit("complete", router);
     return {
       close,
-      complete
+      complete,
+      isShowRank
     };
   }
 };

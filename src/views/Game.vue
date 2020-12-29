@@ -36,6 +36,7 @@
       :rank="score.ranking"
       :percent="score.percent"
       @complete="hideScore"
+      :type="type"
     />
   </div>
 </template>
@@ -181,7 +182,8 @@ export default {
       score,
       hideScore,
       destory,
-      isComplete
+      isComplete,
+      type
     };
   }
 };
