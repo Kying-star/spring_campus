@@ -3,6 +3,8 @@
  */
 import { get, post } from "./http";
 
+export const getCookie = () => get("/test");
+export const getUserInfo2 = () => get("/utest");
 // 个人信息页面
 
 /**
