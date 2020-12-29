@@ -5,7 +5,7 @@
 import axios from "axios";
 import { baseURL } from "./config";
 axios.defaults.baseURL = baseURL;
-// axios.defaults.withCredentials = true;
+axios.defaults.withCredentials = true;
 axios.defaults.timeout = 6000;
 
 // http request 拦截器
@@ -16,7 +16,7 @@ axios.interceptors.request.use(
   },
   err => {
     return Promise.reject(err);
-  }
+  },
 );
 
 // http response 拦截器
@@ -26,7 +26,7 @@ axios.interceptors.response.use(
   },
   err => {
     return Promise.reject(err);
-  }
+  },
 );
 
 export default axios;
