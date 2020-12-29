@@ -11,7 +11,7 @@
     <div class="bg"></div>
     <header>
       <RollButton
-        v-for="(button,index) in buttonList"
+        v-for="(button, index) in buttonList"
         :key="button"
         :info="button.info"
         @click="showList(index - 1)"
@@ -66,29 +66,29 @@ export default {
       // { order: 9, nickname: "卷卷一号", time: "00:10:20", avatar: "" },
       // { order: 10, nickname: "卷卷一号", time: "00:10:20", avatar: "" }
     ]);
-    const type_index = ref(0)
+    const type_index = ref(0);
     const back = () => router.push("/block");
-    const fetchRank = async (index) => {
-      const { data } = await getRank()
-      console.log(data,index);
-      let temp = []
-      if(data[index].data){
-        data[index].data.forEach((e) => {
+    const fetchRank = async index => {
+      const { data } = await getRank();
+      console.log(data, index);
+      let temp = [];
+      if (data[index].data) {
+        data[index].data.forEach(e => {
           let item = {};
           item.order = e.rank;
           item.nickname = e.nickname;
           item.avatar = e.avatar;
-          item.time = e.score
-          temp.push(item)
+          item.time = e.score;
+          temp.push(item);
         });
       }
-      rollList.value = temp
-    }
-    const showList = (index) => {
+      rollList.value = temp;
+    };
+    const showList = index => {
       console.log(index);
-      type_index.value = index === -1? 0 : index;
+      type_index.value = index === -1 ? 0 : index;
       fetchRank(type_index);
-    }
+    };
     fetchRank(type_index);
     return {
       buttonList,

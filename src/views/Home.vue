@@ -37,7 +37,7 @@ export default {
     const fetchUserInfo = async () => {
       const { data } = await getUserInfo();
       await getUserInfo2();
-      await getCookie()
+      await getCookie();
       if (!data.name) isShowUserInfo.value = true;
     };
 
