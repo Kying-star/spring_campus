@@ -15,7 +15,8 @@
         // localStorage.setItem("exp", exp);
         // localStorage.setItem("stuNum", stuNum);
         // localStorage.setItem("role", role);
-      } else {
+      }
+      if (!localStorage.getItem("id_token")) {
         window.location.href =
           "https://cyxbsmobile.redrock.team/wxapi/nineteenth-committee/index";
       }
