@@ -28,6 +28,12 @@
           会使用完毕后，你仍可继续答题。但每个板块的最
           终成绩为你在该板块答题最好成绩。
         </p>
+        <p class="rule">
+          6、活动结束后，进入分区排行榜或者总排行榜（四个板块最终成绩之和）的用户，均可获得奖励。
+        </p>
+        <p class="rule">
+          7、分区排行榜有效冲榜时间为该板块开放到下一版块开放之间的一周内。
+        </p>
       </div>
     </div>
     <div class="close" @click="close"></div>
@@ -50,10 +56,10 @@ export default {
   z-index: 999;
   .box {
     box-sizing: border-box;
-    margin: 52px 56px 0;
+    margin: 40px 56px 0;
     background-color: #fff;
     border-radius: 15px;
-    padding: 49px 30px 80px;
+    padding: 49px 30px 20px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -61,7 +67,7 @@ export default {
     color: #ff4f35;
     .title {
       font-size: 59px;
-      margin-bottom: 49px;
+      margin-bottom: 30px;
       font-family: SJbangshu;
     }
     .rule {
@@ -69,7 +75,10 @@ export default {
       font-family: FZYaZhuTiS;
       font-weight: bold;
       line-height: 34px;
-      margin-bottom: 44px;
+      margin-bottom: 40px;
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
   }
   .close {
