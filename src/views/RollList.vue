@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:47:00
- * @LastEditTime: 2020-12-29 18:24:06
+ * @LastEditTime: 2020-12-29 18:37:18
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/views/RollList.vue
@@ -66,13 +66,14 @@ export default {
       { order: 9, nickname: "卷卷一号", time: "00:10:20", avatar: "" },
       { order: 10, nickname: "卷卷一号", time: "00:10:20", avatar: "" }
     ]);
+    const type_index = ref(0)
     const back = () => router.push("/block");
-    const fetchRank = async () => {
+    const fetchRank = async (index) => {
       const { data } = await getRank()
       console.log(data);
       let temp = []
-      if(data[0].data){
-        data[0].data.forEach((e) => {
+      if(data[index].data){
+        data[index].data.forEach((e) => {
           let item = {};
           item.order = e.rank;
           item.nickname = e.nickname;
@@ -83,11 +84,17 @@ export default {
       }
       rollList.value = temp
     }
-    fetchRank()
+    const showList = (index) => {
+      console.log(index);
+      type_index.value = index;
+      fetchRank(type_index);
+    }
+    fetchRank(type_index)
     return {
       buttonList,
       rollList,
-      back
+      back,
+      showList
     };
   }
 };
