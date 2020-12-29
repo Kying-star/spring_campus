@@ -5,7 +5,10 @@
         <div class="icon"></div>
         <div class="text">{{ clock.second }}.{{ toDub(clock.ms / 10) }}s</div>
       </div>
-      <div class="tip_button" @click="showTip(!isShowTip)"></div>
+      <div class="tip_time" v-if="stayTime < 10000">
+        {{ Math.ceil((10000 - stayTime) / 1000) }}s
+      </div>
+      <div v-else class="tip_button" @click="showTip(!isShowTip)"></div>
     </header>
     <main>
       <component
@@ -90,6 +93,7 @@ export default {
         else if (item.topic_type === "choice") return "Choice";
       });
     });
+    const stayTime = computed(() => clock.timeStamp - clock.enter)
     const hideScore = to => {
       isShowScore.value = false;
       destory.value = true;
@@ -126,9 +130,8 @@ export default {
       clearInterval(clock.timer);
     };
     const showTip = status => {
-      if (clock.timeStamp - clock.enter >= 10000) {
+      if (stayTime.value >= 10000) {
         isShowTip.value = status;
-        console.log(isShowTip.value);
       }
     };
     const showQuestionTip = async status => {
@@ -183,7 +186,8 @@ export default {
       hideScore,
       destory,
       isComplete,
-      type
+      type,
+      stayTime
     };
   }
 };
@@ -231,6 +235,17 @@ export default {
       background-size: contain;
       margin-left: 208px;
       margin-right: 43px;
+    }
+    .tip_time {
+      width: 57px;
+      height: 60px;
+      font-size: 40px;
+      line-height: 60px;
+      text-align: center;
+      margin-left: 208px;
+      margin-right: 43px;
+      font-family: SJbangshu;
+      color: #f85127;
     }
   }
   main {
