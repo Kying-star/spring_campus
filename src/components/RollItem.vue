@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 23:04:50
- * @LastEditTime: 2020-12-28 20:35:57
+ * @LastEditTime: 2020-12-29 23:21:21
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/components/RollItem.vue
@@ -10,7 +10,7 @@
   <div class="item">
     <div class="personDetail">
       <div :class="getRankClass()">{{ isShowNum ? rank : " " }}</div>
-      <img class="Avatar" src="~@assets/images/BlockSelect/avatar.png" />
+      <img class="Avatar" :src="Avatar" />
       <div class="nickname">{{ nick }}</div>
     </div>
 

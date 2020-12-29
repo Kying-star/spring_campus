@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:47:00
- * @LastEditTime: 2020-12-29 23:16:48
+ * @LastEditTime: 2020-12-29 23:25:50
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/views/RollList.vue
@@ -76,10 +76,10 @@ export default {
       if (data[index].data) {
         data[index].data.forEach(e => {
           let item = {};
-          item.order = e.rank;
+          item.order = e.ranking;
           item.nickname = e.nickname;
           item.avatar = e.avatar;
-          item.time = e.score;
+          item.time = getMin(e.score);
           temp.push(item);
         });
       }
@@ -90,6 +90,11 @@ export default {
       type_index.value = index === -1 ? 0 : index;
       fetchRank(type_index.value);
     };
+    const getMin = (ms) => {
+     const minutes = parseInt((ms % (1000 * 60 * 60)) / (1000 * 60));
+     const seconds = (ms % (1000 * 60)) / 1000;
+     return `${minutes}:${seconds}`
+    }
     fetchRank(type_index.value);
     return {
       buttonList,
