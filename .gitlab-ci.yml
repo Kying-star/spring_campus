@@ -1,6 +1,6 @@
 image: redrock-fe
 variables:
-  REPO_NAME: the-19th-committee
+  REPO_NAME: nineteenth-committee-fe
 
 stages:
   - setup
