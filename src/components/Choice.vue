@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-27 16:02:54
- * @LastEditTime: 2020-12-29 19:10:12
+ * @LastEditTime: 2020-12-29 19:25:32
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/components/Choice.vue
@@ -14,9 +14,9 @@
       <div class="answers">
         <div
           :class="getClass(item.answer)"
-          v-for="(item, index) of answersForSelect"
+          v-for="(item) of answersForSelect"
           :key="item.index"
-          @click="select(index)"
+          @click="select(item.answer)"
         >
           {{ item.answer }}
         </div>
