@@ -188,6 +188,7 @@ export default {
       }
     };
     onMounted(() => {
+      console.log(props.userInfo);
       name.value = props.userInfo.name;
       school.value = props.userInfo.school;
       phone.value = props.userInfo.phone;

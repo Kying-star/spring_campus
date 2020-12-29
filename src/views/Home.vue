@@ -33,7 +33,7 @@ import { getUserInfo } from "@/services/api";
 export default {
   components: { UserInfo },
   setup() {
-    const isShowUserInfo = ref(true);
+    const isShowUserInfo = ref(false);
     const userInfo = ref({});
     const router = useRouter();
     const showUserInfo = status => {
@@ -42,7 +42,7 @@ export default {
     const fetchUserInfo = async () => {
       const { data } = await getUserInfo();
       userInfo.value = data;
-      if (userInfo.value.name) isShowUserInfo.value = false;
+      if (!data.name) isShowUserInfo.value = true;
     };
 
     const toSelect = () => {
