@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-27 16:02:54
- * @LastEditTime: 2020-12-29 18:42:53
+ * @LastEditTime: 2020-12-29 19:10:12
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/components/Choice.vue
@@ -67,7 +67,7 @@ export default {
       return html;
     });
     const getClass = item => {
-      console.log(props.answerKey +"｜" + item);
+      // console.log(props.answerKey +"｜" + item);
       if (props.answerKey === item && props.isShowTip) {
         return "answer answerRight";
       }
@@ -75,7 +75,7 @@ export default {
     };
     const select = answer => {
       ctx.emit("onselecting");
-      console.log(props.answerKey +"｜" + answer);
+      // console.log(props.answerKey +"｜" + answer);
       if (props.answerKey === answer) {
         ctx.emit("next");
       } else {

@@ -97,6 +97,7 @@ export default {
     const fetchQuestion = async () => {
       const { data } = await getQuestion(type);
       questions.value = data;
+      console.log(questions.value);
     };
     const fetchAnalysis = async () => {
       const { data } = await getAnalysis(type);

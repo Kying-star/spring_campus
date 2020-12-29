@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:47:00
- * @LastEditTime: 2020-12-29 18:58:38
+ * @LastEditTime: 2020-12-29 19:02:29
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/views/RollList.vue
@@ -70,7 +70,7 @@ export default {
     const back = () => router.push("/block");
     const fetchRank = async (index) => {
       const { data } = await getRank()
-      console.log(data);
+      console.log(data,index);
       let temp = []
       if(data[index].data){
         data[index].data.forEach((e) => {
