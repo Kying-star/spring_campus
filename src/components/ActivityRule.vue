@@ -59,7 +59,7 @@ export default {
     margin: 40px 56px 0;
     background-color: #fff;
     border-radius: 15px;
-    padding: 49px 30px 20px;
+    padding: 49px 30px 30px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -75,7 +75,7 @@ export default {
       font-family: FZYaZhuTiS;
       font-weight: bold;
       line-height: 34px;
-      margin-bottom: 40px;
+      margin-bottom: 20px;
       &:last-child {
         margin-bottom: 0;
       }
