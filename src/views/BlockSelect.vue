@@ -137,7 +137,7 @@ export default {
     right: 0;
     bottom: 0;
     z-index: -1;
-    background-image: url(~@assets/images/game/bg.png);
+    background-image: url(~@assets/images/BlockSelect/background.png);
     background-size: cover;
     background-repeat: no-repeat;
   }
