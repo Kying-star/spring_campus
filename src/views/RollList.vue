@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:47:00
- * @LastEditTime: 2020-12-29 23:34:23
+ * @LastEditTime: 2020-12-30 00:52:12
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/views/RollList.vue
@@ -89,6 +89,7 @@ export default {
     const showList = index => {
       // console.log(index);
       type_index.value = index === -1 ? 0 : index;
+      // 写的跟屎一样的刷新，回来再改
       fetchRank(type_index.value);
     };
     const getMin = ms => {
