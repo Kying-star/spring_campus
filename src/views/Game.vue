@@ -96,11 +96,11 @@ export default {
     };
     const fetchQuestion = async () => {
       const { data } = await getQuestion(type);
-      questions.value = data.data;
+      questions.value = data;
     };
     const fetchAnalysis = async () => {
       const { data } = await getAnalysis(type);
-      questionTip.value = data.datas;
+      questionTip.value = data.data;
     };
     const fetchScore = async () => {
       const { data } = await getScore(type);
@@ -110,7 +110,7 @@ export default {
       score.percent = data.percent;
     };
     const postScore = async () => {
-      await updateScore(type, clock.second * 1000 + clock.ms);
+      await updateScore(type, clock.timeStamp);
     };
     const toDub = n => {
       //补0操作
