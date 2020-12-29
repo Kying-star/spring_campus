@@ -3,6 +3,11 @@
  */
 import { get, post } from "./http";
 
+/**
+ * 获取用户的个人信息和设置 cookie 状态
+ */
+export const setCookie = () => get("/index");
+
 // 个人信息页面
 
 /**
