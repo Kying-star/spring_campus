@@ -104,7 +104,7 @@ export default {
       questionTip.value = data.data;
     };
     const fetchScore = async () => {
-      const { data } = await getScore(type);
+      const { data } = await getScore(type, clock.timeStamp);
       score.name = data.name;
       score.score = data.score;
       score.ranking = data.ranking;
