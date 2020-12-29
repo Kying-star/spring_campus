@@ -62,7 +62,7 @@ export const getAnalysis = type => get("/analysis", { type });
  *
  * @param {string} type 题目所属于板块
  */
-export const getScore = type => get("/score", { type, openid });
+export const getScore = (type, score) => get("/score", { type, openid, score });
 
 /**
  *
