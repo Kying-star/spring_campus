@@ -7,7 +7,9 @@ module.exports = {
   productionSourceMap: false,
   outputDir: "build",
   publicPath:
-    process.env.NODE_ENV === "production" ? "/game/the-19th-committee/" : "./",
+    process.env.NODE_ENV === "production"
+      ? "/game/nineteenth-committee-fe/"
+      : "./",
   chainWebpack: config => {
     config.resolve.alias
       .set("@", resolve("src"))
