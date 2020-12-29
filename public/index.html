@@ -10,14 +10,14 @@
       const token = document.location.href.split("token=")[1];
 
       if (token && token.length) {
-        localStorage.setItem("id_token", token);
+        localStorage.setItem("id_token", "1");
         // const { exp, stuNum, role } = JSON.parse(atob(token.split(".")[1]));
         // localStorage.setItem("exp", exp);
         // localStorage.setItem("stuNum", stuNum);
         // localStorage.setItem("role", role);
       }
       if (!localStorage.getItem("id_token")) {
-        localStorage.setItem("id_token", "112");
+        localStorage.setItem("id_token", "22");
         window.location.href =
           "https://cyxbsmobile.redrock.team/wxapi/nineteenth-committee/index";
       }
