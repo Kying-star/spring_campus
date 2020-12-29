@@ -99,6 +99,7 @@ export default {
         item.count = e.opportunity;
         item.footer = getMin(e.score);
         item.txt = type.value[index];
+        item.type = e.type;
         temp.push(item);
       });
       blockList.value = temp;
