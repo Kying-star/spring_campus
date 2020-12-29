@@ -1,11 +1,7 @@
 <template>
   <div class="home">
     <div class="bg"></div>
-    <UserInfo
-      v-show="isShowUserInfo"
-      @after-submit="showUserInfo(false)"
-      :userInfo="userInfo"
-    />
+    <UserInfo v-show="isShowUserInfo" @after-submit="showUserInfo(false)" />
     <header>
       <div class="icon">
         <div class="study"></div>
@@ -27,18 +23,13 @@
 
 <script>
 import UserInfo from "@components/UserInfo";
-import { reactive, ref } from "vue";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { getUserInfo } from "@/services/api";
 export default {
   components: { UserInfo },
   setup() {
     const isShowUserInfo = ref(false);
-    const userInfo = reactive({
-      name: "",
-      school: "",
-      phone: "",
-    });
     const router = useRouter();
     const showUserInfo = status => {
       isShowUserInfo.value = status;
@@ -46,9 +37,6 @@ export default {
     const fetchUserInfo = async () => {
       const { data } = await getUserInfo();
       if (!data.name) isShowUserInfo.value = true;
-      userInfo.name = data.name;
-      userInfo.school = data.school;
-      userInfo.phone = data.phone
     };
 
     const toSelect = () => {
@@ -59,7 +47,6 @@ export default {
       isShowUserInfo,
       showUserInfo,
       toSelect,
-      userInfo
     };
   }
 };
