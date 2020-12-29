@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:47:00
- * @LastEditTime: 2020-12-29 23:25:50
+ * @LastEditTime: 2020-12-29 23:30:07
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/views/RollList.vue
@@ -27,6 +27,7 @@
             :order="item.order"
             :nickname="item.nickname"
             :time="item.time"
+            :Avatar="item.avatar"
           />
         </div>
       </div>
