@@ -38,7 +38,7 @@ import ActivityRule from "@components/ActivityRule";
 import TipBlock from "@components/TipBlock";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import { getBlock } from "@/services/api"
+import { getBlock } from "@/services/api";
 export default {
   components: { ActivityRule, TipBlock },
   setup() {
@@ -83,13 +83,33 @@ export default {
         footer: "[解锁时间：2020年12月25日]"
       }
     ]);
+    const type = ref([
+      "全会基本情况",
+      "“十三五”时期成就",
+      "2035年远景目标",
+      "“十四五”发展规划"
+    ]);
     const gotoHome = () => router.push("/");
     const getBlockDetail = async () => {
-      const { data } = await getBlock()
+      const { data } = await getBlock();
       console.log(data);
+      let temp = [];
+      data.forEach((e, index) => {
+        const item = {};
+        item.count = e.opportunity;
+        item.footer = getMin(e.score);
+        item.txt = type.value[index];
+        temp.push(item);
+      });
+      blockList.value = temp;
       // blockList.value = data
-    }
-    getBlockDetail()
+    };
+    const getMin = ms => {
+      const minutes = parseInt((ms % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = parseInt((ms % (1000 * 60)) / 1000);
+      return `[最终成绩${minutes}:${seconds}]`;
+    };
+    getBlockDetail();
     return {
       isShowActivityRule,
       showActivityRule,

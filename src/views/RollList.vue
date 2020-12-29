@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:47:00
- * @LastEditTime: 2020-12-29 23:30:07
+ * @LastEditTime: 2020-12-29 23:34:23
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/views/RollList.vue
@@ -71,9 +71,9 @@ export default {
     const back = () => router.push("/block");
     const fetchRank = async index => {
       const { data } = await getRank();
-      console.log(data, index);
+      // console.log(data, index);
       let temp = [];
-      console.log(data[index].data);
+      // console.log(data[index].data);
       if (data[index].data) {
         data[index].data.forEach(e => {
           let item = {};
@@ -87,15 +87,15 @@ export default {
       rollList.value = temp;
     };
     const showList = index => {
-      console.log(index);
+      // console.log(index);
       type_index.value = index === -1 ? 0 : index;
       fetchRank(type_index.value);
     };
-    const getMin = (ms) => {
-     const minutes = parseInt((ms % (1000 * 60 * 60)) / (1000 * 60));
-     const seconds = (ms % (1000 * 60)) / 1000;
-     return `${minutes}:${seconds}`
-    }
+    const getMin = ms => {
+      const minutes = parseInt((ms % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = parseInt((ms % (1000 * 60)) / 1000);
+      return `${minutes}:${seconds}`;
+    };
     fetchRank(type_index.value);
     return {
       buttonList,

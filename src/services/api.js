@@ -77,9 +77,8 @@ export const updateScore = (type, score) =>
  */
 export const getRank = () => get("/list");
 
-
 /**
  * @description: 获取排行榜数据
  */
 
- export const getBlock = () => get(`/plate?openid=${openid}`)
+export const getBlock = () => get(`/plate?openid=${openid}`);
