@@ -118,9 +118,9 @@ export default {
         temp = lockTime.value[index + 1];
         return temp;
       } else {
-        return `[成绩${minutes}:${seconds}]`;
+        temp = `[成绩${minutes}:${seconds}]`;
       } 
-      
+      return temp
     };
     getBlockDetail();
     return {
