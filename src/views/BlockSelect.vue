@@ -118,7 +118,7 @@ export default {
       } else if (minutes === 0 && seconds === 0) {
         temp = "[等你答题!]";
       } else {
-        temp = `[成绩${minutes*60 + seconds}S]`;
+        temp = `[成绩${minutes * 60 + seconds}S]`;
       }
       return temp;
     };
