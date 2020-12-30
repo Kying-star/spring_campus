@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:57:08
- * @LastEditTime: 2020-12-30 21:21:55
+ * @LastEditTime: 2020-12-30 21:29:21
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/components/RollButton.vue
@@ -12,7 +12,7 @@
       :class="getClass(isbuttonDown)"
       @click="buttonDown()"
     >
-      <div class="txt">{{ txt }}</div>
+      <div :class="index === 0?`txt sum`:`txt`">{{ txt }}</div>
     </div>
   </div>
 </template>
@@ -88,6 +88,9 @@ export default {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+  }
+  .sum {
+    font-size: 36px;
   }
   .down {
     transform: translateY(0px);
