@@ -93,7 +93,7 @@ export default {
         else if (item.topic_type === "choice") return "Choice";
       });
     });
-    const stayTime = computed(() => clock.timeStamp - clock.enter)
+    const stayTime = computed(() => clock.timeStamp - clock.enter);
     const hideScore = to => {
       isShowScore.value = false;
       destory.value = true;
