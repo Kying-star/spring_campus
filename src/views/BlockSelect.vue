@@ -112,7 +112,8 @@ export default {
       const minutes = parseInt((ms % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = parseInt((ms % (1000 * 60)) / 1000);
       if (index > 0) {
-        temp = lockTime.value[index + 1];
+        temp = lockTime.value[index - 1];
+        console.log(temp);
         return temp;
       } else if (minutes === 0 && seconds === 0) {
         temp = "[等你答题!]";
