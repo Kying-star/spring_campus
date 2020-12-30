@@ -8,7 +8,7 @@
 -->
 <template>
   <div class="tip">
-    <p>剩余答题</p>
+    <p>剩余冲榜</p>
     <p>
       次数为<a>{{ num }}</a>
     </p>
