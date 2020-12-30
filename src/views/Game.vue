@@ -239,13 +239,13 @@ export default {
     .tip_time {
       width: 57px;
       height: 60px;
-      font-size: 40px;
+      font-size: 35px;
       line-height: 60px;
       text-align: center;
       margin-left: 208px;
       margin-right: 43px;
       font-family: SJbangshu;
-      color: #f85127;
+      color: #6977ff;
     }
   }
   main {
