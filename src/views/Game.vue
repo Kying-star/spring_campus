@@ -152,11 +152,11 @@ export default {
       }
     };
     const start = () => {
-      clock.timer = setInterval(timer, 40);
+      clock.timer = setInterval(timer, 200);
     };
     const timer = () => {
-      clock.ms += 40;
-      clock.timeStamp += 40;
+      clock.ms += 200;
+      clock.timeStamp += 200;
       if (clock.ms >= 1000) {
         clock.ms = 0;
         clock.second++;
