@@ -214,6 +214,7 @@ export default {
           transform: translateY(2px);
           width: 290px;
           height: 40px;
+          margin-top: 4px;
           background: #ff462a;
           border-radius: 0px 0px 15px 15px;
           font-size: 16px;
