@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:57:08
- * @LastEditTime: 2020-12-30 21:32:32
+ * @LastEditTime: 2020-12-30 21:37:38
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/components/RollButton.vue
@@ -90,6 +90,7 @@ export default {
     justify-content: center;
   }
   .sum {
+    width: 135px;
     font-size: 36px;
   }
   .down {
