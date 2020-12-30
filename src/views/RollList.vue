@@ -98,7 +98,7 @@ export default {
     const getMin = ms => {
       const minutes = parseInt((ms % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = (ms % (1000 * 60)) / 1000;
-      return `${minutes *60 + seconds}`;
+      return `${minutes *60 + seconds}S`;
     };
     fetchRank(type_index.value);
     return {
