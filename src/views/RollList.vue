@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:47:00
- * @LastEditTime: 2020-12-30 01:56:56
+ * @LastEditTime: 2020-12-30 12:07:24
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/views/RollList.vue
@@ -97,8 +97,8 @@ export default {
     };
     const getMin = ms => {
       const minutes = parseInt((ms % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = parseInt((ms % (1000 * 60)) / 1000);
-      return `${minutes}:${seconds}`;
+      const seconds = (ms % (1000 * 60)) / 1000;
+      return `${minutes *60 + seconds}S`;
     };
     fetchRank(type_index.value);
     return {
