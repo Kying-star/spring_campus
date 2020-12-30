@@ -8,15 +8,19 @@
           >的学习。
         </p>
         <p>
-          你的成绩是<span class="info">{{ score / 1000 }}s。</span>
+          你的成绩是<span class="info"
+            >{{ score / 1000 }}s，已经超过了<span class="info">{{
+              percent
+            }}</span
+            >的同学。</span
+          >
         </p>
         <p>
-          <span v-show="isShowRank"
+          <span v-show="!isShowRank"
             >祝贺你进入了<span class="info"
               >{{ name }}(第{{ rank }}名）</span
             ></span
-          >你的成绩已经超过了<span class="info">{{ percent }}</span
-          >的同学。
+          >
         </p>
         <p>希望你在接下来的学习中继续努力，保持优秀！</p>
       </div>
@@ -30,6 +34,7 @@
 
 <script>
 import { computed } from "vue";
+import { useRoute } from 'vue-router';
 export default {
   props: {
     name: String,
@@ -39,6 +44,7 @@ export default {
     type: String
   },
   setup(props, ctx) {
+    const route = useRoute();
     const rankEndTime = {
       basic: "2021-01-06 00:00:00",
       achievement: "2021-01-06 00:00:00",
@@ -46,7 +52,7 @@ export default {
       plan: "2021-01-06 00:00:00"
     };
     const isShowRank = computed(
-      () => +new Date() < +new Date(rankEndTime[props.type])
+      () => +new Date() < +new Date(rankEndTime[props.type]) && route.query.opportunity > 0
     );
     const close = () => ctx.emit("close");
     const complete = router => ctx.emit("complete", router);
