@@ -66,6 +66,7 @@ export default {
       font-weight: bold;
       line-height: 34px;
       margin-bottom: 20px;
+      text-align: justify;
       &:last-child {
         margin-bottom: 0;
       }

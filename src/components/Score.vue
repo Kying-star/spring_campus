@@ -8,7 +8,7 @@
           >的学习。
         </p>
         <p>
-          你的成绩是<span class="info">{{ score / 1000 }}s</span>
+          你的成绩是<span class="info">{{ score / 1000 }}s。</span>
         </p>
         <p>
           <span v-show="isShowRank"
@@ -16,7 +16,7 @@
               >{{ name }}(第{{ rank }}名）</span
             ></span
           >你的成绩已经超过了<span class="info">{{ percent }}</span
-          >的同学
+          >的同学。
         </p>
         <p>希望你在接下来的学习中继续努力，保持优秀！</p>
       </div>
@@ -40,10 +40,10 @@ export default {
   },
   setup(props, ctx) {
     const rankEndTime = {
-      basic: "2020-01-06 00:00:00",
-      achievement: "2020-01-06 00:00:00",
-      target: "2020-01-06 00:00:00",
-      plan: "2020-01-06 00:00:00"
+      basic: "2021-01-06 00:00:00",
+      achievement: "2021-01-06 00:00:00",
+      target: "2021-01-06 00:00:00",
+      plan: "2021-01-06 00:00:00"
     };
     const isShowRank = computed(
       () => +new Date() < +new Date(rankEndTime[props.type])

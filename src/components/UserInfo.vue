@@ -30,7 +30,7 @@
           </div>
         </div>
         <div class="item phone">
-          <div class="label">电话：</div>
+          <div class="label">手机：</div>
           <input type="tel" class="input" @input="inputPhone" v-model="phone" />
         </div>
       </div>
@@ -140,16 +140,16 @@ export default {
     const isComplete = () => {
       //屎一样的判断
       if (!name.value && !school.value && !phone.value) {
-        toast.value = "请填写姓名、电话号码，并选择学校";
+        toast.value = "请填写姓名、手机号码，并选择学校";
         return false;
       } else if (!name.value && !school.value) {
         toast.value = "请填写姓名并选择学校";
         return false;
       } else if (!name.value && !phone.value) {
-        toast.value = "请填写姓名以及电话号码";
+        toast.value = "请填写姓名以及手机号码";
         return false;
       } else if (!school.value && !phone.value) {
-        toast.value = "请选择学校并填写电话号码";
+        toast.value = "请选择学校并填写手机号码";
         return false;
       } else if (!name.value) {
         toast.value = "请填写姓名";
@@ -158,14 +158,14 @@ export default {
         toast.value = "请选择学校";
         return false;
       } else if (!phone.value) {
-        toast.value = "请填写电话号码";
+        toast.value = "请填写手机号码";
         return false;
       } else {
         if (!nameReg.test(name.value)) {
           toast.value = "请填写正确的姓名";
           return false;
         } else if (!phoneReg.test(phone.value)) {
-          toast.value = "请填写正确的电话号码";
+          toast.value = "请填写正确的手机号码";
           return false;
         } else {
           return true;
@@ -329,7 +329,7 @@ export default {
             }
           }
           &:after {
-            content: "";
+            content: '';
             width: 41px;
             height: 27px;
             background: url(~@assets/images/home/user/square.png);
