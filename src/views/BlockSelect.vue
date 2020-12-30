@@ -114,7 +114,7 @@ export default {
       if (index > 0) {
         temp = lockTime.value[index - 1];
         console.log(temp);
-        return temp;
+        return `[${temp}解锁]`;
       } else if (minutes === 0 && seconds === 0) {
         temp = "[等你答题!]";
       } else {
