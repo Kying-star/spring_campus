@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
-    <title><%= htmlWebpackPlugin.options.title %></title>
+    <title>十九届五中全会学习填填乐</title>
     <script>
       // const token =
       //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcGVuaWQiOiJvdVJDeWppeVkzQVZkZ0w3RTZDQlRHTFpzWTNrIiwiZXhwIjo1MjA5MjQ3NzMxLCJpc3MiOiJteS1wcm9qZWN0In0.JCXT0t0y-fKAYcUmqj4rTR_APeEbsCfCsQ8nKUBDMUk#/";
@@ -30,6 +30,26 @@
         window.location.href =
           "https://wx.redrock.team/magicloop/rushb?b=https://cyxbsmobile.redrock.team/wxapi/nineteenth-committee/index/do&scope=oldphp";
       }
+    </script>
+    <script>
+      /* 百度统计代码 */
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?7fdd1aadf27dfd390ea4399275fbd0b5";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+        /* 下面的代码非常重要！！！ 文档：https://tongji.baidu.com/web/help/article?id=324&type=0 */
+        _hmt.push([
+          "_requirePlugin",
+          "UrlChangeTracker",
+          {
+            shouldTrackUrlChange: function(newPath, oldPath) {
+              return newPath && oldPath;
+            },
+          },
+        ]);
+      })();
     </script>
     <style>
       .load-box {
