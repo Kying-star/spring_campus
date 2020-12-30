@@ -46,7 +46,7 @@ export default {
     const router = useRouter();
     const toGame = type => {
       if (type === "basic") {
-        router.push(`/game?type=${type}`);
+        router.push(`/game?type=${type}&opportunity=${blockList.value[0].count}`);
       }
     };
     const showActivityRule = status => {
