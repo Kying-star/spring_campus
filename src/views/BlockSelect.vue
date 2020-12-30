@@ -110,7 +110,7 @@ export default {
     const getMin = (ms, index) => {
       let temp;
       const minutes = parseInt((ms % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = parseInt((ms % (1000 * 60)) / 1000);
+      const seconds = (ms % (1000 * 60)) / 1000;
       if (index > 0) {
         temp = lockTime.value[index - 1];
         console.log(temp);
@@ -118,7 +118,7 @@ export default {
       } else if (minutes === 0 && seconds === 0) {
         temp = "[等你答题!]";
       } else {
-        temp = `[成绩${minutes}:${seconds}]`;
+        temp = `[成绩${minutes*60 + seconds}]`;
       }
       return temp;
     };
