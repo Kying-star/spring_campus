@@ -46,10 +46,10 @@ export default {
   z-index: 999;
   .box {
     box-sizing: border-box;
-    margin: 40px 56px 0;
+    margin: 23px 34px 0;
     background-color: #fff;
     border-radius: 15px;
-    padding: 49px 30px 30px;
+    padding: 23px 23px 48px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -57,7 +57,7 @@ export default {
     color: #ff4f35;
     .title {
       font-size: 59px;
-      margin-bottom: 30px;
+      margin-bottom: 41px;
       font-family: SJbangshu;
     }
     .rule {
@@ -65,7 +65,7 @@ export default {
       font-family: FZYaZhuTiS;
       font-weight: bold;
       line-height: 34px;
-      margin-bottom: 20px;
+      margin-bottom: 45px;
       text-align: justify;
       &:last-child {
         margin-bottom: 0;
@@ -73,9 +73,9 @@ export default {
     }
   }
   .close {
-    width: 237px;
-    height: 104px;
-    margin: 54px auto;
+    width: 213px;
+    height: 93px;
+    margin: 20px auto;
     background: url(~@assets/images/button.png);
     background-repeat: no-repeat;
     background-size: contain;
