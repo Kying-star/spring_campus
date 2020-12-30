@@ -3,7 +3,7 @@
     <header>
       <div class="time">
         <div class="icon"></div>
-        <div class="text">{{ clock.second }}.{{ clock.ms / 100 }}s</div>
+        <div class="text">{{ `${clock.timeStamp / 1000}`.slice(0, -1) }}s</div>
       </div>
       <div class="tip_time" v-if="stayTime < 10000">
         {{ Math.ceil((10000 - stayTime) / 1000) }}s
@@ -65,11 +65,10 @@ export default {
     const { type } = route.query;
     const destory = ref(false);
     const clock = reactive({
-      second: 0,
-      ms: 0,
       timer: null,
       enter: 0,
-      timeStamp: 0
+      timeStamp: 0,
+      pre: +new Date(),
     });
     const score = reactive({
       name: "",
@@ -152,15 +151,18 @@ export default {
       }
     };
     const start = () => {
-      clock.timer = setInterval(timer, 100);
+      clock.timer = setInterval(timer, 1000 / 60);
     };
     const timer = () => {
-      clock.ms += 100;
-      clock.timeStamp += 100;
-      if (clock.ms >= 1000) {
-        clock.ms = 0;
-        clock.second++;
-      }
+      const interval = +new Date() - clock.pre;
+      clock.timeStamp += interval;
+      // clock.ms += interval;
+      // if (clock.ms >= 1000) {
+      //   clock.ms = 0;
+      //   // clock.timeStamp = 0
+      //   clock.second++;
+      // }
+      clock.pre = +new Date();
     };
     fetchQuestion();
     fetchAnalysis();

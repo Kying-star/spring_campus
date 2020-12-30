@@ -9,9 +9,9 @@
         </p>
         <p>
           你的成绩是<span class="info"
-            >{{ score / 1000 }}s，已经超过了<span class="info">{{
-              percent
-            }}</span
+            >{{ `${score / 1000}`.slice(0, -1) }}s，已经超过了<span
+              class="info"
+              >{{ percent }}</span
             >的同学。</span
           >
         </p>
