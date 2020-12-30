@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 23:04:50
- * @LastEditTime: 2020-12-30 09:43:10
+ * @LastEditTime: 2020-12-30 09:54:37
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/components/RollItem.vue
@@ -123,7 +123,9 @@ export default {
     line-height: 38px;
   }
   .times {
+    width: 85px;
     display: flex;
+    align-content: flex-start;
   }
   .clock {
     margin-right: 16px;
