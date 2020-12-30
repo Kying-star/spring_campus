@@ -3,7 +3,7 @@
     <header>
       <div class="time">
         <div class="icon"></div>
-        <div class="text">{{ clock.second }}.{{ toDub(clock.ms / 10) }}s</div>
+        <div class="text">{{ clock.second }}.{{ clock.ms / 100 }}s</div>
       </div>
       <div class="tip_time" v-if="stayTime < 10000">
         {{ Math.ceil((10000 - stayTime) / 1000) }}s
@@ -152,11 +152,11 @@ export default {
       }
     };
     const start = () => {
-      clock.timer = setInterval(timer, 200);
+      clock.timer = setInterval(timer, 100);
     };
     const timer = () => {
-      clock.ms += 200;
-      clock.timeStamp += 200;
+      clock.ms += 100;
+      clock.timeStamp += 100;
       if (clock.ms >= 1000) {
         clock.ms = 0;
         clock.second++;
