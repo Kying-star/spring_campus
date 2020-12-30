@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:47:00
- * @LastEditTime: 2020-12-30 12:21:39
+ * @LastEditTime: 2020-12-30 20:54:27
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/views/RollList.vue
@@ -14,6 +14,7 @@
         v-for="(button, index) in buttonList"
         :key="button"
         :info="button.info"
+        :index="index"
         @click="showList(index - 1)"
       />
     </header>

@@ -1,15 +1,15 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:57:08
- * @LastEditTime: 2020-12-26 22:52:40
+ * @LastEditTime: 2020-12-30 21:07:58
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/components/RollButton.vue
 -->
 <template>
-  <div class="button">
+  <div :class="getButtonClass()">
     <div
-      :class="isbuttonDown ? `inner` : `inner down onclick`"
+      :class="getClass(isbuttonDown)"
       @click="buttonDown()"
     >
       <div class="txt">{{ txt }}</div>
@@ -21,7 +21,8 @@
 import { ref } from "vue";
 export default {
   props: {
-    info: String
+    info: String,
+    index: Number
   },
   setup(props) {
     const isbuttonDown = ref(true);
@@ -33,10 +34,19 @@ export default {
         isbuttonDown.value = true;
       }, 400);
     };
+    const getClass = (show) => {
+      if (props.index > 1){
+        return show ? `inner gary` : `inner down onclick gary`
+      }
+      return show ? `inner` : `inner down onclick`
+    }
+    const getButtonClass = () => props.index > 1? "button graySandow" : "button"
     return {
       isbuttonDown,
       buttonDown,
-      txt
+      txt,
+      getClass,
+      getButtonClass
     };
   }
 };
@@ -86,5 +96,12 @@ export default {
   .onclick {
     background-color: #ff5136;
   }
+  .gary {
+    background: #6977ff;
+  }
+  .graySandow {
+    background-color: #ee3978;
+  }
 }
+
 </style>
