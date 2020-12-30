@@ -1,14 +1,14 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:47:00
- * @LastEditTime: 2020-12-30 12:07:24
+ * @LastEditTime: 2020-12-30 12:21:39
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/views/RollList.vue
 -->
 <template>
   <div class="home">
-    <div class="bg"></div>
+    <div class="bgRoll"></div>
     <header>
       <RollButton
         v-for="(button, index) in buttonList"
@@ -118,7 +118,7 @@ export default {
   display: flex;
   flex-direction: column;
   position: relative;
-  .bg {
+  .bgRoll {
     position: absolute;
     top: 0;
     left: 0;
