@@ -15,13 +15,13 @@
             >的同学。</span
           >
         </p>
-        <p>
+        <!-- <p>
           <span v-show="!isShowRank"
             >祝贺你进入了<span class="info"
               >{{ name }}(第{{ rank }}名）</span
             ></span
           >
-        </p>
+        </p> -->
         <p>希望你在接下来的学习中继续努力，保持优秀！</p>
       </div>
     </div>

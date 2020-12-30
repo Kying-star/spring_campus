@@ -80,7 +80,7 @@ export default {
           item.order = e.ranking;
           item.nickname = e.nickname;
           item.avatar = e.avatar;
-          item.time = getMin(e.score);
+          item.time = e.score / 1000;
           temp.push(item);
         });
       }
@@ -95,11 +95,11 @@ export default {
       // 写的跟屎一样的刷新，回来再改
       fetchRank(type_index.value);
     };
-    const getMin = ms => {
-      const minutes = parseInt((ms % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = (ms % (1000 * 60)) / 1000;
-      return `${minutes * 60 + seconds}S`;
-    };
+    // const getMin = ms => {
+    //   const minutes = parseInt((ms % (1000 * 60 * 60)) / (1000 * 60));
+    //   const seconds = (ms % (1000 * 60)) / 1000;
+    //   return `${minutes * 60 + seconds}S`;
+    // };
     fetchRank(type_index.value);
     return {
       buttonList,

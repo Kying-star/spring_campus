@@ -9,14 +9,14 @@
 <template>
   <div class="item">
     <div class="personDetail">
-      <div :class="getRankClass()">{{ isShowNum ? rank : " " }}</div>
+      <div :class="getRankClass()">{{ isShowNum ? rank : ' ' }}</div>
       <img class="Avatar" :src="Avatar" />
       <div class="nickname">{{ nick }}</div>
     </div>
 
     <div class="times">
       <div :class="getClockClass()" alt=""></div>
-      <div class="time">{{ time }}</div>
+      <div class="time">{{ time }}s</div>
     </div>
   </div>
 </template>
@@ -97,17 +97,17 @@ export default {
     text-align: center;
   }
   .first {
-    background-image: url("../assets/images/BlockSelect/first.png");
+    background-image: url('../assets/images/BlockSelect/first.png');
   }
   .second {
     width: 57px;
     height: 70px;
-    background-image: url("../assets/images/BlockSelect/second.png");
+    background-image: url('../assets/images/BlockSelect/second.png');
   }
   .third {
     width: 56px;
     height: 69px;
-    background-image: url("../assets/images/BlockSelect/third.png");
+    background-image: url('../assets/images/BlockSelect/third.png');
   }
   .Avatar {
     margin-left: 32px;
