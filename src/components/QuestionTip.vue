@@ -54,6 +54,7 @@ export default {
       img {
         width: 100%;
         height: 341px;
+        object-fit: cover;
       }
       .text {
         margin-top: 69px;
