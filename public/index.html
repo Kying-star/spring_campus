@@ -13,6 +13,11 @@
       if (token && token.length) {
         localStorage.setItem("openid_token", token);
         const { exp, openid } = JSON.parse(atob(token.split(".")[1]));
+        if (!openid) {
+          localStorage.removeItem("openid_token");
+          window.location.href =
+            "https://wx.redrock.team/magicloop/rushb?b=https://cyxbsmobile.redrock.team/wxapi/nineteenth-committee/index/do&scope=oldphp";
+        }
         localStorage.setItem("exp", exp);
         localStorage.setItem("openid", openid);
       }
