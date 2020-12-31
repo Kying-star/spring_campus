@@ -15,7 +15,7 @@
       <div class="start" @click="toSelect"></div>
     </main>
     <footer>
-      <p class="ref">重庆邮电大学、重庆市学生联合会联合出品</p>
+      <p class="ref">重庆市学生联合会、重庆邮电大学联合出品</p>
       <p class="ref">@红岩网校工作站出品</p>
     </footer>
   </div>

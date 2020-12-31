@@ -20,7 +20,7 @@
     </header>
     <main>
       <div class="inner">
-        <div class="tip">十九届五中全会基本情况答题排行榜</div>
+        <div class="tip">党的十九届五中全会基本情况答题排行榜</div>
         <div class="list">
           <RollItem
             v-for="item in rollList"
