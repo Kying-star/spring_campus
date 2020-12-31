@@ -135,7 +135,7 @@ export default {
       isShowToast.value = true;
       setTimeout(() => {
         isShowToast.value = false;
-      }, 3000);
+      }, 1500);
     };
     const isComplete = () => {
       //屎一样的判断
@@ -329,7 +329,7 @@ export default {
             }
           }
           &:after {
-            content: "";
+            content: '';
             width: 41px;
             height: 27px;
             background: url(~@assets/images/home/user/square.png);
