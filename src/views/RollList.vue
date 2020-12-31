@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:47:00
- * @LastEditTime: 2020-12-30 20:54:27
+ * @LastEditTime: 2020-12-31 12:14:11
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/views/RollList.vue
@@ -49,11 +49,11 @@ export default {
   components: { RollButton, RollItem },
   setup() {
     const buttonList = ref([
-      { info: "总排行" },
       { info: "全会 情况" },
       { info: "十三五成就" },
       { info: "远景 目标" },
-      { info: "十四五规划" }
+      { info: "十四五规划" },
+      { info: "总排行" }
     ]);
     const router = useRouter();
     const rollList = ref([

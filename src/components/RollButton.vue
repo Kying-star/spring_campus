@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:57:08
- * @LastEditTime: 2020-12-31 11:39:50
+ * @LastEditTime: 2020-12-31 12:14:22
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/components/RollButton.vue
@@ -12,7 +12,7 @@
       :class="getClass(isbuttonDown)"
       @click="buttonDown()"
     >
-      <div :class="index === 0?`txt sum`:`txt`">{{ txt }}</div>
+      <div :class="index === 4?`txt sum`:`txt`">{{ txt }}</div>
     </div>
   </div>
 </template>
@@ -35,7 +35,7 @@ export default {
       }, 400);
     };
     const getClass = (show) => {
-      if (props.index > 1){
+      if (props.index > 0){
         return show ? `inner gary` : `inner onclick gary`
       }
       return show ? `inner` : `inner down onclick`
