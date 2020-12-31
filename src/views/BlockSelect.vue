@@ -89,7 +89,7 @@ export default {
       "2035年远景目标",
       "“十四五”发展规划"
     ]);
-    const lockTime = ref(["2021年1月6日", "2021年1月13日", "2021年1月20日"]);
+    const lockTime = ref(["2021年1月7日", "2021年1月14日", "2021年1月21日"]);
     const gotoHome = () => router.push("/");
     const getBlockDetail = async () => {
       const { data } = await getBlock();
