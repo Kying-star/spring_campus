@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:57:08
- * @LastEditTime: 2020-12-31 12:14:22
+ * @LastEditTime: 2020-12-31 12:16:18
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/components/RollButton.vue
@@ -40,7 +40,7 @@ export default {
       }
       return show ? `inner` : `inner down onclick`
     }
-    const getButtonClass = () => props.index > 1? "button graySandow" : "button"
+    const getButtonClass = () => props.index > 0? "button graySandow" : "button"
     return {
       isbuttonDown,
       buttonDown,
