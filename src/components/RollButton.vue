@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:57:08
- * @LastEditTime: 2020-12-31 12:16:18
+ * @LastEditTime: 2020-12-31 12:38:02
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/components/RollButton.vue
@@ -101,7 +101,6 @@ export default {
     background-color: #ff5136;
   }
   .gary {
-    color: #6977ff;
     background-color: #f09d90;
   }
   .garySandow {
