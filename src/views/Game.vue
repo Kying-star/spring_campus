@@ -151,6 +151,7 @@ export default {
       }
     };
     const start = () => {
+      clock.pre = +new Date();
       clock.timer = setInterval(timer, 1000 / 60);
     };
     const timer = () => {
