@@ -18,7 +18,11 @@
         :index="questions[index].order"
         :question="questions[index].question"
         :answers="questions[index].answer"
-        :answerKey="questions[index].right_answer[0].value"
+        :answerKey="
+          questions[index].topic_type === 'click'
+            ? ''
+            : questions[index].right_answer[0].value
+        "
         v-show="questions[index].order === showIndex + 1"
         @next="showQuestionTip(true)"
         :isShowTip="isShowTip"
@@ -49,6 +53,7 @@ import FillBlank from "@components/FillBlank";
 import QuestionTip from "@components/QuestionTip";
 import Score from "@components/Score";
 import Choice from "@components/Choice";
+// import FillWord from "@components/FillWord";
 import { useRoute } from "vue-router";
 import { computed, onMounted, onUnmounted, reactive, ref } from "vue";
 import {
@@ -59,7 +64,7 @@ import {
 } from "@/services/api";
 import router from "@/router";
 export default {
-  components: { FillBlank, QuestionTip, Score, Choice },
+  components: { FillBlank, QuestionTip, Score, Choice, },
   setup() {
     const route = useRoute();
     const { type } = route.query;
@@ -88,7 +93,7 @@ export default {
     const components = computed(() => {
       return questions.value.map(item => {
         if (item.topic_type === "click") return "FillBlank";
-        else if (item.topic_type === "number") return "FillNumber";
+        else if (item.topic_type === "number") return "FillWorld";
         else if (item.topic_type === "choice") return "Choice";
       });
     });
@@ -101,7 +106,6 @@ export default {
     const fetchQuestion = async () => {
       const { data } = await getQuestion(type);
       questions.value = data;
-      console.log(questions.value);
     };
     const fetchAnalysis = async () => {
       const { data } = await getAnalysis(type);
