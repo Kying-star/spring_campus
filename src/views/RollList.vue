@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:47:00
- * @LastEditTime: 2021-01-07 12:10:44
+ * @LastEditTime: 2021-01-07 12:14:16
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/views/RollList.vue
@@ -20,7 +20,7 @@
     </header>
     <main>
       <div class='inner'>
-        <div class='tip'>{{ titleList[0].info }}</div>
+        <div class='tip'>{{ titleList[title_index].info }}</div>
         <div class='list'>
           <RollItem
             v-for='item in rollList'
