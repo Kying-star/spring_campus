@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:47:00
- * @LastEditTime: 2021-01-07 12:01:08
+ * @LastEditTime: 2021-01-07 12:05:06
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/views/RollList.vue
@@ -20,7 +20,7 @@
     </header>
     <main>
       <div class='inner'>
-        <div class='tip'>党的十九届五中{{ titleList[0].info }}答题排行榜</div>
+        <div class='tip'>{{ titleList[0].info }}</div>
         <div class='list'>
           <RollItem
             v-for='item in rollList'
@@ -58,8 +58,8 @@ export default {
     ]);
     const title_index = ref(0);
     const titleList = ref([
-      { info: "全会基本情况" },
-      { info: "十三五成就" },
+      { info: "党的十九届五中全会基本情况答题排行榜" },
+      { info: "“十三五”时期成就答题排行榜" },
       { info: "远景目标" },
       { info: "十四五规划" },
       { info: "总排行" },
@@ -99,10 +99,11 @@ export default {
     const showList = (index) => {
       // console.log(index);
       type_index.value = index === -1 ? 0 : index;
-      if (type_index.value > 0) {
+      if (type_index.value > 1) {
         return;
       }
       // 写的跟屎一样的刷新，回来再改
+      title_index = index;
       fetchRank(type_index.value);
     };
     // const getMin = ms => {
@@ -112,6 +113,7 @@ export default {
     // };
     fetchRank(type_index.value);
     return {
+      title_index,
       buttonList,
       titleList,
       rollList,
