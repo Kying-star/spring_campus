@@ -1,18 +1,15 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:57:08
- * @LastEditTime: 2020-12-31 12:54:04
+ * @LastEditTime: 2021-01-07 11:42:18
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/components/RollButton.vue
 -->
 <template>
-  <div :class="getButtonClass()">
-    <div
-      :class="getClass(isbuttonDown)"
-      @click="buttonDown()"
-    >
-      <div :class="index === 4?`txt sum`:`txt`">{{ txt }}</div>
+  <div :class='getButtonClass()'>
+    <div :class='getClass(isbuttonDown)' @click='buttonDown()'>
+      <div :class='index === 4?`txt sum`:`txt`'>{{ txt }}</div>
     </div>
   </div>
 </template>
@@ -22,7 +19,7 @@ import { ref } from "vue";
 export default {
   props: {
     info: String,
-    index: Number
+    index: Number,
   },
   setup(props) {
     const isbuttonDown = ref(true);
@@ -35,20 +32,20 @@ export default {
       }, 400);
     };
     const getClass = (show) => {
-      if (props.index > 0){
-        return show ? `inner gary` : `inner onclick gary`
+      if (props.index > 1) {
+        return show ? `inner gary` : `inner onclick gary`;
       }
-      return show ? `inner` : `inner down onclick`
-    }
-    const getButtonClass = () => props.index > 0? "button" : "button"
+      return show ? `inner` : `inner down onclick`;
+    };
+    const getButtonClass = () => (props.index > 0 ? "button" : "button");
     return {
       isbuttonDown,
       buttonDown,
       txt,
       getClass,
-      getButtonClass
+      getButtonClass,
     };
-  }
+  },
 };
 </script>
 
@@ -106,5 +103,4 @@ export default {
   .garySandow {
   }
 }
-
 </style>
