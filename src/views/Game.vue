@@ -64,7 +64,7 @@ import {
 } from "@/services/api";
 import router from "@/router";
 export default {
-  components: { FillBlank, QuestionTip, Score, Choice, },
+  components: { FillBlank, QuestionTip, Score, Choice },
   setup() {
     const route = useRoute();
     const { type } = route.query;
@@ -73,7 +73,7 @@ export default {
       timer: null,
       enter: 0,
       timeStamp: 0,
-      pre: +new Date(),
+      pre: +new Date()
     });
     const score = reactive({
       name: "",

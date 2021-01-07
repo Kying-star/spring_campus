@@ -34,7 +34,7 @@
 
 <script>
 import { computed } from "vue";
-import { useRoute } from 'vue-router';
+import { useRoute } from "vue-router";
 export default {
   props: {
     name: String,
@@ -52,7 +52,9 @@ export default {
       plan: "2021-01-06 00:00:00"
     };
     const isShowRank = computed(
-      () => +new Date() < +new Date(rankEndTime[props.type]) && route.query.opportunity > 0
+      () =>
+        +new Date() < +new Date(rankEndTime[props.type]) &&
+        route.query.opportunity > 0
     );
     const close = () => ctx.emit("close");
     const complete = router => ctx.emit("complete", router);

@@ -7,9 +7,9 @@
  * @FilePath: /the-19th-committee/src/components/RollButton.vue
 -->
 <template>
-  <div :class='getButtonClass()'>
-    <div :class='getClass(isbuttonDown)' @click='buttonDown()'>
-      <div :class='index === 4?`txt sum`:`txt`'>{{ txt }}</div>
+  <div :class="getButtonClass()">
+    <div :class="getClass(isbuttonDown)" @click="buttonDown()">
+      <div :class="index === 4 ? `txt sum` : `txt`">{{ txt }}</div>
     </div>
   </div>
 </template>
@@ -19,7 +19,7 @@ import { ref } from "vue";
 export default {
   props: {
     info: String,
-    index: Number,
+    index: Number
   },
   setup(props) {
     const isbuttonDown = ref(true);
@@ -31,7 +31,7 @@ export default {
         isbuttonDown.value = true;
       }, 400);
     };
-    const getClass = (show) => {
+    const getClass = show => {
       if (props.index > 1) {
         return show ? `inner gary` : `inner onclick gary`;
       }
@@ -43,9 +43,9 @@ export default {
       buttonDown,
       txt,
       getClass,
-      getButtonClass,
+      getButtonClass
     };
-  },
+  }
 };
 </script>
 
