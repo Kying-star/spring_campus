@@ -1,40 +1,40 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:47:00
- * @LastEditTime: 2021-01-07 11:55:25
+ * @LastEditTime: 2021-01-07 12:01:08
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/views/RollList.vue
 -->
 <template>
-  <div class="home">
-    <div class="bgRoll"></div>
+  <div class='home'>
+    <div class='bgRoll'></div>
     <header>
       <RollButton
-        v-for="(button, index) in buttonList"
-        :key="button"
-        :info="button.info"
-        :index="index"
-        @click="showList(index - 1)"
+        v-for='(button, index) in buttonList'
+        :key='button'
+        :info='button.info'
+        :index='index'
+        @click='showList(index - 1)'
       />
     </header>
     <main>
-      <div class="inner">
-        <div class="tip">党的十九届五中{{ titleList[0] }}答题排行榜</div>
-        <div class="list">
+      <div class='inner'>
+        <div class='tip'>党的十九届五中{{ titleList[0].info }}答题排行榜</div>
+        <div class='list'>
           <RollItem
-            v-for="item in rollList"
-            :key="item"
-            :order="item.order"
-            :nickname="item.nickname"
-            :time="item.time"
-            :Avatar="item.avatar"
+            v-for='item in rollList'
+            :key='item'
+            :order='item.order'
+            :nickname='item.nickname'
+            :time='item.time'
+            :Avatar='item.avatar'
           />
         </div>
       </div>
     </main>
     <footer>
-      <div class="back" @click="back()"></div>
+      <div class='back' @click='back()'></div>
     </footer>
   </div>
 </template>
@@ -54,14 +54,15 @@ export default {
       { info: "十三五成就" },
       { info: "远景 目标" },
       { info: "十四五规划" },
-      { info: "总排行" }
+      { info: "总排行" },
     ]);
+    const title_index = ref(0);
     const titleList = ref([
       { info: "全会基本情况" },
       { info: "十三五成就" },
       { info: "远景目标" },
       { info: "十四五规划" },
-      { info: "总排行" }
+      { info: "总排行" },
     ]);
     const router = useRouter();
     const rollList = ref([
@@ -78,13 +79,13 @@ export default {
     ]);
     const type_index = ref(0);
     const back = () => router.push("/block");
-    const fetchRank = async index => {
+    const fetchRank = async (index) => {
       const { data } = await getRank();
       // console.log(data, index);
       let temp = [];
       // console.log(data[index].data);
       if (data[index].data) {
-        data[index].data.forEach(e => {
+        data[index].data.forEach((e) => {
           let item = {};
           item.order = e.ranking;
           item.nickname = e.nickname;
@@ -95,7 +96,7 @@ export default {
       }
       rollList.value = temp;
     };
-    const showList = index => {
+    const showList = (index) => {
       // console.log(index);
       type_index.value = index === -1 ? 0 : index;
       if (type_index.value > 0) {
@@ -115,9 +116,9 @@ export default {
       titleList,
       rollList,
       back,
-      showList
+      showList,
     };
-  }
+  },
 };
 </script>
 
