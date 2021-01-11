@@ -85,7 +85,7 @@ export default {
       "2035年远景目标",
       "“十四五”发展规划",
     ]);
-    const lockTime = ref(["2021年1月7日", "2021年1月14日", "2021年1月21日"]);
+    const lockTime = ref(["2021年1月19日", "2021年1月26日", "2021年2月2日"]);
     const gotoHome = () => router.push("/");
     const getBlockDetail = async () => {
       const { data } = await getBlock();
@@ -107,7 +107,7 @@ export default {
       let temp;
       const minutes = parseInt((ms % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = (ms % (1000 * 60)) / 1000;
-      if (index > 1) {
+      if (index > 0) {
         temp = lockTime.value[index - 1];
         console.log(temp);
         return `[${temp}解锁]`;
