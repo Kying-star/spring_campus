@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:47:00
- * @LastEditTime: 2021-01-11 22:27:06
+ * @LastEditTime: 2021-01-18 23:58:29
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/views/RollList.vue
@@ -67,15 +67,78 @@ export default {
     const router = useRouter();
     const rollList = ref([
       // { order: 1, nickname: "卷卷一号", time: "00:10:20", avatar: "" },
-      // { order: 2, nickname: "卷卷一号", time: "00:10:20", avatar: "" },
-      // { order: 3, nickname: "卷卷一号", time: "00:10:20", avatar: "" },
-      // { order: 4, nickname: "卷卷一号", time: "00:10:20", avatar: "" },
-      // { order: 5, nickname: "卷卷一号", time: "00:10:20", avatar: "" },
-      // { order: 6, nickname: "卷卷一号", time: "00:10:20", avatar: "" },
-      // { order: 7, nickname: "卷卷一号", time: "00:10:20", avatar: "" },
-      // { order: 8, nickname: "卷卷一号", time: "00:10:20", avatar: "" },
-      // { order: 9, nickname: "卷卷一号", time: "00:10:20", avatar: "" },
-      // { order: 10, nickname: "卷卷一号", time: "00:10:20", avatar: "" }
+    ]);
+    const fix_data = ref([
+      {
+        avatar:
+          "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJ9jEUeJNj6LoKch1Vl0P8L7U7gnIBlpRsga7w4snMzzzNkUsUeaCPVsXVGTCE9f9bXJhOKueIXow/132",
+        nickname: "问道",
+        ranking: 1,
+        score: 9222,
+      },
+      {
+        avatar:
+          "https://wx.qlogo.cn/mmopen/vi_32/IVVCc8ic4z4jklljYn1CGBUliaiaOibuscEZvQPgFoqrJHDAcxHL2TFqmhZQ87mYEqgtgOLOKEBMmmsHCDHVyNXVaQ/132",
+        nickname: "钓大猫的鱼",
+        ranking: 2,
+        score: 9619,
+      },
+      {
+        avatar:
+          "https://wx.qlogo.cn/mmopen/vi_32/9IzMwj4qW0Oape9GIsE1MRlLxKcIUXMVju9kbEicB8fMzrliaJm1mSQ558SqU3qmRcDMlkNPglMjLicibh6fqPjUibA/132",
+        nickname: "Cheng",
+        ranking: 3,
+        score: 10386,
+      },
+      {
+        avatar:
+          "https://wx.qlogo.cn/mmopen/vi_32/ClFmz4j5GV29zjw5j1D3NibdjCguBiaewiaOicZTjeXSWfVDvmaWOicyNe97B4vVaXZYFkTd2bjiabKAD2cbNgIwYC5A/132",
+        nickname: "Chiang-Dreamboat",
+        ranking: 4,
+        score: 10772,
+      },
+      {
+        avatar:
+          "https://wx.qlogo.cn/mmopen/vi_32/QqQDcmw0yDZ524ibFpSYVRPaTK2nhzCb9n6ibMQwbrpov8DIy4QNEjnxGIdetUELjhBBsnnicsdsH16alicc3Dks1g/132",
+        nickname: "唐潮潮",
+        ranking: 5,
+        score: 10982,
+      },
+      {
+        avatar:
+          "https://wx.qlogo.cn/mmopen/vi_32/5KBXHnmaOlK25L4eBqZglfQDCXV7y9VTq0aLtwGKib1ZyEyU7WFwurCEcQCXvloLRzrwxrjaejFVv1ticN94j9dw/132",
+        nickname: "湖烟渺`",
+        ranking: 6,
+        score: 10994,
+      },
+      {
+        avatar:
+          "https://wx.qlogo.cn/mmopen/vi_32/3FYfxf3k1DUlaTYewribA6GOL1aRibuAByVppylPZuYe6EwRjf7NDCdTSjQwYibj1nGJcCPzSDfcRse0uAphAlkDg/132",
+        nickname: "年年好运",
+        ranking: 7,
+        score: 11048,
+      },
+      {
+        avatar:
+          "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKaDHPt5uk1ysEVyNiaJP3HzD7KM90jIQaiareFf4j3icUvzlcOSic6CKJicM70TWTVGTUACLlEFq9pnUw/132",
+        nickname: "fufu",
+        ranking: 8,
+        score: 11055,
+      },
+      {
+        avatar:
+          "https://wx.qlogo.cn/mmopen/vi_32/oZIDYJoZcDw0s6AjEpm15yhcdic503ncFaYtYznSI2feHoyDLlQcUGMuexgibkWCa69boZCecGcBDcoyebRW81mg/132",
+        nickname: "Young",
+        ranking: 9,
+        score: 11404,
+      },
+      {
+        avatar:
+          "https://wx.qlogo.cn/mmopen/vi_32/kBHicOia4GJeX7c1xeuIKYleLAKJWfbI7BeVoaj9Bpj7YONVB6AvFnvnWcMCia3tkSNpcARqj6Nhz7YEUD6uEacvw/132",
+        nickname: "至味",
+        ranking: 10,
+        score: 11499,
+      },
     ]);
     const type_index = ref(0);
     const back = () => router.push("/block");
@@ -85,14 +148,25 @@ export default {
       let temp = [];
       // console.log(data[index].data);
       if (data[index].data) {
-        data[index].data.forEach((e) => {
-          let item = {};
-          item.order = e.ranking;
-          item.nickname = e.nickname;
-          item.avatar = e.avatar;
-          item.time = e.score / 1000;
-          temp.push(item);
-        });
+        if (index === 0) {
+          fix_data.value.forEach((e) => {
+            let item = {};
+            item.order = e.ranking;
+            item.nickname = e.nickname;
+            item.avatar = e.avatar;
+            item.time = e.score / 1000;
+            temp.push(item);
+          });
+        } else {
+          data[index].data.forEach((e) => {
+            let item = {};
+            item.order = e.ranking;
+            item.nickname = e.nickname;
+            item.avatar = e.avatar;
+            item.time = e.score / 1000;
+            temp.push(item);
+          });
+        }
       }
       rollList.value = temp;
     };
