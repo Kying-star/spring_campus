@@ -39,12 +39,11 @@ export default {
         router.push(
           `/game?type=${type}&opportunity=${blockList.value[0].count}`
         );
+      } else if (type === "achievement") {
+        router.push(
+          `/game?type=${type}&opportunity=${blockList.value[1].count}`
+        );
       }
-      //  else if (type === "achievement") {
-      //   router.push(
-      //     `/game?type=${type}&opportunity=${blockList.value[1].count}`
-      //   );
-      // }
     };
     const showActivityRule = (status) => {
       isShowActivityRule.value = status;
