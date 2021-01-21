@@ -74,7 +74,7 @@ export default {
       {
         isAnswer: true,
         count: 1,
-        type: "develop",
+        type: "plan",
         txt: "“十四五”发展规划",
         footer: "[解锁时间：2020年12月25日]",
       },
