@@ -85,7 +85,8 @@ export default {
       "2035年远景目标",
       "“十四五”发展规划",
     ]);
-    const img = ref(["basic", "Achievements", "target", "plan"]);
+    // 修改图片
+    const img = ref(["basic", "achievement", "target", "plan"]);
     const lockTime = ref(["2021年1月19日", "2021年1月26日", "2021年2月2日"]);
     const gotoHome = () => router.push("/");
     const getBlockDetail = async () => {
