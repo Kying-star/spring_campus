@@ -53,7 +53,7 @@ export default {
       {
         isAnswer: true,
         count: 1,
-        type: "basic",
+        type: "basic1",
         txt: "全会基本情况",
         footer: "[等你答题]",
       },
