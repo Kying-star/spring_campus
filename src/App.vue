@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-29 17:12:32
- * @LastEditTime: 2021-01-22 14:57:11
+ * @LastEditTime: 2021-01-22 16:02:35
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /nineteenth-committee-fe/src/App.vue

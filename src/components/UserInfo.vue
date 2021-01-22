@@ -1,39 +1,37 @@
 <template>
-  <div class="user-info mask">
-    <div class="toast" v-show="isShowToast">
-      <div class="mask"></div>
-      <div class="content">{{ toast }}</div>
+  <div class='user-info mask'>
+    <div class='toast' v-show='isShowToast'>
+      <div class='mask'></div>
+      <div class='content'>{{ toast }}</div>
     </div>
-    <div class="box">
-      <div class="title">个人信息完善</div>
-      <div class="form">
-        <div class="item name">
-          <div class="label">姓名：</div>
-          <input type="text" class="input" v-model="name" />
+    <div class='box'>
+      <div class='title'>个人信息完善</div>
+      <div class='form'>
+        <div class='item name'>
+          <div class='label'>姓名：</div>
+          <input type='text' class='input' v-model='name' />
         </div>
-        <div class="item school">
-          <div class="label">学校：</div>
-          <div class="select" @click="selecting = !selecting">
+        <div class='item school'>
+          <div class='label'>学校：</div>
+          <div class='select' @click='selecting = !selecting'>
             {{ school }}
-            <ul class="contaniner" v-show="selecting">
+            <ul class='contaniner' v-show='selecting'>
               <li
-                v-for="item of schoolList"
-                :key="item"
-                class="option"
-                @click="select(item)"
-              >
-                {{ item }}
-              </li>
+                v-for='item of schoolList'
+                :key='item'
+                class='option'
+                @click='select(item)'
+              >{{ item }}</li>
             </ul>
           </div>
         </div>
-        <div class="item phone">
-          <div class="label">手机：</div>
-          <input type="tel" class="input" @input="inputPhone" v-model="phone" />
+        <div class='item phone'>
+          <div class='label'>手机：</div>
+          <input type='tel' class='input' @input='inputPhone' v-model='phone' />
         </div>
       </div>
-      <div class="tips">完善个人信息有利于最后的活动 领奖通知哦~</div>
-      <div class="submit" @click="submit"></div>
+      <div class='tips'>完善个人信息有利于最后的活动 领奖通知哦~</div>
+      <div class='submit' @click='submit'></div>
     </div>
   </div>
 </template>
@@ -113,7 +111,7 @@ export default {
       "重庆护理职业学院",
       "重庆理工职业学院",
       "重庆健康职业学院",
-      "重庆智能工程职业学院"
+      "重庆智能工程职业学院",
     ];
     const nameReg = /^(?:[\u4e00-\u9fa5·]{2,16})$/;
     const phoneReg = /^(?:(?:\+|00)86)?1[3-9]\d{9}$/;
@@ -123,7 +121,7 @@ export default {
     const toast = ref("");
     const selecting = ref(false);
     const isShowToast = ref(false);
-    const select = item => {
+    const select = (item) => {
       school.value = item;
     };
     const inputPhone = () => {
@@ -181,7 +179,7 @@ export default {
         updateUserInfo({
           name: name.value,
           school: school.value,
-          phone: phone.value
+          phone: phone.value,
         });
         ctx.emit("after-submit");
       } else {
@@ -199,9 +197,9 @@ export default {
       isShowToast,
       name,
       selecting,
-      select
+      select,
     };
-  }
+  },
 };
 </script>
 
