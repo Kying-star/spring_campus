@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:57:08
- * @LastEditTime: 2021-01-22 10:57:15
+ * @LastEditTime: 2021-01-22 14:57:43
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/components/RollButton.vue
@@ -52,7 +52,7 @@ export default {
 <style lang="scss" scoped>
 @font-face {
   font-family: SJbangshu;
-  src: url("https://cdn.jsdelivr.net/gh/Kying-star/font_src@1.0/SJbangshu.TTF");
+  src: url("~@assets/font/SJbangshu.TTF");
 }
 .button {
   width: 135px;

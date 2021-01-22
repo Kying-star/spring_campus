@@ -1,8 +1,8 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-29 17:12:32
- * @LastEditTime: 2021-01-22 10:56:57
- * @LastEditors: your name
+ * @LastEditTime: 2021-01-22 14:57:11
+ * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /nineteenth-committee-fe/src/App.vue
 -->
@@ -13,7 +13,7 @@
 <style lang="scss">
 @font-face {
   font-family: SJbangshu;
-  src: url("https://cdn.jsdelivr.net/gh/Kying-star/font_src@1.0/SJbangshu.TTF");
+  src: url(~@assets/font/SJbangshu.TTF);
 }
 @font-face {
   font-family: FZYaZhuTiS;
