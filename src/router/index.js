@@ -16,6 +16,10 @@ const routes = [
   {
     path: "/game",
     component: () => import("@views/Game.vue")
+  },
+  {
+    path: "/openid",
+    component: () => import("@views/Openid.vue")
   }
 ];
 
