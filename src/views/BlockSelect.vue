@@ -50,34 +50,34 @@ export default {
     };
     const gotoRoll = () => router.push(`/roll`);
     const blockList = ref([
-      {
-        isAnswer: true,
-        count: 1,
-        type: "basic1",
-        txt: "全会基本情况",
-        footer: "[等你答题]",
-      },
-      {
-        isAnswer: true,
-        count: 1,
-        type: "Achievements",
-        txt: "“十三五”时期成就",
-        footer: "[解锁时间：2020年12月25日]",
-      },
-      {
-        isAnswer: true,
-        count: 1,
-        type: "target",
-        txt: "2035年远景目标",
-        footer: "[解锁时间：2020年12月25日]",
-      },
-      {
-        isAnswer: true,
-        count: 1,
-        type: "plan",
-        txt: "“十四五”发展规划",
-        footer: "[解锁时间：2020年12月25日]",
-      },
+      // {
+      //   isAnswer: true,
+      //   count: 1,
+      //   type: "basic1",
+      //   txt: "全会基本情况",
+      //   footer: "[等你答题]",
+      // },
+      // {
+      //   isAnswer: true,
+      //   count: 1,
+      //   type: "Achievements",
+      //   txt: "“十三五”时期成就",
+      //   footer: "[解锁时间：2020年12月25日]",
+      // },
+      // {
+      //   isAnswer: true,
+      //   count: 1,
+      //   type: "target",
+      //   txt: "2035年远景目标",
+      //   footer: "[解锁时间：2020年12月25日]",
+      // },
+      // {
+      //   isAnswer: true,
+      //   count: 1,
+      //   type: "plan",
+      //   txt: "“十四五”发展规划",
+      //   footer: "[解锁时间：2020年12月25日]",
+      // },
     ]);
     const type = ref([
       "全会基本情况",
