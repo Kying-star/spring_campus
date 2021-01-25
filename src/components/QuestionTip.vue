@@ -50,14 +50,14 @@ export default {
     .content {
       box-sizing: border-box;
       width: 100%;
-      margin-top: 68px;
+      margin-top: 30px;
       img {
         width: 100%;
         height: 341px;
         object-fit: cover;
       }
       .text {
-        margin-top: 69px;
+        margin-top: 30px;
         font-size: 34px;
         font-family: FZYaZhuTiS;
         color: #ff4f35;
