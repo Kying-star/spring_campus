@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:47:00
- * @LastEditTime: 2021-01-22 13:24:30
+ * @LastEditTime: 2021-01-25 17:11:32
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/views/RollList.vue
@@ -140,7 +140,7 @@ export default {
         score: 11499,
       },
     ]);
-    const type_index = ref(0);
+    const type_index = ref(1);
     const back = () => router.push("/block");
     const fetchRank = async (index) => {
       const { data } = await getRank();
