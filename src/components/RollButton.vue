@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:57:08
- * @LastEditTime: 2021-01-22 14:57:43
+ * @LastEditTime: 2021-01-26 00:13:48
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/components/RollButton.vue
@@ -32,7 +32,7 @@ export default {
       }, 400);
     };
     const getClass = (show) => {
-      if (props.index > 1) {
+      if (props.index > 2) {
         return show ? `inner gary` : `inner onclick gary`;
       }
       return show ? `inner` : `inner down onclick`;
