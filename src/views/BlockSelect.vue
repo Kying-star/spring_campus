@@ -113,7 +113,7 @@ export default {
       let temp;
       const minutes = parseInt((ms % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = (ms % (1000 * 60)) / 1000;
-      if (index > 1) {
+      if (index > 2) {
         temp = lockTime.value[index - 1];
         console.log(temp);
         return `[${temp}解锁]`;
