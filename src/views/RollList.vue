@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:47:00
- * @LastEditTime: 2021-01-26 00:18:00
+ * @LastEditTime: 2021-01-26 08:30:33
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/views/RollList.vue
@@ -173,7 +173,7 @@ export default {
     const showList = (index) => {
       // console.log(index);
       type_index.value = index;
-      if (type_index.value > 1) {
+      if (type_index.value > 2) {
         return;
       }
       // 写的跟屎一样的刷新，回来再改
