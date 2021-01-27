@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:47:00
- * @LastEditTime: 2021-01-26 08:30:33
+ * @LastEditTime: 2021-01-27 17:32:40
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/views/RollList.vue
@@ -60,7 +60,7 @@ export default {
     const titleList = ref([
       { info: "党的十九届五中全会基本情况答题排行榜" },
       { info: "“十三五”时期成就答题排行榜" },
-      { info: "远景目标" },
+      { info: "2035年远景目标排行榜" },
       { info: "十四五规划" },
       { info: "总排行" },
     ]);
