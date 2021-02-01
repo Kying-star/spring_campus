@@ -47,6 +47,10 @@ export default {
         router.push(
           `/game?type=${type}&opportunity=${blockList.value[2].count}`
         );
+      } else if (type === "plan") {
+        router.push(
+          `/game?type=${type}&opportunity=${blockList.value[3].count}`
+        );
       }
     };
     const showActivityRule = (status) => {
@@ -113,7 +117,7 @@ export default {
       let temp;
       const minutes = parseInt((ms % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = (ms % (1000 * 60)) / 1000;
-      if (index > 2) {
+      if (index > 3) {
         temp = lockTime.value[index - 1];
         console.log(temp);
         return `[${temp}解锁]`;
