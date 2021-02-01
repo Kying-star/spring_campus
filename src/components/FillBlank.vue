@@ -1,6 +1,11 @@
 <template>
   <div class="fill-blank">
-    <Question :index="index" :showText="showText" :isShowWrong="isShowWrong" />
+    <Question
+      :index="index"
+      :showText="showText"
+      :isShowWrong="isShowWrong"
+      :total="total"
+    />
     <div class="edit">
       <div class="tip">请点击选项进行填空</div>
       <div class="answers">
@@ -8,9 +13,11 @@
           class="answer"
           :class="{
             active: item.selected,
+            two: answersForSelect.length === 2,
             three: answersForSelect.length === 3,
             four: answersForSelect.length === 4,
-            five: answersForSelect.length === 5
+            five: answersForSelect.length === 5,
+            six: answersForSelect.length === 6,
           }"
           v-for="item of answersForSelect"
           :key="item.index"
@@ -41,6 +48,7 @@ export default {
       type: Array,
       required: true
     },
+    total: Number,
     isShowTip: Boolean
   },
   setup(props, ctx) {
@@ -66,10 +74,8 @@ export default {
       for (let i = 0; i < props.answers.length; i++) {
         html = html.replace(
           /keyword/,
-          `<span class="blank ${
-            props.isShowTip ? "tip" : ""
-          }" style="min-width:${20 * props.answers[i].length}px">${
-            props.isShowTip ? props.answers[i] : selectAnswer.value[i] || ""
+          `<span class="blank ${props.isShowTip ? "tip" : ""
+          }" style="min-width:${20 * props.answers[i].length}px">${props.isShowTip ? props.answers[i] : selectAnswer.value[i] || ""
           }</span>`
         );
       }
@@ -168,6 +174,9 @@ export default {
       background: #ff8033;
       border: 1px solid #a2b2ee;
       border-radius: 20px;
+      &.two {
+        margin-bottom: 60px;
+      }
       &.three {
         margin-bottom: 40px;
       }
@@ -176,6 +185,13 @@ export default {
       }
       &.five {
         margin-bottom: 5px;
+      }
+      &.six {
+        width: 300px;
+        height: 75px;
+        line-height: 75px;
+        margin-bottom: 5px;
+        font-size: 34.5px;
       }
       &.active {
         background-color: #ff4e00;

@@ -27,6 +27,7 @@
         @next="showQuestionTip(true)"
         :isShowTip="isShowTip"
         @onselecting="showTip(false)"
+        :total="questionTip.length"
       />
     </main>
     <QuestionTip

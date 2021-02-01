@@ -3,7 +3,7 @@
  */
 
 import axios from "axios";
-import { baseURL } from "./config";
+import { baseURL, token } from "./config";
 axios.defaults.baseURL = baseURL;
 // axios.defaults.withCredentials = true;
 axios.defaults.timeout = 6000;
@@ -11,7 +11,9 @@ axios.defaults.timeout = 6000;
 // http request 拦截器
 axios.interceptors.request.use(
   config => {
-    config.headers = {};
+    config.headers = {
+      token: token
+    };
     return config;
   },
   err => {

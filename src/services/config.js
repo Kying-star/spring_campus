@@ -12,3 +12,4 @@ export const baseURL =
     : "/api";
 
 export const openid = localStorage.getItem("openid");
+export const token = localStorage.getItem("openid_token2");

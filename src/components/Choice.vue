@@ -8,7 +8,12 @@
 -->
 <template>
   <div class="fill-blank">
-    <Question :index="index" :showText="showText" :isShowWrong="isShowWrong" />
+    <Question
+      :index="index"
+      :showText="showText"
+      :isShowWrong="isShowWrong"
+      :total="total"
+    />
     <div class="edit">
       <div class="tip">选择正确选项</div>
       <div class="answers">
@@ -47,6 +52,7 @@ export default {
       type: String,
       required: true
     },
+    total: Number,
     isShowTip: Boolean
   },
   setup(props, ctx) {
