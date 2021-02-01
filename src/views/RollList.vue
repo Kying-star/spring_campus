@@ -1,40 +1,40 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:47:00
- * @LastEditTime: 2021-02-02 00:12:47
+ * @LastEditTime: 2021-02-02 00:19:33
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/views/RollList.vue
 -->
 <template>
-  <div class='home'>
-    <div class='bgRoll'></div>
+  <div class="home">
+    <div class="bgRoll"></div>
     <header>
       <RollButton
-        v-for='(button, index) in buttonList'
-        :key='button'
-        :info='button.info'
-        :index='index'
-        @click='showList(index)'
+        v-for="(button, index) in buttonList"
+        :key="button"
+        :info="button.info"
+        :index="index"
+        @click="showList(index)"
       />
     </header>
     <main>
-      <div class='inner'>
-        <div class='tip'>{{ titleList[title_index].info }}</div>
-        <div class='list'>
+      <div class="inner">
+        <div class="tip">{{ titleList[title_index].info }}</div>
+        <div class="list">
           <RollItem
-            v-for='item in rollList'
-            :key='item'
-            :order='item.order'
-            :nickname='item.nickname'
-            :time='item.time'
-            :Avatar='item.avatar'
+            v-for="item in rollList"
+            :key="item"
+            :order="item.order"
+            :nickname="item.nickname"
+            :time="item.time"
+            :Avatar="item.avatar"
           />
         </div>
       </div>
     </main>
     <footer>
-      <div class='back' @click='back()'></div>
+      <div class="back" @click="back()"></div>
     </footer>
   </div>
 </template>
@@ -54,7 +54,7 @@ export default {
       { info: "十三五成就" },
       { info: "远景 目标" },
       { info: "十四五规划" },
-      { info: "总排行" },
+      { info: "总排行" }
     ]);
     const title_index = ref(3);
     const titleList = ref([
@@ -62,7 +62,7 @@ export default {
       { info: "“十三五”时期成就答题排行榜" },
       { info: "2035年远景目标排行榜" },
       { info: "十四五规划答题排行榜" },
-      { info: "党的十九届五中全会学习填填乐答题排行榜" },
+      { info: "党的十九届五中全会学习填填乐答题排行榜" }
     ]);
     const router = useRouter();
     const rollList = ref([
@@ -74,82 +74,82 @@ export default {
           "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJ9jEUeJNj6LoKch1Vl0P8L7U7gnIBlpRsga7w4snMzzzNkUsUeaCPVsXVGTCE9f9bXJhOKueIXow/132",
         nickname: "问道",
         ranking: 1,
-        score: 9222,
+        score: 9222
       },
       {
         avatar:
           "https://wx.qlogo.cn/mmopen/vi_32/IVVCc8ic4z4jklljYn1CGBUliaiaOibuscEZvQPgFoqrJHDAcxHL2TFqmhZQ87mYEqgtgOLOKEBMmmsHCDHVyNXVaQ/132",
         nickname: "钓大猫的鱼",
         ranking: 2,
-        score: 9619,
+        score: 9619
       },
       {
         avatar:
           "https://wx.qlogo.cn/mmopen/vi_32/9IzMwj4qW0Oape9GIsE1MRlLxKcIUXMVju9kbEicB8fMzrliaJm1mSQ558SqU3qmRcDMlkNPglMjLicibh6fqPjUibA/132",
         nickname: "Cheng",
         ranking: 3,
-        score: 10386,
+        score: 10386
       },
       {
         avatar:
           "https://wx.qlogo.cn/mmopen/vi_32/ClFmz4j5GV29zjw5j1D3NibdjCguBiaewiaOicZTjeXSWfVDvmaWOicyNe97B4vVaXZYFkTd2bjiabKAD2cbNgIwYC5A/132",
         nickname: "Chiang-Dreamboat",
         ranking: 4,
-        score: 10772,
+        score: 10772
       },
       {
         avatar:
           "https://wx.qlogo.cn/mmopen/vi_32/QqQDcmw0yDZ524ibFpSYVRPaTK2nhzCb9n6ibMQwbrpov8DIy4QNEjnxGIdetUELjhBBsnnicsdsH16alicc3Dks1g/132",
         nickname: "唐潮潮",
         ranking: 5,
-        score: 10982,
+        score: 10982
       },
       {
         avatar:
           "https://wx.qlogo.cn/mmopen/vi_32/5KBXHnmaOlK25L4eBqZglfQDCXV7y9VTq0aLtwGKib1ZyEyU7WFwurCEcQCXvloLRzrwxrjaejFVv1ticN94j9dw/132",
         nickname: "湖烟渺`",
         ranking: 6,
-        score: 10994,
+        score: 10994
       },
       {
         avatar:
           "https://wx.qlogo.cn/mmopen/vi_32/3FYfxf3k1DUlaTYewribA6GOL1aRibuAByVppylPZuYe6EwRjf7NDCdTSjQwYibj1nGJcCPzSDfcRse0uAphAlkDg/132",
         nickname: "年年好运",
         ranking: 7,
-        score: 11048,
+        score: 11048
       },
       {
         avatar:
           "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKaDHPt5uk1ysEVyNiaJP3HzD7KM90jIQaiareFf4j3icUvzlcOSic6CKJicM70TWTVGTUACLlEFq9pnUw/132",
         nickname: "fufu",
         ranking: 8,
-        score: 11055,
+        score: 11055
       },
       {
         avatar:
           "https://wx.qlogo.cn/mmopen/vi_32/oZIDYJoZcDw0s6AjEpm15yhcdic503ncFaYtYznSI2feHoyDLlQcUGMuexgibkWCa69boZCecGcBDcoyebRW81mg/132",
         nickname: "Young",
         ranking: 9,
-        score: 11404,
+        score: 11404
       },
       {
         avatar:
           "https://wx.qlogo.cn/mmopen/vi_32/kBHicOia4GJeX7c1xeuIKYleLAKJWfbI7BeVoaj9Bpj7YONVB6AvFnvnWcMCia3tkSNpcARqj6Nhz7YEUD6uEacvw/132",
         nickname: "至味",
         ranking: 10,
-        score: 11499,
-      },
+        score: 11499
+      }
     ]);
     const type_index = ref(3);
     const back = () => router.push("/block");
-    const fetchRank = async (index) => {
+    const fetchRank = async index => {
       const { data } = await getRank();
       // console.log(data, index);
       let temp = [];
       // console.log(data[index].data);
       if (data[index].data) {
         if (index === 0) {
-          fix_data.value.forEach((e) => {
+          fix_data.value.forEach(e => {
             let item = {};
             item.order = e.ranking;
             item.nickname = e.nickname;
@@ -158,7 +158,7 @@ export default {
             temp.push(item);
           });
         } else {
-          data[index].data.forEach((e) => {
+          data[index].data.forEach(e => {
             let item = {};
             item.order = e.ranking;
             item.nickname = e.nickname;
@@ -170,10 +170,10 @@ export default {
       }
       rollList.value = temp;
     };
-    const showList = (index) => {
+    const showList = index => {
       // console.log(index);
       type_index.value = index;
-      if (type_index.value > 3) {
+      if (type_index.value > 4) {
         return;
       }
       // 写的跟屎一样的刷新，回来再改
@@ -192,9 +192,9 @@ export default {
       titleList,
       rollList,
       back,
-      showList,
+      showList
     };
-  },
+  }
 };
 </script>
 

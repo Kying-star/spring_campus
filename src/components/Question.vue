@@ -21,7 +21,7 @@ export default {
       type: Boolean,
       required: true
     },
-    total: Number,
+    total: Number
   }
 };
 </script>
