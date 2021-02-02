@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-27 16:02:54
- * @LastEditTime: 2020-12-29 19:25:32
+ * @LastEditTime: 2021-02-02 11:44:19
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/components/Choice.vue
@@ -137,7 +137,7 @@ export default {
       line-height: 131px;
       text-align: center;
       font-size: 33px;
-      font-family: SJbangshu;
+      font-family: "SimHei";
       font-weight: 400;
       color: #ff8e66;
       background: #ffffff;
