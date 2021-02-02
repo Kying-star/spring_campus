@@ -1,34 +1,24 @@
 <template>
-  <div class="block">
-    <div class="background"></div>
-    <ActivityRule
-      v-show="isShowActivityRule"
-      @close="showActivityRule(false)"
-    />
+  <div class='block'>
+    <div class='background'></div>
+    <ActivityRule v-show='isShowActivityRule' @close='showActivityRule(false)' />
     <header>
-      <div class="backHome" @click="gotoHome"></div>
-      <div class="catalogue" @click="showActivityRule(true)"></div>
+      <div class='backHome' @click='gotoHome'></div>
+      <div class='catalogue' @click='showActivityRule(true)'></div>
     </header>
     <main>
-      <div class="title"></div>
-      <div class="blocks">
-        <div
-          class="block"
-          v-for="block in blockList"
-          :key="block"
-          @click="toGame(block.type)"
-        >
-          <TipBlock v-show="block.isAnswer" :count="block.count" />
-          <img
-            :src="require(`../assets/images/BlockSelect/${block.type}.png`)"
-          />
-          <div class="blockTitle">{{ block.txt }}</div>
-          <div class="blockFooter">{{ block.footer }}</div>
+      <div class='title'></div>
+      <div class='blocks'>
+        <div class='block' v-for='block in blockList' :key='block' @click='toGame(block.type)'>
+          <TipBlock v-show='block.isAnswer' :count='block.count' />
+          <img :src='require(`../assets/images/BlockSelect/${block.type}.png`)' />
+          <div class='blockTitle'>{{ block.txt }}</div>
+          <div class='blockFooter'>{{ block.footer }}</div>
         </div>
       </div>
     </main>
     <footer>
-      <div class="roll" @click="gotoRoll()"></div>
+      <div class='roll' @click='gotoRoll()'></div>
     </footer>
   </div>
 </template>
@@ -44,7 +34,7 @@ export default {
   setup() {
     const isShowActivityRule = ref(false);
     const router = useRouter();
-    const toGame = type => {
+    const toGame = (type) => {
       if (type === "basic") {
         router.push(
           `/game?type=${type}&opportunity=${blockList.value[0].count}`
@@ -63,7 +53,7 @@ export default {
         );
       }
     };
-    const showActivityRule = status => {
+    const showActivityRule = (status) => {
       isShowActivityRule.value = status;
     };
     const gotoRoll = () => router.push(`/roll`);
@@ -101,7 +91,7 @@ export default {
       "全会基本情况",
       "“十三五”时期成就",
       "2035年远景目标",
-      "“十四五”发展规划"
+      "“十四五”发展规划",
     ]);
     // 修改图片
     const img = ref(["basic", "achievement", "target", "plan"]);
@@ -117,7 +107,7 @@ export default {
         item.footer = getMin(e.score, index);
         item.txt = type.value[index];
         item.type = img.value[index];
-        item.isAnswer = e.opportunity > 0;
+        item.isAnswer = index > 2 ? e.opportunity > 0 : false;
         temp.push(item);
       });
       blockList.value = temp;
@@ -145,9 +135,9 @@ export default {
       blockList,
       toGame,
       gotoRoll,
-      gotoHome
+      gotoHome,
     };
-  }
+  },
 };
 </script>
 
