@@ -113,7 +113,7 @@ deploy_prod:
     - redrock-fe
   variables:
     NAMESPACE: fe-prod
-    VERSION: {CI_COMMIT_SHA}
+    VERSION: ${CI_COMMIT_SHA}
   script:
     - sed -i "s/_NAMESPACE_/${NAMESPACE}/" /deploy.yaml
     - sed -i "s/_VERSION_/${VERSION}/" /deploy.yaml
