@@ -1,120 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
-    <title>党的十九届五中全会学习填填乐</title>
-    <script>
-      // const token =
-      //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcGVuaWQiOiJvdVJDeWppeVkzQVZkZ0w3RTZDQlRHTFpzWTNrIiwiZXhwIjo1MjA5MjQ3NzMxLCJpc3MiOiJteS1wcm9qZWN0In0.JCXT0t0y-fKAYcUmqj4rTR_APeEbsCfCsQ8nKUBDMUk#/";
-      const token = document.location.href.split("token=")[1];
-      if (token && token.length) {
-        localStorage.setItem("openid_token2", token);
-        const { exp, openid } = JSON.parse(atob(token.split(".")[1]));
-        if (!openid) {
-          localStorage.removeItem("openid_token2");
-          window.location.href =
-            "https://wx.redrock.team/magicloop/rushb?b=https://cyxbsmobile.redrock.team/wxapi/nineteenth-committee/index/do&scope=oldphp";
-        }
-        localStorage.setItem("exp", exp);
-        localStorage.setItem("openid", openid);
-      }
-      if (
-        !localStorage.getItem("openid_token2") ||
-        (parseInt(localStorage.getItem("exp")) <
-          Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 2 &&
-          !token)
-      ) {
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
+  <title>党的十九届五中全会学习填填乐</title>
+  <script>
+    // const token =
+    //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcGVuaWQiOiJvdVJDeWppeVkzQVZkZ0w3RTZDQlRHTFpzWTNrIiwiZXhwIjo1MjA5MjQ3NzMxLCJpc3MiOiJteS1wcm9qZWN0In0.JCXT0t0y-fKAYcUmqj4rTR_APeEbsCfCsQ8nKUBDMUk#/";
+    const token = document.location.href.split("token=")[1];
+    if (token && token.length) {
+      localStorage.setItem("openid_token2", token);
+      const { exp, openid } = JSON.parse(atob(token.split(".")[1]));
+      if (!openid) {
+        localStorage.removeItem("openid_token2");
         window.location.href =
-          "https://wx.redrock.team/magicloop/rushb?b=https://cyxbsmobile.redrock.team/wxapi/nineteenth-committee/index/do&scope=oldphp";
+          "https://fe-prod.redrock.team/magicloop/rushb?b=https://cyxbsmobile.redrock.team/wxapi/nineteenth-committee/index/do&scope=oldphp";
       }
-    </script>
-    <script>
-      /* 百度统计代码 */
-      var _hmt = _hmt || [];
-      (function() {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?ea5724a20c90e167b94fd02ee19d26c8";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-        /* 下面的代码非常重要！！！ 文档：https://tongji.baidu.com/web/help/article?id=324&type=0 */
-        _hmt.push([
-          "_requirePlugin",
-          "UrlChangeTracker",
-          {
-            shouldTrackUrlChange: function(newPath, oldPath) {
-              return newPath && oldPath;
-            },
+      localStorage.setItem("exp", exp);
+      localStorage.setItem("openid", openid);
+    }
+    if (
+      !localStorage.getItem("openid_token2") ||
+      (parseInt(localStorage.getItem("exp")) <
+        Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 2 &&
+        !token)
+    ) {
+      window.location.href =
+        "https://fe-prod.redrock.team/magicloop/rushb?b=https://cyxbsmobile.redrock.team/wxapi/nineteenth-committee/index/do&scope=oldphp";
+    }
+  </script>
+  <script>
+    /* 百度统计代码 */
+    var _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ea5724a20c90e167b94fd02ee19d26c8";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+      /* 下面的代码非常重要！！！ 文档：https://tongji.baidu.com/web/help/article?id=324&type=0 */
+      _hmt.push([
+        "_requirePlugin",
+        "UrlChangeTracker",
+        {
+          shouldTrackUrlChange: function (newPath, oldPath) {
+            return newPath && oldPath;
           },
-        ]);
-      })();
-    </script>
-    <style>
-      .load-box {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 50vh;
+        },
+      ]);
+    })();
+  </script>
+  <style>
+    .load-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 50vh;
+    }
+
+    .load-wrapp {
+      float: left;
+      width: 100px;
+      height: 100px;
+      margin: 0 10px 10px 0;
+      padding: 20px 20px 20px;
+      border-radius: 5px;
+      text-align: center;
+    }
+
+    .line {
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      border-radius: 15px;
+      background-color: #4b9cdb;
+    }
+
+    .load-3 .line:nth-last-child(1) {
+      animation: loadingC 0.6s 0.1s linear infinite;
+    }
+
+    .load-3 .line:nth-last-child(2) {
+      animation: loadingC 0.6s 0.2s linear infinite;
+    }
+
+    .load-3 .line:nth-last-child(3) {
+      animation: loadingC 0.6s 0.3s linear infinite;
+    }
+
+    @keyframes loadingC {
+      0% {
+        transform: translate(0, 0);
       }
-      .load-wrapp {
-        float: left;
-        width: 100px;
-        height: 100px;
-        margin: 0 10px 10px 0;
-        padding: 20px 20px 20px;
-        border-radius: 5px;
-        text-align: center;
+
+      50% {
+        transform: translate(0, 15px);
       }
-      .line {
-        display: inline-block;
-        width: 15px;
-        height: 15px;
-        border-radius: 15px;
-        background-color: #4b9cdb;
+
+      100% {
+        transform: translate(0, 0);
       }
-      .load-3 .line:nth-last-child(1) {
-        animation: loadingC 0.6s 0.1s linear infinite;
-      }
-      .load-3 .line:nth-last-child(2) {
-        animation: loadingC 0.6s 0.2s linear infinite;
-      }
-      .load-3 .line:nth-last-child(3) {
-        animation: loadingC 0.6s 0.3s linear infinite;
-      }
-      @keyframes loadingC {
-        0% {
-          transform: translate(0, 0);
-        }
-        50% {
-          transform: translate(0, 15px);
-        }
-        100% {
-          transform: translate(0, 0);
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <noscript>
-      <strong>
-        We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work
+    }
+  </style>
+</head>
+
+<body>
+  <noscript>
+    <strong>
+      We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work
         properly without JavaScript enabled. Please enable it to continue.
-      </strong>
-    </noscript>
-    <div id="app">
-      <div class="load-box">
-        <div class="load-wrapp">
-          <div class="load-3">
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
-          </div>
+    </strong>
+  </noscript>
+  <div id="app">
+    <div class="load-box">
+      <div class="load-wrapp">
+        <div class="load-3">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- built files will be auto injected -->
-  </body>
+  <!-- built files will be auto injected -->
+</body>
+
 </html>
