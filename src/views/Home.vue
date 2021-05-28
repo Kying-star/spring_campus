@@ -4,19 +4,17 @@
     <UserInfo v-show="isShowUserInfo" @after-submit="showUserInfo(false)" />
     <header>
       <div class="icon">
+        <div class="redrock"></div>
         <div class="study"></div>
         <div class="school"></div>
-        <div class="redrock"></div>
       </div>
       <div class="user" @click="showUserInfo(true)"></div>
     </header>
     <main>
-      <div class="title"></div>
       <div class="start" @click="toSelect"></div>
     </main>
     <footer>
-      <p class="ref">重庆市学生联合会、重庆邮电大学联合出品</p>
-      <p class="ref">@红岩网校工作站出品</p>
+      <p class="ref">©红岩网校工作站</p>
     </footer>
   </div>
 </template>
@@ -106,18 +104,10 @@ export default {
   }
   main {
     width: 100%;
-    .title {
-      margin: 21px auto 271px;
-      width: 672px;
-      height: 201px;
-      background-image: url(~@assets/images/home/title.png);
-      background-size: contain;
-      background-repeat: no-repeat;
-    }
     .start {
-      margin: 0 auto;
-      width: 315px;
-      height: 137px;
+      margin: 710px auto 0 auto;
+      width: 577px;
+      height: 265px;
       background-image: url(~@assets/images/home/start_button.png);
       background-size: contain;
       background-repeat: no-repeat;
@@ -127,11 +117,13 @@ export default {
     width: 100%;
     margin: auto 0 0;
     text-align: center;
-    font-size: 24px;
-    color: #ffb5a9;
-    font-weight: 500;
+    font-size: 28px;
+    font-family: PingFang SC;
+    font-weight: 400;
+    color: #fff0f0;
+    line-height: 12px;
     .ref {
-      margin-bottom: 16px;
+      margin-bottom: 34px;
     }
   }
 }

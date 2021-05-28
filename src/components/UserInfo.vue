@@ -40,8 +40,11 @@
 
 <script>
 import { ref } from "vue";
-import { getUserInfo, updateUserInfo } from "@/services/api";
-
+import { getUserInfo, updateUserInfo, getSchools } from "@/services/api";
+getSchools().then(e => {
+  console.log(e);
+});
+console.log();
 export default {
   setup(props, ctx) {
     const schoolList = [
@@ -245,9 +248,10 @@ export default {
     }
   }
   .box {
-    width: 638px;
-    height: 1015px;
-    background-color: #fff;
+    width: 750px;
+    height: 1126px;
+    background-image: url(~@assets/images/home/popup-bk.png);
+    background-size: cover;
     border-radius: 15px;
     display: flex;
     flex-direction: column;

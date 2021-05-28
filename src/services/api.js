@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-29 17:12:32
- * @LastEditTime: 2020-12-29 23:06:38
+ * @LastEditTime: 2021-05-28 16:28:07
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /nineteenth-committee-fe/src/services/api.js
@@ -82,3 +82,15 @@ export const getRank = () => get("/list");
  */
 
 export const getBlock = () => get(`/plate?openid=${openid}`);
+
+/**
+ * @description: 获取学校名单
+ */
+
+export const getSchools = () => get(`/schools`);
+
+/**
+ * @description: 获取学校名单
+ */
+
+export const getQuestionInfo = () => get(`/problem/getPro?type=3`);

@@ -1,4 +1,5 @@
 const path = require("path");
+
 function resolve(dir) {
   return path.join(__dirname, dir);
 }
@@ -30,7 +31,7 @@ module.exports = {
     port: 8080,
     proxy: {
       "/api": {
-        target: "https://cyxbsmobile.redrock.team/wxapi/nineteenth-committee", // 设置调用的接口域名和端口号 ( 设置代理目标)
+        target: "https://be-prod.redrock.team/spring-campus", // 设置调用的接口域名和端口号 ( 设置代理目标)
         changeOrigin: true,
         ws: true, //代理websockets
         pathRewrite: {

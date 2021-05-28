@@ -8,7 +8,7 @@
  */
 export const baseURL =
   process.env.NODE_ENV === "production"
-    ? "https://cyxbsmobile.redrock.team/wxapi/nineteenth-committee"
+    ? "https://be-prod.redrock.team/spring-campus"
     : "/api";
 
 export const openid = localStorage.getItem("openid");
