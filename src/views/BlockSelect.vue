@@ -1,50 +1,41 @@
 <template>
-  <div class="block">
-    <div class="background"></div>
-    <ActivityRule
-      v-show="isShowActivityRule"
-      @close="showActivityRule(false)"
-    />
+  <div class='block'>
+    <div class='background'></div>
+    <ActivityRule v-show='isShowActivityRule' @close='showActivityRule(false)' />
     <header>
-      <div class="backHome" @click="gotoHome"></div>
-      <div class="catalogue" @click="showActivityRule(true)"></div>
+      <!-- <div class='backHome' @click='gotoHome'></div> -->
+      <div class='catalogue' @click='showActivityRule(true)'></div>
     </header>
     <main>
-      <div class="title"></div>
-      <div class="blocks">
-        <div
-          class="block"
-          v-for="block in blockList"
-          :key="block"
-          @click="toGame(block.type)"
-        >
-          <TipBlock v-show="block.isAnswer" :count="block.count" />
-          <img
-            :src="require(`../assets/images/BlockSelect/${block.type}.png`)"
-          />
-          <div class="blockTitle">{{ block.txt }}</div>
-          <div class="blockFooter">{{ block.footer }}</div>
+      <div class='blocks'>
+        <div class='block' v-for='block in blockList' :key='block' @click='toGame(block.type)'>
+          <!-- <TipBlock v-show='block.isAnswer' :count='block.count' /> -->
+          <div class='blockInner'>
+            <div class='blockTitle'>{{block.txt}}</div>
+            <div class='blockAccuracy'>{{ block.accuracy }}</div>
+            <div class='blockFooter'>{{ block.time }}</div>
+          </div>
         </div>
       </div>
     </main>
     <footer>
-      <div class="roll" @click="gotoRoll()"></div>
+      <div class='roll' @click='gotoRoll()'></div>
+      <div class='checkCard'></div>
     </footer>
   </div>
 </template>
 
 <script>
 import ActivityRule from "@components/ActivityRule";
-import TipBlock from "@components/TipBlock";
+// import TipBlock from "@components/TipBlock";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import { getBlock } from "@/services/api";
 export default {
-  components: { ActivityRule, TipBlock },
+  components: { ActivityRule },
   setup() {
     const isShowActivityRule = ref(false);
     const router = useRouter();
-    const toGame = type => {
+    const toGame = (type) => {
       if (type === "basic") {
         router.push(
           `/game?type=${type}&opportunity=${blockList.value[0].count}`
@@ -63,91 +54,94 @@ export default {
         );
       }
     };
-    const showActivityRule = status => {
+    const showActivityRule = (status) => {
       isShowActivityRule.value = status;
     };
     const gotoRoll = () => router.push(`/roll`);
     const blockList = ref([
-      // {
-      //   isAnswer: true,
-      //   count: 1,
-      //   type: "basic1",
-      //   txt: "全会基本情况",
-      //   footer: "[等你答题]",
-      // },
-      // {
-      //   isAnswer: true,
-      //   count: 1,
-      //   type: "Achievements",
-      //   txt: "“十三五”时期成就",
-      //   footer: "[解锁时间：2020年12月25日]",
-      // },
-      // {
-      //   isAnswer: true,
-      //   count: 1,
-      //   type: "target",
-      //   txt: "2035年远景目标",
-      //   footer: "[解锁时间：2020年12月25日]",
-      // },
-      // {
-      //   isAnswer: true,
-      //   count: 1,
-      //   type: "plan",
-      //   txt: "“十四五”发展规划",
-      //   footer: "[解锁时间：2020年12月25日]",
-      // },
+      {
+        isAnswer: true,
+        count: 1,
+        type: "basic",
+        txt: "新民主主义 革命史",
+        footer: "[等你答题]",
+        accuracy: "正确率：24/50",
+        time: "用时：05:22:09",
+      },
+      {
+        isAnswer: true,
+        count: 1,
+        type: "Achievements",
+        txt: "社会主义革命 建设史",
+        footer: "[解锁时间：2020年12月25日]",
+        accuracy: "正确率：24/50",
+        time: "用时：05:22:09",
+      },
+      {
+        isAnswer: true,
+        count: 1,
+        type: "target",
+        txt: "改革开放 与社会主义 现代化建设史",
+        footer: "[解锁时间：2020年12月25日]",
+        accuracy: "正确率：24/50",
+        time: "用时：05:22:09",
+      },
+      {
+        isAnswer: true,
+        count: 1,
+        type: "plan",
+        txt: "新时代 中国特色 社会主义史",
+        footer: "[解锁时间：2020年12月25日]",
+        accuracy: "正确率：24/50",
+        time: "用时：05:22:09",
+      },
     ]);
-    const type = ref([
-      "全会基本情况",
-      "“十三五”时期成就",
-      "2035年远景目标",
-      "“十四五”发展规划"
-    ]);
+
     // 修改图片
-    const img = ref(["basic", "achievement", "target", "plan"]);
-    const lockTime = ref(["2021年1月19日", "2021年1月26日", "2021年2月2日"]);
+    // const img = ref(["basic", "achievement", "target", "plan"]);
+    // const lockTime = ref(["2021年1月19日", "2021年1月26日", "2021年2月2日"]);
     const gotoHome = () => router.push("/");
-    const getBlockDetail = async () => {
-      const { data } = await getBlock();
-      console.log(data);
-      let temp = [];
-      data.forEach((e, index) => {
-        const item = {};
-        item.count = e.opportunity;
-        item.footer = getMin(e.score, index);
-        item.txt = type.value[index];
-        item.type = img.value[index];
-        item.isAnswer = index > 2 ? e.opportunity > 0 : false;
-        temp.push(item);
-      });
-      blockList.value = temp;
-      // blockList.value = data
-    };
-    const getMin = (ms, index) => {
-      let temp;
-      const minutes = parseInt((ms % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = (ms % (1000 * 60)) / 1000;
-      if (index > 3) {
-        temp = lockTime.value[index - 1];
-        console.log(temp);
-        return `[${temp}解锁]`;
-      } else if (minutes === 0 && seconds === 0) {
-        temp = "[等你答题!]";
-      } else {
-        temp = `[成绩${minutes * 60 + seconds}S]`;
-      }
-      return temp;
-    };
-    getBlockDetail();
+    // const getBlockDetail = async () => {
+    //   const { data } = await getBlock();
+    //   console.log(data);
+    //   let temp = [];
+    //   data.forEach((e, index) => {
+    //     const item = {};
+    //     item.count = e.opportunity;
+    //     item.footer = getMin(e.score, index);
+    //     item.txt = type.value[index];
+    //     item.type = img.value[index];
+    //     item.isAnswer = index > 2 ? e.opportunity > 0 : false;
+    //     temp.push(item);
+    //   });
+    //   blockList.value = temp;
+    //   // blockList.value = data
+    // };
+    // const getMin = (ms, index) => {
+    //   let temp;
+    //   const minutes = parseInt((ms % (1000 * 60 * 60)) / (1000 * 60));
+    //   const seconds = (ms % (1000 * 60)) / 1000;
+    //   if (index > 3) {
+    //     temp = lockTime.value[index - 1];
+    //     console.log(temp);
+    //     return `[${temp}解锁]`;
+    //   } else if (minutes === 0 && seconds === 0) {
+    //     temp = "[等你答题!]";
+    //   } else {
+    //     temp = `[成绩${minutes * 60 + seconds}S]`;
+    //   }
+    //   return temp;
+    // };
+    // getBlockDetail();
     return {
       isShowActivityRule,
       showActivityRule,
       blockList,
       toGame,
       gotoRoll,
-      gotoHome
+      gotoHome,
     };
-  }
+  },
 };
 </script>
 
@@ -165,14 +159,14 @@ export default {
     right: 0;
     bottom: 0;
     z-index: -1;
-    background-image: url(~@assets/images/game/bg.png);
+    background-image: url(~@assets/images/base/inner-bk.png);
     background-size: cover;
     background-repeat: no-repeat;
   }
   header {
     margin: 35px 35px 0;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     .backHome {
       width: 39px;
@@ -202,59 +196,76 @@ export default {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+      margin-top: 13px;
       .block {
         position: relative;
-        width: 290px;
-        height: 344px;
+        width: 329px;
+        height: 401px;
         margin: 0px 12.5px 30px 12.5px;
-        background: #ffffff;
-        border: 2px solid #fff0bf;
         border-radius: 15px;
-        img {
-          width: 288px;
-          height: 257px;
-          background-size: cover;
+        background-image: url(~@assets/images/BlockSelect/block-bk.png);
+        background-size: cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .blockInner {
+          width: 262px;
+          height: 269px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
         }
         .blockTitle {
-          margin: 10px 0px 0px 0;
-          height: 30px;
-          width: 290px;
-          font-size: 22px;
-          font-family: SJbangshu;
-          font-weight: bold;
-          color: #ff4f35;
-          line-height: 21px;
+          margin-top: 39px;
+          font-size: 36px;
+          font-family: HappyZcool-2016;
+          font-weight: 400;
+          color: #ee5d2a;
           text-align: center;
+          word-break: keep-all;
+        }
+        .blockAccuracy {
+          margin-top: 34px;
+          font-size: 34px;
+          font-family: 华康少女;
+          font-weight: 400;
+          color: #ff753f;
+          white-space: nowrap;
         }
         .blockFooter {
-          transform: translateY(2px);
-          width: 290px;
-          height: 40px;
-          margin-top: 4px;
-          background: #ff462a;
-          border-radius: 0px 0px 15px 15px;
-          font-size: 16px;
-          font-family: FZYaZhuTiS;
-          font-weight: bold;
-          color: #ffedea;
-          line-height: 40px;
-          text-align: center;
+          margin-bottom: 31px;
+          font-size: 30px;
+          font-family: 华康少女;
+          font-weight: 400;
+          color: #ff753f;
+          white-space: nowrap;
         }
       }
     }
   }
   footer {
     width: 100%;
-    margin: auto 0 0;
     text-align: center;
     font-size: 24px;
     color: #ffb5a9;
     font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
     .roll {
       margin: 0 auto 32px auto;
-      width: 249px;
-      height: 109px;
+      width: 381px;
+      height: 174px;
       background-image: url(~@assets/images/BlockSelect/RollButton.png);
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+    .checkCard {
+      margin: 0 auto 32px auto;
+      width: 381px;
+      height: 174px;
+      background-image: url(~@assets/images/BlockSelect/check-btn.png);
       background-size: contain;
       background-repeat: no-repeat;
     }

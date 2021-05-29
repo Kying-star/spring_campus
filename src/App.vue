@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-29 17:12:32
- * @LastEditTime: 2021-01-22 16:02:35
+ * @LastEditTime: 2021-05-29 13:01:49
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /nineteenth-committee-fe/src/App.vue
@@ -12,11 +12,11 @@
 
 <style lang="scss">
 @font-face {
-  font-family: SJbangshu;
-  src: url(~@assets/font/SJbangshu.TTF);
+  font-family: HappyZcool-2016;
+  src: url(~@assets/font/站酷快乐体.ttf);
 }
 @font-face {
-  font-family: FZYaZhuTiS;
-  src: url(~@assets/font/FZYaZhuTiS.OTF);
+  font-family: 华康少女;
+  src: url(~@assets/font/华康少女.ttf);
 }
 </style>
