@@ -408,6 +408,15 @@ export default {
               background-color: #ff533b;
             }
           }
+          .arrow {
+
+          }
+          .left {
+            background: url(~@assets/images/home/user/left-arrow.png);
+          }
+          .bottom-arrow {
+
+          }
           //&:after {
           //  content: "";
           //  width: 41px;
