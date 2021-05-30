@@ -1,50 +1,48 @@
 <template>
-  <div class="game" v-if="!destory">
+  <div class='game' v-if='!destory'>
     <header>
-      <div class="time">
-        <div class="icon"></div>
-        <div class="text">{{ `${clock.timeStamp / 1000}`.slice(0, -1) }}s</div>
+      <div class='time'>
+        <div class='icon'>计时</div>
+        <div class='text'>{{ format(clock.timeStamp) }}</div>
       </div>
-      <div class="tip_time" v-if="stayTime < 10000">
-        {{ Math.ceil((10000 - stayTime) / 1000) }}s
-      </div>
-      <div v-else class="tip_button" @click="showTip(!isShowTip)"></div>
+      <!-- <div class='tip_time' v-if='stayTime < 10000'>{{ Math.ceil((10000 - stayTime) / 1000) }}s</div> -->
+      <!-- <div v-else class='tip_button' @click='showTip(!isShowTip)'></div> -->
     </header>
     <main>
       <component
-        :is="item"
-        v-for="(item, index) of components"
-        :key="questions[index].order"
-        :index="questions[index].order"
-        :question="questions[index].question"
-        :answers="questions[index].answer"
-        :answerKey="
-          questions[index].topic_type === 'click'
-            ? ''
-            : questions[index].right_answer[0].value
-        "
-        v-show="questions[index].order === showIndex + 1"
-        @next="showQuestionTip(true)"
-        :isShowTip="isShowTip"
-        @onselecting="showTip(false)"
-        :total="questionTip.length"
+        :is='item'
+        v-for='(item, index) of components'
+        :key='questions[index].order'
+        :index='questions[index].order%50'
+        :question='questions[index].question'
+        :answers='questions[index].answer'
+        :answerKey='
+          questions[index].topic_type === `click`
+            ? ``
+            : questions[index].right_answer
+        '
+        v-show='questions[index].order%50 === showIndex + 1'
+        @next='nextQuestion'
+        :isShowTip='isShowTip'
+        @onselecting='showTip(false)'
+        :total='questions.length'
       />
     </main>
-    <QuestionTip
-      @close="showQuestionTip(false)"
-      v-show="isShowQuestionTip"
-      :imgUrl="questionTip[showIndex].url"
-      :text="questionTip[showIndex].data"
-      :last="isComplete"
-    />
+    <!-- <QuestionTip
+      @close='showQuestionTip(false)'
+      v-show='isShowQuestionTip'
+      :imgUrl='questionTip[showIndex].url'
+      :text='questionTip[showIndex].data'
+      :last='isComplete'
+    />-->
     <Score
-      v-show="isShowScore"
-      :name="score.name"
-      :score="score.score"
-      :rank="score.ranking"
-      :percent="score.percent"
-      @complete="hideScore"
-      :type="type"
+      v-show='isShowScore'
+      :name='score.name'
+      :score='score.score'
+      :rank='score.ranking'
+      :percent='score.percent'
+      @complete='hideScore'
+      :type='type'
     />
   </div>
 </template>
@@ -58,10 +56,10 @@ import Choice from "@components/Choice";
 import { useRoute } from "vue-router";
 import { computed, onMounted, onUnmounted, reactive, ref } from "vue";
 import {
-  getAnalysis,
+  // getAnalysis,
   getQuestion,
   getScore,
-  updateScore
+  updateScore,
 } from "@/services/api";
 import router from "@/router";
 export default {
@@ -74,13 +72,15 @@ export default {
       timer: null,
       enter: 0,
       timeStamp: 0,
-      pre: +new Date()
+      pre: +new Date(),
     });
+
+    const correctNum = ref(0);
     const score = reactive({
       name: "",
       score: "",
       ranking: "",
-      percent: ""
+      percent: "",
     });
     const isShowTip = ref(false);
     const isShowQuestionTip = ref(false);
@@ -92,25 +92,47 @@ export default {
       () => showIndex.value === questions.value.length - 1
     );
     const components = computed(() => {
-      return questions.value.map(item => {
-        if (item.topic_type === "click") return "FillBlank";
-        else if (item.topic_type === "number") return "FillWorld";
-        else if (item.topic_type === "choice") return "Choice";
+      return questions.value.map(() => {
+        return "Choice";
       });
     });
     const stayTime = computed(() => clock.timeStamp - clock.enter);
-    const hideScore = to => {
+    const hideScore = (to) => {
       isShowScore.value = false;
       destory.value = true;
       router.push(to);
     };
+    const nextQuestion = async (isCorrect) => {
+      console.log(isCorrect);
+      isCorrect ? correctNum.value++ : "";
+      console.log("正确个数" + correctNum.value);
+      if (isComplete.value) {
+        await postScore();
+        await fetchScore();
+      } else {
+        setTimeout(() => {
+          showIndex.value++;
+        }, 500);
+      }
+    };
     const fetchQuestion = async () => {
       const { data } = await getQuestion(type);
-      questions.value = data;
+      console.log(data);
+      questions.value = data.data;
     };
-    const fetchAnalysis = async () => {
-      const { data } = await getAnalysis(type);
-      questionTip.value = data.data;
+    // const fetchAnalysis = async () => {
+    //   const { data } = await getAnalysis(type);
+    //   questionTip.value = data.data;
+    // };
+    const format = (msTime) => {
+      let time = msTime / 1000;
+      let hour = Math.floor(time / 60 / 60);
+      hour = hour.toString().padStart(2, "0");
+      let minute = Math.floor(time / 60) % 60;
+      minute = minute.toString().padStart(2, "0");
+      let second = Math.floor(time) % 60;
+      second = second.toString().padStart(2, "0");
+      return `${hour}: ${minute}: ${second}`;
     };
     const fetchScore = async () => {
       const { data } = await getScore(type, clock.timeStamp);
@@ -120,9 +142,9 @@ export default {
       score.percent = data.percent;
     };
     const postScore = async () => {
-      await updateScore(type, clock.timeStamp);
+      await updateScore(type, correctNum.value, clock.timeStamp);
     };
-    const toDub = n => {
+    const toDub = (n) => {
       //补0操作
       if (n < 10) {
         return "0" + n;
@@ -133,12 +155,12 @@ export default {
     const stop = () => {
       clearInterval(clock.timer);
     };
-    const showTip = status => {
+    const showTip = (status) => {
       if (stayTime.value >= 10000) {
         isShowTip.value = status;
       }
     };
-    const showQuestionTip = async status => {
+    const showQuestionTip = async (status) => {
       isShowQuestionTip.value = status;
       if (status) {
         stop();
@@ -171,7 +193,7 @@ export default {
       clock.pre = +new Date();
     };
     fetchQuestion();
-    fetchAnalysis();
+    // fetchAnalysis();
     onMounted(() => {
       start();
     });
@@ -179,6 +201,7 @@ export default {
       console.log("leave");
     });
     return {
+      nextQuestion,
       questions,
       showIndex,
       components,
@@ -195,9 +218,10 @@ export default {
       destory,
       isComplete,
       type,
-      stayTime
+      stayTime,
+      format,
     };
-  }
+  },
 };
 </script>
 
@@ -205,7 +229,7 @@ export default {
 .game {
   width: 100%;
   min-height: 100vh;
-  background-image: url(~@assets/images/game/bg.png);
+  background-image: url(~@assets/images/base/inner-bk.png);
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
@@ -213,26 +237,36 @@ export default {
   header {
     padding-top: 31px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     .time {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
+      width: 448px;
+      height: 99px;
+      background-image: url(~@assets/images/game/clock-bk.png);
+      background-size: cover;
       .icon {
-        width: 38px;
-        height: 38px;
+        text-align: center;
+        width: 150px;
+        height: 99px;
         margin-right: 18px;
-        background-image: url(~@assets/images/game/clock.png);
-        background-repeat: no-repeat;
-        background-size: contain;
+        font-size: 38px;
+        font-family: HappyZcool-2016;
+        font-weight: 400;
+        color: #fc9456;
+        line-height: 99px;
       }
       .text {
-        width: 130px;
         text-align: center;
-        font-size: 46px;
-        font-family: SJbangshu;
-        color: #f85127;
+        width: 300px;
+        height: 99px;
+        font-size: 38px;
+        font-family: HappyZcool-2016;
+        font-weight: 400;
+        color: #fc9456;
+        line-height: 99px;
       }
     }
     .tip_button {
