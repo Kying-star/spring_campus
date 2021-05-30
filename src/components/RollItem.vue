@@ -1,22 +1,21 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 23:04:50
- * @LastEditTime: 2020-12-30 12:15:33
+ * @LastEditTime: 2021-05-30 17:43:48
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/components/RollItem.vue
 -->
 <template>
-  <div class="item">
-    <div class="personDetail">
-      <div :class="getRankClass()">{{ isShowNum ? rank : " " }}</div>
-      <img class="Avatar" :src="Avatar" />
-      <div class="nickname">{{ nick }}</div>
+  <div class='item'>
+    <div class='personDetail'>
+      <div class='rank'>{{ rank }}</div>
+      <img class='Avatar' :src='Avatar' />
+      <div class='nickname'>{{ nick }}</div>
     </div>
-
-    <div class="times">
-      <div :class="getClockClass()" alt=""></div>
-      <div class="time">{{ time }}s</div>
+    <div class='times'>
+      <div class='score'>{{score}}分</div>
+      <div class='time'>{{ time }}s</div>
     </div>
   </div>
 </template>
@@ -28,11 +27,13 @@ export default {
     order: Number,
     nickname: String,
     time: String,
-    Avatar: String
+    Avatar: String,
+    score: Number,
   },
   setup(props) {
     const rank = ref(props.order);
     const nick = ref(props.nickname);
+    const scoreNum = ref(props.score);
     console.log(nick);
     const isShowNum = ref(true);
     console.log(rank);
@@ -64,18 +65,18 @@ export default {
       getRankClass,
       rank,
       isShowNum,
-      nick
+      nick,
+      scoreNum,
     };
-  }
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .item {
-  width: 623px;
+  width: 580px;
   height: 99px;
-  margin: 15px;
-  background-color: #ffeeee;
+  margin: 10px auto;
   border-radius: 15px;
   display: flex;
   align-items: center;
@@ -96,54 +97,52 @@ export default {
     line-height: 70px;
     text-align: center;
   }
-  .first {
-    background-image: url("../assets/images/BlockSelect/first.png");
-  }
-  .second {
-    width: 57px;
-    height: 70px;
-    background-image: url("../assets/images/BlockSelect/second.png");
-  }
-  .third {
-    width: 56px;
-    height: 69px;
-    background-image: url("../assets/images/BlockSelect/third.png");
+
+  .rank {
+    margin-left: 25px;
+    font-size: 32px;
+    font-family: 华康少女;
+    font-weight: bold;
+    color: #ff753f;
+    line-height: 35px;
   }
   .Avatar {
-    margin-left: 32px;
+    margin-left: 34px;
     width: 75px;
     height: 75px;
   }
   .nickname {
-    margin-left: 14px;
-    font-size: 23px;
-    font-family: SJbangshu;
-    font-weight: bold;
-    color: #ff2404;
-    line-height: 38px;
+    width: 200px;
+    margin-left: 24px;
+    font-size: 28px;
+    font-family: 华康少女;
+    font-weight: 400;
+    color: #ff753f;
+    line-height: 35px;
+    overflow: hidden; //超出的文本隐藏
+    text-overflow: ellipsis; //溢出用省略号显示
+    white-space: nowrap; //溢出不换行
+  }
+  .score {
+    margin-right: 20px;
+    font-size: 28px;
+    font-family: 华康少女;
+    font-weight: 400;
+    color: #ff753f;
+    line-height: 35px;
   }
   .times {
     width: 200px;
     display: flex;
-    align-content: flex-start;
-  }
-  .clock {
-    margin-right: 16px;
-    width: 37px;
-    height: 39px;
-    background-image: url(~@assets/images/BlockSelect/darkClock.png);
-    background-size: cover;
-  }
-  .lightClock {
-    background-image: url(~@assets/images/BlockSelect/lightClock.png);
+    justify-content: flex-end;
   }
   .time {
-    margin-right: 32px;
-    font-size: 22px;
-    font-family: SJbangshu;
-    font-weight: bold;
-    color: #2064ff;
-    line-height: 38px;
+    margin-right: 10px;
+    font-size: 28px;
+    font-family: 华康少女;
+    font-weight: 400;
+    color: #ff753f;
+    line-height: 35px;
   }
 }
 </style>

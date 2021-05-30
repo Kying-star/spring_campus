@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-29 17:12:32
- * @LastEditTime: 2021-05-28 16:28:07
+ * @LastEditTime: 2021-05-29 18:43:09
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /nineteenth-committee-fe/src/services/api.js
@@ -50,7 +50,7 @@ export const getPlateList = () => get("/plate", { openid });
  *
  * @param {string} type 题目类型 basic,achievement,target,plan
  */
-export const getQuestion = type => get("/topic", { type });
+export const getQuestion = type => get("/problem/getPro", { type });
 
 /**
  *
@@ -67,10 +67,11 @@ export const getScore = (type, score) => get("/score", { type, openid, score });
 /**
  *
  * @param {string} type 题目所属于板块
- * @param {string} score 分数 xx.xx秒
+ * @param {string} score 正确题目个数
+ * @param {string} spend_time 答题时间
  */
-export const updateScore = (type, score) =>
-  post("/score", { type, score, openid });
+export const updateScore = (type, score,spend_time) =>
+  post("/score", {  openid,type, score,spend_time });
 
 /**
  * @description: 获取排行榜

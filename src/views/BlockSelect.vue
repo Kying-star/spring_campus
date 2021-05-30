@@ -8,10 +8,15 @@
     </header>
     <main>
       <div class='blocks'>
-        <div class='block' v-for='block in blockList' :key='block' @click='toGame(block.type)'>
+        <div
+          class='block'
+          v-for='(block, index) in blockList'
+          :key='block'
+          @click='toGame(index + 1)'
+        >
           <!-- <TipBlock v-show='block.isAnswer' :count='block.count' /> -->
           <div class='blockInner'>
-            <div class='blockTitle'>{{block.txt}}</div>
+            <div class='blockTitle'>{{ block.txt }}</div>
             <div class='blockAccuracy'>{{ block.accuracy }}</div>
             <div class='blockFooter'>{{ block.time }}</div>
           </div>
@@ -36,23 +41,8 @@ export default {
     const isShowActivityRule = ref(false);
     const router = useRouter();
     const toGame = (type) => {
-      if (type === "basic") {
-        router.push(
-          `/game?type=${type}&opportunity=${blockList.value[0].count}`
-        );
-      } else if (type === "achievement") {
-        router.push(
-          `/game?type=${type}&opportunity=${blockList.value[1].count}`
-        );
-      } else if (type === "target") {
-        router.push(
-          `/game?type=${type}&opportunity=${blockList.value[2].count}`
-        );
-      } else if (type === "plan") {
-        router.push(
-          `/game?type=${type}&opportunity=${blockList.value[3].count}`
-        );
-      }
+      console.log(1);
+      router.push(`/game?type=${type}`);
     };
     const showActivityRule = (status) => {
       isShowActivityRule.value = status;
