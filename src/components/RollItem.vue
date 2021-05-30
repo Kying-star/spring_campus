@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 23:04:50
- * @LastEditTime: 2021-05-30 17:43:48
+ * @LastEditTime: 2021-05-30 21:55:34
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/components/RollItem.vue
@@ -15,13 +15,14 @@
     </div>
     <div class='times'>
       <div class='score'>{{score}}分</div>
-      <div class='time'>{{ time }}s</div>
+      <div class='time'>{{ format(time) }}</div>
     </div>
   </div>
 </template>
 
 <script>
 import { ref } from "vue";
+import { format } from "../tools/format";
 export default {
   props: {
     order: Number,
@@ -37,6 +38,7 @@ export default {
     console.log(nick);
     const isShowNum = ref(true);
     console.log(rank);
+
     const getRankClass = () => {
       let style = "default";
       console.log(rank.value);
@@ -67,6 +69,7 @@ export default {
       isShowNum,
       nick,
       scoreNum,
+      format,
     };
   },
 };
@@ -124,6 +127,7 @@ export default {
     white-space: nowrap; //溢出不换行
   }
   .score {
+    white-space: nowrap;
     margin-right: 20px;
     font-size: 28px;
     font-family: 华康少女;

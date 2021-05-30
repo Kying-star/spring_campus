@@ -8,31 +8,31 @@
     <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
     <title>校园之春</title>
     <script>
-        // // const token =
-        // //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcGVuaWQiOiJvdVJDeWppeVkzQVZkZ0w3RTZDQlRHTFpzWTNrIiwiZXhwIjo1MjA5MjQ3NzMxLCJpc3MiOiJteS1wcm9qZWN0In0.JCXT0t0y-fKAYcUmqj4rTR_APeEbsCfCsQ8nKUBDMUk#/";
-        // const token = document.location.href.split("token=")[1];
-        // if (token && token.length) {
-        //     localStorage.setItem("openid_token2", token);
-        //     const {
-        //         exp,
-        //         openid
-        //     } = JSON.parse(atob(token.split(".")[1]));
-        //     if (!openid) {
-        //         localStorage.removeItem("openid_token2");
-        //         window.location.href =
-        //             "https://fe-prod.redrock.team/magicloop/rushb?b=https://fe-prod.redrock.team/spring-campus/do&scope=oldphp";
-        //     }
-        //     localStorage.setItem("exp", exp);
-        //     localStorage.setItem("openid", openid);
-        // }
-        // if (!localStorage.getItem("openid_token2") ||
-        //     (parseInt(localStorage.getItem("exp")) <
-        //         Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 2 &&
-        //         !token)
-        // ) {
-        //     window.location.href =
-        //         "https://fe-prod.redrock.team/magicloop/rushb?b=https://cyxbsmobile.redrock.team/wxapi/nineteenth-committee/index/do&scope=oldphp";
-        // }
+        // const token =
+        //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcGVuaWQiOiJvdVJDeWppeVkzQVZkZ0w3RTZDQlRHTFpzWTNrIiwiZXhwIjo1MjA5MjQ3NzMxLCJpc3MiOiJteS1wcm9qZWN0In0.JCXT0t0y-fKAYcUmqj4rTR_APeEbsCfCsQ8nKUBDMUk#/";
+        const token = document.location.href.split("token=")[1];
+        if (token && token.length) {
+            localStorage.setItem("openid_token2", token);
+            const {
+                exp,
+                openid
+            } = JSON.parse(atob(token.split(".")[1]));
+            if (!openid) {
+                localStorage.removeItem("openid_token2");
+                window.location.href =
+                    "https://fe-prod.redrock.team/magicloop/rushb?b=https://fe-prod.redrock.team/spring-campus/do&scope=oldphp";
+            }
+            localStorage.setItem("exp", exp);
+            localStorage.setItem("openid", openid);
+        }
+        if (!localStorage.getItem("openid_token2") ||
+            (parseInt(localStorage.getItem("exp")) <
+                Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 2 &&
+                !token)
+        ) {
+            window.location.href =
+                "https://fe-prod.redrock.team/magicloop/rushb?b=https://fe-prod.redrock.team/spring-campus/do&scope=oldphp";
+        }
     </script>
     <style>
         .load-box {
@@ -41,7 +41,7 @@
             align-items: center;
             height: 50vh;
         }
-        
+
         .load-wrapp {
             float: left;
             width: 100px;
@@ -51,7 +51,7 @@
             border-radius: 5px;
             text-align: center;
         }
-        
+
         .line {
             display: inline-block;
             width: 15px;
@@ -59,26 +59,28 @@
             border-radius: 15px;
             background-color: #4b9cdb;
         }
-        
+
         .load-3 .line:nth-last-child(1) {
             animation: loadingC 0.6s 0.1s linear infinite;
         }
-        
+
         .load-3 .line:nth-last-child(2) {
             animation: loadingC 0.6s 0.2s linear infinite;
         }
-        
+
         .load-3 .line:nth-last-child(3) {
             animation: loadingC 0.6s 0.3s linear infinite;
         }
-        
+
         @keyframes loadingC {
             0% {
                 transform: translate(0, 0);
             }
+
             50% {
                 transform: translate(0, 15px);
             }
+
             100% {
                 transform: translate(0, 0);
             }
@@ -88,11 +90,11 @@
 
 <body>
     <noscript>
-    <strong>
-      We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work
-        properly without JavaScript enabled. Please enable it to continue.
-    </strong>
-  </noscript>
+        <strong>
+            We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work
+                properly without JavaScript enabled. Please enable it to continue.
+        </strong>
+    </noscript>
     <div id="app">
         <div class="load-box">
             <div class="load-wrapp">
