@@ -1,5 +1,5 @@
 variables:
-  REPO_NAME: spring_campus
+  REPO_NAME: spring-campus
 
 stages:
   - setup
