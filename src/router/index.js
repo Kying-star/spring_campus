@@ -20,6 +20,10 @@ const routes = [
   {
     path: "/openid",
     component: () => import("@views/Openid.vue")
+  },
+  {
+    path: "/history-card",
+    component: () => import("@views/HistoryCard.vue")
   }
 ];
 

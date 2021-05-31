@@ -5,19 +5,44 @@
       <div class="content">{{ toast }}</div>
     </div>
     <div class="box">
-      <div class="title">个人信息完善</div>
+      <div class="title">个人信息</div>
       <div class="form">
         <div class="item name">
           <div class="label">姓名：</div>
-          <input type="text" class="input" v-model="name" />
+          <input
+            type="text"
+            class="input"
+            v-model="name"
+            placeholder="请填写姓名"
+          />
+          <div class="outline"></div>
+        </div>
+        <div class="item phone">
+          <div class="label">手机：</div>
+          <input
+            type="tel"
+            class="input"
+            @input="inputPhone"
+            v-model="phone"
+            placeholder="请填写联系电话"
+          />
+          <div class="outline"></div>
         </div>
         <div class="item school">
           <div class="label">学校：</div>
-          <div class="select" @click="selecting = !selecting">
-            {{ school }}
+          <div class="select">
+<!--            {{ school }}-->
+            <input
+              type="school"
+              class="input schoolInput"
+              v-model="school"
+              placeholder="请选择所属学校"
+              @input="searchSchoolFun"
+              @focus="selecting = true"
+            />
             <ul class="contaniner" v-show="selecting">
               <li
-                v-for="item of schoolList"
+                v-for="item of searchSchoolList"
                 :key="item"
                 class="option"
                 @click="select(item)"
@@ -26,13 +51,10 @@
               </li>
             </ul>
           </div>
-        </div>
-        <div class="item phone">
-          <div class="label">手机：</div>
-          <input type="tel" class="input" @input="inputPhone" v-model="phone" />
+          <div class="outline"></div>
         </div>
       </div>
-      <div class="tips">完善个人信息有利于最后的活动 领奖通知哦~</div>
+      <!--      <div class="tips">完善个人信息有利于最后的活动 领奖通知哦~</div>-->
       <div class="submit" @click="submit"></div>
     </div>
   </div>
@@ -40,83 +62,16 @@
 
 <script>
 import { ref } from "vue";
-import { getUserInfo, updateUserInfo, getSchools } from "@/services/api";
+import { getSchools, getUserInfo, updateUserInfo } from "@/services/api";
+
 getSchools().then(e => {
   console.log(e);
 });
 console.log();
 export default {
   setup(props, ctx) {
-    const schoolList = [
-      "重庆大学",
-      "西南大学",
-      "西南政法大学",
-      "重庆医科大学",
-      "重庆师范大学",
-      "重庆邮电大学",
-      "重庆交通大学",
-      "重庆工商大学",
-      "四川外国语大学",
-      "四川美术学院",
-      "重庆理工大学",
-      "重庆三峡学院",
-      "重庆文理学院",
-      "长江师范学院",
-      "重庆科技学院",
-      "重庆第二师范学院",
-      "重庆警察学院",
-      "重庆人文科技学院",
-      "重庆工程学院",
-      "重庆对外经贸学院",
-      "重庆财经学院",
-      "重庆工商大学派斯学院",
-      "重庆外语外事学院",
-      "重庆移通学院",
-      "重庆城市科技学院",
-      "重庆电力高等专科学校",
-      "重庆医药高等专科学校",
-      "重庆三峡医药高等专科学校",
-      "重庆航天职业技术学院",
-      "重庆电子工程职业学院",
-      "重庆工业职业技术学院",
-      "重庆城市管理职业学院",
-      "重庆工程职业技术学院",
-      "重庆三峡职业学院",
-      "重庆工贸职业技术学院",
-      "重庆水利电力职业技术学院",
-      "重庆城市职业学院",
-      "重庆工商职业学院",
-      "重庆青年职业技术学院",
-      "重庆财经职业学院",
-      "重庆建筑工程职业学院",
-      "重庆商务职业学院",
-      "重庆化工职业学院",
-      "重庆旅游职业学院",
-      "重庆安全技术职业学院",
-      "重庆传媒职业学院",
-      "重庆信息技术职业学院",
-      "重庆海联职业技术学院",
-      "重庆建筑科技职业学院",
-      "重庆机电职业技术大学",
-      "重庆应用技术职业学院",
-      "重庆科创职业学院",
-      "重庆电讯职业学院",
-      "重庆能源职业学院",
-      "重庆交通职业学院",
-      "重庆公共运输职业学院",
-      "重庆艺术工程职业学院",
-      "重庆轻工职业学院",
-      "重庆电信职业学院",
-      "重庆经贸职业学院",
-      "重庆幼儿师范高等专科学校",
-      "重庆文化艺术职业学院",
-      "重庆科技职业学院",
-      "重庆资源与环境保护职业学院",
-      "重庆护理职业学院",
-      "重庆理工职业学院",
-      "重庆健康职业学院",
-      "重庆智能工程职业学院"
-    ];
+    const schoolList = ref([]);
+    const searchSchoolList = ref([]);
     const nameReg = /^(?:[\u4e00-\u9fa5·]{2,16})$/;
     const phoneReg = /^(?:(?:\+|00)86)?1[3-9]\d{9}$/;
     const name = ref("");
@@ -124,9 +79,12 @@ export default {
     const phone = ref("");
     const toast = ref("");
     const selecting = ref(false);
+    const isSelect = ref(false);
     const isShowToast = ref(false);
     const select = item => {
       school.value = item;
+      isSelect.value = true;
+      selecting.value = false;
     };
     const inputPhone = () => {
       phone.value = phone.value.replace(/[^0-9]/g, "");
@@ -178,6 +136,109 @@ export default {
       school.value = data.school;
       phone.value = data.phone;
     };
+    const fetchSchoolInfo = async () => {
+      const { data } = await getSchools();
+      schoolList.value = data.data;
+      searchSchoolList.value = searchSchoolInfo.search(
+        [...schoolList.value],
+        school.value
+      ).map(item => {
+          return item.replace(/["("]/g, "").replace(/[")"]/g, "");
+        });
+      // eslint-disable-next-line vue/no-ref-as-operand
+      console.log(searchSchoolList.value);
+    };
+    const searchSchoolInfo = (() => {
+      let escapeRegExp = /[-#$^*()+[\]{}|\\,.?\s]/g;
+      let escapeReg = reg => reg.replace(escapeRegExp, "\\$&");
+      //groupLeft 与 groupRight是对结果进一步处理所使用的分割符，可以修改
+      let groupLeft = "(",
+        groupRight = ")";
+      let groupReg = new RegExp(escapeReg(groupRight + groupLeft), "g");
+      let groupExtractReg = new RegExp(
+        "(" + escapeReg(groupLeft) + "[\\s\\S]+?" + escapeReg(groupRight) + ")",
+        "g"
+      );
+      //从str中找到最大的匹配长度
+      let findMax = (str, keyword) => {
+        let max = 0;
+        keyword = groupLeft + keyword + groupRight;
+        str.replace(groupExtractReg, m => {
+          //keyword完整的出现在str中，则优秀级最高，排前面
+          if (keyword === m) {
+            max = Number.MAX_SAFE_INTEGER;
+          } else if (m.length > max) {
+            //找最大长度
+            max = m.length;
+          }
+        });
+        return max;
+      };
+      let keyReg = key => {
+        let src = ["(.*?)("];
+        let ks = key.split("");
+        if (ks.length) {
+          while (ks.length) {
+            src.push(escapeReg(ks.shift()), ")(.*?)(");
+          }
+          src.pop();
+        }
+        src.push(")(.*?)");
+        src = src.join("");
+        let reg = new RegExp(src, "i");
+        let replacer = [];
+        let start = key.length;
+        let begin = 1;
+        while (start > 0) {
+          start--;
+          replacer.push("$", begin, groupLeft + "$", begin + 1, groupRight);
+          begin += 2;
+        }
+        replacer.push("$", begin);
+
+        return {
+          regexp: reg,
+          replacement: replacer.join("")
+        };
+      };
+
+      return {
+        search(list, keyword) {
+          //生成搜索正则
+          let kr = keyReg(keyword);
+          let result = [];
+          for (let e of list) {
+            //如果匹配
+            if (kr.regexp.test(e)) {
+              //把结果放入result数组中
+              result.push(
+                e.replace(kr.regexp, kr.replacement).replace(groupReg, "")
+              );
+            }
+          }
+          //对搜索结果进行排序
+          //1. 匹配关键字大小写一致的优先级最高，比如搜索up, 结果中的[user-page,beginUpdate,update,endUpdate]，update要排在最前面，因为大小写匹配
+          //2. 匹配关键字长的排在前面
+          result = result.sort(
+            (a, b) => findMax(b, keyword) - findMax(a, keyword)
+          );
+          return result;
+        }
+      };
+    })();
+    const searchSchoolFun = e => {
+      const searchInfo = searchSchoolInfo.search(
+        [...schoolList.value],
+        e.target.value
+      ).map(item => {
+          return item.replace(/["("]/g, "").replace(/[")"]/g, "");
+        });
+      // console.log(e);
+      // console.log(searchInfo);
+      if (searchInfo.length > 0) {
+        searchSchoolList.value = searchInfo;
+      }
+    };
     const submit = () => {
       if (isComplete()) {
         updateUserInfo({
@@ -191,8 +252,10 @@ export default {
       }
     };
     fetchUserInfo();
+    fetchSchoolInfo();
     return {
       schoolList,
+      searchSchoolList,
       school,
       phone,
       inputPhone,
@@ -201,7 +264,9 @@ export default {
       isShowToast,
       name,
       selecting,
-      select
+      isSelect,
+      select,
+      searchSchoolFun
     };
   }
 };
@@ -213,8 +278,9 @@ export default {
   justify-content: center;
   align-items: center;
   position: relative;
-  font-family: SJbangshu;
+  //font-family: SJbangshu;
   overflow: hidden;
+  font-family: HappyZcool-2016, serif;
   .toast {
     position: fixed;
     z-index: 999;
@@ -248,59 +314,72 @@ export default {
     }
   }
   .box {
-    width: 750px;
+    width: 550px;
     height: 1126px;
+    padding: 0 50px;
     background-image: url(~@assets/images/home/popup-bk.png);
-    background-size: cover;
+    background-size: 100%;
+    background-repeat: no-repeat;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    font-weight: 600;
+    font-family: HappyZcool-2016, serif;
     .title {
-      font-size: 59px;
-      font-family: SJbangshu;
+      font-size: 48px;
+      //font-family: SJbangshu;
       color: #ff4f35;
-      margin-top: 73px;
+      margin-top: 173px;
     }
     .form {
-      margin-top: 96px;
+      margin-top: 76px;
       .item {
         display: flex;
         align-items: center;
         margin-bottom: 56px;
+        position: relative;
         &:last-child {
           margin-bottom: 0;
         }
         .label {
-          font-size: 40px;
-          color: #ff8979;
-          margin-right: 18px;
+          font-size: 38px;
+          color: #f06a39;
+          //margin-right: 18px;
+          margin-left: 40px;
         }
         .input {
           box-sizing: border-box;
-          width: 448px;
+          width: 380px;
           height: 88px;
-          color: #fff;
+          color: #ffc171;
           padding: 30px 0 30px 20px;
           border: none;
           outline: none;
-          background-image: url(~@assets/images/home/user/input_bg.png);
+          //background-image: url(~@assets/images/home/user/input_bg.png);
+          background-color: rgba(0, 0, 0, 0);
           background-size: 100% 100%;
           background-repeat: no-repeat;
         }
+        .schoolInput {
+          margin-left: -20px;
+          margin-top: -40px;
+          width: 320px;
+        }
         .select {
           box-sizing: border-box;
-          font-size: 23px;
-          color: #fff;
-          padding: 30px 0 30px 20px;
+          font-size: 32px;
+          font-weight: 500;
+          color: #ffc171;
+          padding: 30px 0 30px 25px;
           position: relative;
           border-radius: 20px;
           box-sizing: border-box;
-          width: 448px;
+          width: 380px;
           height: 88px;
-          color: #fff;
-          background-image: url(~@assets/images/home/user/select_bg.png);
+          //background-image: url(~@assets/images/home/user/select_bg.png);
+          //border: black solid 1px;
           background-size: 100% 100%;
           background-repeat: no-repeat;
           position: relative;
@@ -310,7 +389,7 @@ export default {
             top: 88px;
             list-style: none;
             width: 100%;
-            background-color: #ff9c8f;
+            background-color: #fffbf6;
             border-radius: 20px;
             z-index: 0;
             height: 450px;
@@ -318,7 +397,7 @@ export default {
             padding-bottom: 10px;
           }
           .option {
-            color: #fff;
+            color: #ffc171;
             width: 100%;
             font-size: 23px;
             margin: 20px 20px 0;
@@ -329,18 +408,36 @@ export default {
               background-color: #ff533b;
             }
           }
-          &:after {
-            content: "";
-            width: 41px;
-            height: 27px;
-            background: url(~@assets/images/home/user/square.png);
-            background-repeat: no-repeat;
-            background-size: contain;
-            position: absolute;
-            right: 15px;
-            top: 31px;
-            pointer-events: none;
+          .arrow {
+
           }
+          .left {
+            background: url(~@assets/images/home/user/left-arrow.png);
+          }
+          .bottom-arrow {
+
+          }
+          //&:after {
+          //  content: "";
+          //  width: 41px;
+          //  height: 27px;
+          //  background: url(~@assets/images/home/user/square.png);
+          //  background-repeat: no-repeat;
+          //  background-size: contain;
+          //  position: absolute;
+          //  right: 15px;
+          //  top: 31px;
+          //  pointer-events: none;
+          //}
+        }
+        .outline {
+          position: absolute;
+          top: 75px;
+          left: 170px;
+          width: 304px;
+          height: 3px;
+          background: url("~@assets/images/home/user/bottom-line.png");
+          background-size: 100%;
         }
       }
       .name {
@@ -353,6 +450,20 @@ export default {
           font-size: 31px;
         }
       }
+      ::-webkit-input-placeholder {
+        color: #ffc171;
+      }
+      :-moz-placeholder {
+        /* Firefox 18- */
+        color: #ffc171;
+      }
+      ::-moz-placeholder {
+        /* Firefox 19+ */
+        color: #ffc171;
+      }
+      :-ms-input-placeholder {
+        color: #ffc171;
+      }
     }
     .tips {
       width: 452px;
@@ -364,8 +475,8 @@ export default {
       margin-top: 69px;
     }
     .submit {
-      width: 243px;
-      height: 106px;
+      width: 346px;
+      height: 145px;
       background-image: url(~@assets/images/home/user/button.png);
       background-size: 100% 100%;
       background-repeat: no-repeat;
