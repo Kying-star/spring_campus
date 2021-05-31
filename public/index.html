@@ -8,31 +8,45 @@
     <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
     <title>校园之春</title>
     <script>
+        const GetRequest = () => {
+            const url = location.search; //获取url中"?"符后的字串
+            let theRequest = new Object();
+            if (url.indexOf("?") != -1) {
+                let str = url.substr(1);
+                strs = str.split("&");
+                for (let i = 0; i < strs.length; i++) {
+                    theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+                }
+            }
+            return theRequest;
+        }
+        let Request = new Object();
+        Request = GetRequest();
+        let openid = Request["openid"]
         // const token =
         //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcGVuaWQiOiJvdVJDeWppeVkzQVZkZ0w3RTZDQlRHTFpzWTNrIiwiZXhwIjo1MjA5MjQ3NzMxLCJpc3MiOiJteS1wcm9qZWN0In0.JCXT0t0y-fKAYcUmqj4rTR_APeEbsCfCsQ8nKUBDMUk#/";
-        const token = document.location.href.split("token=")[1];
-        if (token && token.length) {
-            localStorage.setItem("openid_token2", token);
-            const {
-                exp,
-                openid
-            } = JSON.parse(atob(token.split(".")[1]));
+        // const token = document.location.href.split("token=")[1];
+        if (openid && openid.length) {
+            localStorage.setItem("openid_token2", openid);
             if (!openid) {
                 localStorage.removeItem("openid_token2");
                 window.location.href =
                     "https://be-prod.redrock.team/magicloop/rushb?b=https://fe-pord.redrock.team/spring-campus/&scope=oldphp";
             }
-            localStorage.setItem("exp", exp);
-            localStorage.setItem("openid", openid);
-        }
-        if (!localStorage.getItem("openid_token2") ||
-            (parseInt(localStorage.getItem("exp")) <
-                Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 2 &&
-                !token)
-        ) {
+            // localStorage.setItem("exp", exp);
+            // localStorage.setItem("openid", openid);
+        } else {
             window.location.href =
-                "https://be-prod.redrock.team/magicloop/rushb?b=https://fe-prod.redrock.team/spring-campus/&scope=oldphp";
+                "https://be-prod.redrock.team/magicloop/rushb?b=https://fe-pord.redrock.team/spring-campus/&scope=oldphp";
         }
+        // if (!localStorage.getItem("openid_token2") ||
+        //     (parseInt(localStorage.getItem("exp")) <
+        //         Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 2 &&
+        //         !token)
+        // ) {
+        //     window.location.href =
+        //         "https://be-prod.redrock.team/magicloop/rushb?b=https://fe-prod.redrock.team/spring-campus/&scope=oldphp";
+        // }
     </script>
     <style>
         .load-box {
