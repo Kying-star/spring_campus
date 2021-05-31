@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-01-01 15:08:43
- * @LastEditTime: 2021-05-30 17:59:51
+ * @LastEditTime: 2021-05-30 21:08:43
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /nineteenth-committee-fe/src/components/ActivityRule.vue
@@ -33,30 +33,42 @@
           4、用户只有完成4个板块的答题，才能进
           行排行榜排名。排行榜根据用户的分数以
         </p>
-        <p class='rule'>
-          4、用户只有完成4个板块的答题，才能进
-          行排行榜排名。排行榜根据用户的分数以
-        </p>
-        <p class='rule'>
-          4、用户只有完成4个板块的答题，才能进
-          行排行榜排名。排行榜根据用户的分数以
-        </p>
-        <p class='rule'>
-          4、用户只有完成4个板块的答题，才能进
-          行排行榜排名。排行榜根据用户的分数以
-        </p>
+        <p class='rule'>5、在每个板块中，用户每答完5道题便会获得“校园之春”的纪念卡片。用户可以自行选择是否保存留念。</p>
+        <p class='rule'>6、活动结束后，排行榜前xx名可以获得奖励，工作人员会通过用户在个人信息中填写的电话号码进行联系，发布奖品。</p>
       </div>
-      <div class='close' @click='close'>确认(3)</div>
+      <div class='close' @click='close'>确认{{grtInfo(clickNum)}}</div>
     </div>
   </div>
 </template>
 
 <script>
+import { ref } from "@vue/reactivity";
 export default {
+  props: {
+    start: Boolean,
+  },
   setup(props, ctx) {
+    const startState = ref(props.start);
+    const clickNum = ref(10);
+    const clicked = ref(false);
     const close = () => ctx.emit("close");
+    let reciprocal = () => {
+      let timer = setInterval(() => {
+        clickNum.value--;
+        if (clickNum.value < 1) {
+          clearInterval(timer);
+          clicked.value = true;
+        }
+      }, 1000);
+    };
+    const grtInfo = (num) => (num >= 1 ? `(${num})` : ``);
+    reciprocal();
     return {
       close,
+      clickNum,
+      startState,
+      clicked,
+      grtInfo,
     };
   },
 };

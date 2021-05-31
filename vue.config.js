@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2021-05-28 11:23:49
+ * @LastEditTime: 2021-05-30 21:50:54
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /spring_campus/vue.config.js
+ */
 const path = require("path");
 
 function resolve(dir) {
@@ -17,7 +25,8 @@ module.exports = {
       .set("@assets", resolve("src/assets"))
       .set("@components", resolve("src/components"))
       .set("@views", resolve("src/views"))
-      .set("@api", resolve("src/services"));
+      .set("@api", resolve("src/services"))
+      .set("@tools", resolve("src/tools"));
   },
   // css: {
   //   sourceMap: true,

@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:47:00
- * @LastEditTime: 2021-05-30 17:34:06
+ * @LastEditTime: 2021-05-30 21:55:27
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/views/RollList.vue
@@ -50,6 +50,7 @@ export default {
   components: { RollItem },
   setup() {
     // 板块基本信息修改
+
     const buttonList = ref([
       { info: "全会 情况" },
       { info: "十三五成就" },

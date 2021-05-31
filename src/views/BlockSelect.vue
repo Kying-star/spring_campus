@@ -1,7 +1,11 @@
 <template>
   <div class='block'>
     <div class='background'></div>
-    <ActivityRule v-show='isShowActivityRule' @close='showActivityRule(false)' />
+    <ActivityRule
+      v-show='isShowActivityRule'
+      :start='isShowActivityRule'
+      @close='showActivityRule(false)'
+    />
     <header>
       <!-- <div class='backHome' @click='gotoHome'></div> -->
       <div class='catalogue' @click='showActivityRule(true)'></div>
@@ -165,15 +169,27 @@ export default {
       background-size: cover;
     }
     .catalogue {
-      width: 57px;
-      height: 60px;
+      width: 84px;
+      height: 84px;
       background-image: url(~@assets/images/BlockSelect/Catalogue.png);
       background-size: contain;
       background-repeat: no-repeat;
     }
+    .catalogue::after {
+      white-space: nowrap;
+      position: relative;
+      top: 84px;
+      left: -5px;
+      content: "活动规则";
+      font-size: 22px;
+      font-family: HappyZcool-2016;
+      font-weight: 400;
+      color: #ffdf6e;
+    }
   }
   main {
     width: 100%;
+    transform: translateY(10px);
     .title {
       margin: 21px auto 33px;
       width: 563px;
