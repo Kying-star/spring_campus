@@ -7,33 +7,33 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
     <title>校园之春</title>
-    <script>
-        // const token =
-        //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcGVuaWQiOiJvdVJDeWppeVkzQVZkZ0w3RTZDQlRHTFpzWTNrIiwiZXhwIjo1MjA5MjQ3NzMxLCJpc3MiOiJteS1wcm9qZWN0In0.JCXT0t0y-fKAYcUmqj4rTR_APeEbsCfCsQ8nKUBDMUk#/";
-        const token = document.location.href.split("token=")[1];
-        if (token && token.length) {
-            localStorage.setItem("openid_token2", token);
-            const {
-                exp,
-                openid
-            } = JSON.parse(atob(token.split(".")[1]));
-            if (!openid) {
-                localStorage.removeItem("openid_token2");
-                window.location.href =
-                    "https://be-prod.redrock.team/magicloop/rushb?b=https://fe-pord.redrock.team/spring-campus/do&scope=oldphp";
-            }
-            localStorage.setItem("exp", exp);
-            localStorage.setItem("openid", openid);
-        }
-        if (!localStorage.getItem("openid_token2") ||
-            (parseInt(localStorage.getItem("exp")) <
-                Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 2 &&
-                !token)
-        ) {
-            window.location.href =
-                "https://be-prod.redrock.team/magicloop/rushb?b=https://fe-prod.redrock.team/spring-campus/do&scope=oldphp";
-        }
-    </script>
+<!--    <script>-->
+<!--        // const token =-->
+<!--        //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcGVuaWQiOiJvdVJDeWppeVkzQVZkZ0w3RTZDQlRHTFpzWTNrIiwiZXhwIjo1MjA5MjQ3NzMxLCJpc3MiOiJteS1wcm9qZWN0In0.JCXT0t0y-fKAYcUmqj4rTR_APeEbsCfCsQ8nKUBDMUk#/";-->
+<!--        const token = document.location.href.split("token=")[1];-->
+<!--        if (token && token.length) {-->
+<!--            localStorage.setItem("openid_token2", token);-->
+<!--            const {-->
+<!--                exp,-->
+<!--                openid-->
+<!--            } = JSON.parse(atob(token.split(".")[1]));-->
+<!--            if (!openid) {-->
+<!--                localStorage.removeItem("openid_token2");-->
+<!--                window.location.href =-->
+<!--                    "https://be-prod.redrock.team/magicloop/rushb?b=https://fe-pord.redrock.team/spring-campus/do&scope=oldphp";-->
+<!--            }-->
+<!--            localStorage.setItem("exp", exp);-->
+<!--            localStorage.setItem("openid", openid);-->
+<!--        }-->
+<!--        if (!localStorage.getItem("openid_token2") ||-->
+<!--            (parseInt(localStorage.getItem("exp")) <-->
+<!--                Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 2 &&-->
+<!--                !token)-->
+<!--        ) {-->
+<!--            window.location.href =-->
+<!--                "https://be-prod.redrock.team/magicloop/rushb?b=https://fe-prod.redrock.team/spring-campus/do&scope=oldphp";-->
+<!--        }-->
+<!--    </script>-->
     <style>
         .load-box {
             display: flex;

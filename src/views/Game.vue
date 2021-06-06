@@ -1,31 +1,31 @@
 <template>
-  <div class='game' v-if='!destory'>
+  <div class="game" v-if="!destory">
     <header>
-      <div class='time'>
-        <div class='icon'>计时</div>
-        <div class='text'>{{ format(clock.timeStamp) }}</div>
+      <div class="time">
+        <div class="icon">计时</div>
+        <div class="text">{{ format(clock.timeStamp) }}</div>
       </div>
       <!-- <div class='tip_time' v-if='stayTime < 10000'>{{ Math.ceil((10000 - stayTime) / 1000) }}s</div> -->
       <!-- <div v-else class='tip_button' @click='showTip(!isShowTip)'></div> -->
     </header>
     <main>
       <component
-        :is='item'
-        v-for='(item, index) of components'
-        :key='questions[index].order'
-        :index='questions[index].order%50'
-        :question='questions[index].question'
-        :answers='questions[index].answer'
-        :answerKey='
+        :is="item"
+        v-for="(item, index) of components"
+        :key="questions[index].order"
+        :index="questions[index].order % 50"
+        :question="questions[index].question"
+        :answers="questions[index].answer"
+        :answerKey="
           questions[index].topic_type === `click`
             ? ``
             : questions[index].right_answer
-        '
-        v-show='questions[index].order%50 === showIndex + 1'
-        @next='nextQuestion'
-        :isShowTip='isShowTip'
-        @onselecting='showTip(false)'
-        :total='questions.length'
+        "
+        v-show="questions[index].order % 50 === showIndex + 1"
+        @next="nextQuestion"
+        :isShowTip="isShowTip"
+        @onselecting="showTip(false)"
+        :total="questions.length"
       />
     </main>
     <!-- <QuestionTip
@@ -36,13 +36,13 @@
       :last='isComplete'
     />-->
     <Score
-      v-show='isShowScore'
-      :name='score.name'
-      :score='score.score'
-      :rank='score.ranking'
-      :percent='score.percent'
-      @complete='hideScore'
-      :type='type'
+      v-show="isShowScore"
+      :name="score.name"
+      :score="score.score"
+      :rank="score.ranking"
+      :percent="score.percent"
+      @complete="hideScore"
+      :type="type"
     />
   </div>
 </template>
@@ -59,7 +59,7 @@ import {
   // getAnalysis,
   getQuestion,
   getScore,
-  updateScore,
+  updateScore
 } from "@/services/api";
 import router from "@/router";
 export default {
@@ -72,7 +72,7 @@ export default {
       timer: null,
       enter: 0,
       timeStamp: 0,
-      pre: +new Date(),
+      pre: +new Date()
     });
 
     const correctNum = ref(0);
@@ -80,7 +80,7 @@ export default {
       name: "",
       score: "",
       ranking: "",
-      percent: "",
+      percent: ""
     });
     const isShowTip = ref(false);
     const isShowQuestionTip = ref(false);
@@ -97,12 +97,12 @@ export default {
       });
     });
     const stayTime = computed(() => clock.timeStamp - clock.enter);
-    const hideScore = (to) => {
+    const hideScore = to => {
       isShowScore.value = false;
       destory.value = true;
       router.push(to);
     };
-    const nextQuestion = async (isCorrect) => {
+    const nextQuestion = async isCorrect => {
       console.log(isCorrect);
       isCorrect ? correctNum.value++ : "";
       console.log("正确个数" + correctNum.value);
@@ -124,7 +124,7 @@ export default {
     //   const { data } = await getAnalysis(type);
     //   questionTip.value = data.data;
     // };
-    const format = (msTime) => {
+    const format = msTime => {
       let time = msTime / 1000;
       let hour = Math.floor(time / 60 / 60);
       hour = hour.toString().padStart(2, "0");
@@ -144,7 +144,7 @@ export default {
     const postScore = async () => {
       await updateScore(type, correctNum.value, clock.timeStamp);
     };
-    const toDub = (n) => {
+    const toDub = n => {
       //补0操作
       if (n < 10) {
         return "0" + n;
@@ -155,12 +155,12 @@ export default {
     const stop = () => {
       clearInterval(clock.timer);
     };
-    const showTip = (status) => {
+    const showTip = status => {
       if (stayTime.value >= 10000) {
         isShowTip.value = status;
       }
     };
-    const showQuestionTip = async (status) => {
+    const showQuestionTip = async status => {
       isShowQuestionTip.value = status;
       if (status) {
         stop();
@@ -219,9 +219,9 @@ export default {
       isComplete,
       type,
       stayTime,
-      format,
+      format
     };
-  },
+  }
 };
 </script>
 

@@ -7,35 +7,34 @@
  * @FilePath: /the-19th-committee/src/views/RollList.vue
 -->
 <template>
-  <div class='home'>
-    <div class='bgRoll'></div>
+  <div class="home">
+    <div class="bgRoll"></div>
     <header>
-      <div class='score'>
-        <div class='title'>我的成绩</div>
-        <div class='scoreInfo'>未完成全部版块</div>
+      <div class="score">
+        <div class="title">我的成绩</div>
+        <div class="scoreInfo">未完成全部版块</div>
       </div>
     </header>
     <main>
-      <div class='inner'>
-        <div class='tip'>“校园之春”党史知识问答 排行榜</div>
-        <div class='list' v-if='!IsVoid'>
+      <div class="inner">
+        <div class="tip">“校园之春”党史知识问答 排行榜</div>
+        <div class="list" v-if="!IsVoid">
           <RollItem
-            v-for='item in rollList'
-            :key='item'
-            :order='item.order'
-            :nickname='item.nickname'
-            :time='item.time'
-            :Avatar='item.avatar'
-            :score='item.score'
+            v-for="item in rollList"
+            :key="item"
+            :order="item.order"
+            :nickname="item.nickname"
+            :time="item.time"
+            :Avatar="item.avatar"
+            :score="item.score"
           />
         </div>
-        <div class='listVoid' v-if='IsVoid'>
+        <div class="listVoid" v-if="IsVoid">
           <p>
-            目前还没有人完成全部版块
-            排行榜空空如也
+            目前还没有人完成全部版块 排行榜空空如也
           </p>
         </div>
-        <div class='back' @click='back()'></div>
+        <div class="back" @click="back()"></div>
       </div>
     </main>
   </div>
@@ -56,7 +55,7 @@ export default {
       { info: "十三五成就" },
       { info: "远景 目标" },
       { info: "十四五规划" },
-      { info: "总排行" },
+      { info: "总排行" }
     ]);
     const title_index = ref(4);
     const router = useRouter();
@@ -71,7 +70,7 @@ export default {
       // console.log(data, index);
       let temp = [];
       // console.log(data[index].data);
-      data.data.forEach((e) => {
+      data.data.forEach(e => {
         let item = {};
         item.order = e.ranking;
         item.nickname = e.nick_name;
@@ -84,7 +83,7 @@ export default {
       console.log(temp);
       rollList.value = temp;
     };
-    const showList = (index) => {
+    const showList = index => {
       // console.log(index);
       type_index.value = index;
       if (type_index.value > 4) {
@@ -107,9 +106,9 @@ export default {
       RollItem,
       back,
       showList,
-      IsVoid,
+      IsVoid
     };
-  },
+  }
 };
 </script>
 

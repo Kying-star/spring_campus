@@ -1,7 +1,9 @@
 <template>
   <div class="history-card-header">
     <div class="card-list">
-      <div class="cards" v-for="(item, index) in cardListInner" :key="index">{{ item }}</div>
+      <div class="cards" v-for="(item, index) in cardListInner" :key="index">
+        {{ item }}
+      </div>
     </div>
   </div>
 </template>

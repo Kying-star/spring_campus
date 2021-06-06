@@ -70,8 +70,8 @@ export const getScore = (type, score) => get("/score", { type, openid, score });
  * @param {string} score 正确题目个数
  * @param {string} spend_time 答题时间
  */
-export const updateScore = (type, score,spend_time) =>
-  post("/score", {  openid,type, score,spend_time });
+export const updateScore = (type, score, spend_time) =>
+  post("/score", { openid, type, score, spend_time });
 
 /**
  * @description: 获取排行榜

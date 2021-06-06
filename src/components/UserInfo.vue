@@ -1,13 +1,14 @@
 <template>
   <div class="user-info mask">
-    <div class="toast" v-show="isShowToast">
-      <div class="mask"></div>
-      <div class="content">{{ toast }}</div>
-    </div>
+<!--    <div class="toast" v-show="isShowToast">-->
+<!--      <div class="mask"></div>-->
+<!--      <div class="content">{{ toast }}</div>-->
+<!--    </div>-->
     <div class="box">
       <div class="title">个人信息</div>
       <div class="form">
         <div class="item name">
+          <div class="errorInfo">{{ errorInfo.name }}</div>
           <div class="label">姓名：</div>
           <input
             type="text"
@@ -18,6 +19,7 @@
           <div class="outline"></div>
         </div>
         <div class="item phone">
+          <div class="errorInfo">{{ errorInfo.phone }}</div>
           <div class="label">手机：</div>
           <input
             type="tel"
@@ -29,9 +31,10 @@
           <div class="outline"></div>
         </div>
         <div class="item school">
+          <div class="errorInfo">{{ errorInfo.school }}</div>
           <div class="label">学校：</div>
           <div class="select">
-<!--            {{ school }}-->
+            <!--            {{ school }}-->
             <input
               type="school"
               class="input schoolInput"
@@ -74,6 +77,11 @@ export default {
     const searchSchoolList = ref([]);
     const nameReg = /^(?:[\u4e00-\u9fa5·]{2,16})$/;
     const phoneReg = /^(?:(?:\+|00)86)?1[3-9]\d{9}$/;
+    const errorInfo = ref({
+      name: "",
+      phone: "",
+      school: ""
+    });
     const name = ref("");
     const school = ref("");
     const phone = ref("");
@@ -97,38 +105,57 @@ export default {
     };
     const isComplete = () => {
       //屎一样的判断
-      if (!name.value && !school.value && !phone.value) {
-        toast.value = "请填写姓名、手机号码，并选择学校";
-        return false;
-      } else if (!name.value && !school.value) {
-        toast.value = "请填写姓名并选择学校";
-        return false;
-      } else if (!name.value && !phone.value) {
-        toast.value = "请填写姓名以及手机号码";
-        return false;
-      } else if (!school.value && !phone.value) {
-        toast.value = "请选择学校并填写手机号码";
-        return false;
-      } else if (!name.value) {
-        toast.value = "请填写姓名";
-        return false;
-      } else if (!school.value) {
-        toast.value = "请选择学校";
-        return false;
-      } else if (!phone.value) {
-        toast.value = "请填写手机号码";
-        return false;
+      if (!name.value) {
+        errorInfo.value.name = "请填写姓名";
+      } else if (!nameReg.test(name.value)) {
+        errorInfo.value.name = "请填写正确的姓名";
       } else {
-        if (!nameReg.test(name.value)) {
-          toast.value = "请填写正确的姓名";
-          return false;
-        } else if (!phoneReg.test(phone.value)) {
-          toast.value = "请填写正确的手机号码";
-          return false;
-        } else {
-          return true;
-        }
+        errorInfo.value.name = "";
       }
+      if (!phone.value) {
+        errorInfo.value.phone = "请填写手机号码";
+      } else if (!phoneReg.test(phone.value)) {
+        errorInfo.value.phone = "请填写正确的手机号码";
+      } else {
+        errorInfo.value.phone = "";
+      }
+      if (!school.value) {
+        errorInfo.value.school = "请选择学院";
+      } else {
+        errorInfo.value.school = "";
+      }
+      // if (!name.value && !school.value && !phone.value) {
+      //   toast.value = "请填写姓名、手机号码，并选择学校";
+      //   return false;
+      // } else if (!name.value && !school.value) {
+      //   toast.value = "请填写姓名并选择学校";
+      //   return false;
+      // } else if (!name.value && !phone.value) {
+      //   toast.value = "请填写姓名以及手机号码";
+      //   return false;
+      // } else if (!school.value && !phone.value) {
+      //   toast.value = "请选择学校并填写手机号码";
+      //   return false;
+      // } else if (!name.value) {
+      //   toast.value = "请填写姓名";
+      //   return false;
+      // } else if (!school.value) {
+      //   toast.value = "请选择学校";
+      //   return false;
+      // } else if (!phone.value) {
+      //   toast.value = "请填写手机号码";
+      //   return false;
+      // } else {
+      //   if (!nameReg.test(name.value)) {
+      //     toast.value = "请填写正确的姓名";
+      //     return false;
+      //   } else if (!phoneReg.test(phone.value)) {
+      //     toast.value = "请填写正确的手机号码";
+      //     return false;
+      //   } else {
+      //     return true;
+      //   }
+      // }
     };
     const fetchUserInfo = async () => {
       const { data } = await getUserInfo();
@@ -139,10 +166,9 @@ export default {
     const fetchSchoolInfo = async () => {
       const { data } = await getSchools();
       schoolList.value = data.data;
-      searchSchoolList.value = searchSchoolInfo.search(
-        [...schoolList.value],
-        school.value
-      ).map(item => {
+      searchSchoolList.value = searchSchoolInfo
+        .search([...schoolList.value], school.value)
+        .map(item => {
           return item.replace(/["("]/g, "").replace(/[")"]/g, "");
         });
       // eslint-disable-next-line vue/no-ref-as-operand
@@ -227,10 +253,9 @@ export default {
       };
     })();
     const searchSchoolFun = e => {
-      const searchInfo = searchSchoolInfo.search(
-        [...schoolList.value],
-        e.target.value
-      ).map(item => {
+      const searchInfo = searchSchoolInfo
+        .search([...schoolList.value], e.target.value)
+        .map(item => {
           return item.replace(/["("]/g, "").replace(/[")"]/g, "");
         });
       // console.log(e);
@@ -261,6 +286,7 @@ export default {
       inputPhone,
       submit,
       toast,
+      errorInfo,
       isShowToast,
       name,
       selecting,
@@ -343,6 +369,13 @@ export default {
         &:last-child {
           margin-bottom: 0;
         }
+        .errorInfo {
+          position: absolute;
+          top: 80px;
+          left: 180px;
+          color: #fc8449;
+          font-size: 28px;
+        }
         .label {
           font-size: 38px;
           color: #f06a39;
@@ -409,13 +442,11 @@ export default {
             }
           }
           .arrow {
-
           }
           .left {
             background: url(~@assets/images/home/user/left-arrow.png);
           }
           .bottom-arrow {
-
           }
           //&:after {
           //  content: "";
