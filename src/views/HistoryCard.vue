@@ -14,7 +14,6 @@
       </swiper-slide>
     </swiper>
     <footer>
-      <div class="btn-save" @click="saveImg('https://play-lh.googleusercontent.com/IPPHiII0GMURiVumaN0zT9iJRj8OTCP65xllc8ptBQNAhYhlv67ZRsGGxcIhRHbM5c45')"></div>
       <div class="btn-bac"></div>
     </footer>
   </div>
@@ -115,22 +114,13 @@ export default {
   .card {
   }
 }
-.btn-save {
-  width: 358px;
-  height: 181px;
-  background: url(~@assets/images/HistoryCard/btn-save.png);
-  background-size: 100%;
-  position: absolute;
-  bottom: 25px;
-  left: 34px;
-}
 .btn-bac {
-  width: 322px;
-  height: 184px;
+  width: 381px;
+  height: 178px;
   background: url(~@assets/images/HistoryCard/btn-bac.png);
   background-size: 100%;
   position: absolute;
-  bottom: 27px;
-  right: 35px;
+  bottom: 29px;
+  left: 185px;
 }
 </style>

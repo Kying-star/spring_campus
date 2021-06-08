@@ -1,3 +1,10 @@
+<!--
+ * @Author: myjdml
+ * @Date: 2021-05-30 20:21:01
+ * @LastEditors: myjdml
+ * @LastEditTime: 2021-06-08 14:45:43
+ * @Description: 校史卡片板块头部
+-->
 <template>
   <div class="history-card-header">
     <div class="card-list">
@@ -14,7 +21,7 @@
 export default {
   name: "HistoryCardHeader",
   setup() {
-    const cardListInner = ["1982-1991", "1992-2001", "2001-2011", "2011-2021"];
+    const cardListInner = ["板块一", "板块二", "板块三", "板块四"];
     return {
       cardListInner
     };

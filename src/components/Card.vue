@@ -1,13 +1,21 @@
+<!--
+ * @Author: myjdml
+ * @Date: 2021-05-31 14:10:20
+ * @LastEditors: myjdml
+ * @LastEditTime: 2021-06-08 16:06:16
+ * @Description: 
+-->
 <template>
   <div class="card">
     <div class="background">
-      <p class="title">{{ title }}</p>
+      <!-- <p class="title">{{ title }}</p> -->
       <div class="icon"></div>
       <div class="collection-state">
         {{ collectionState ? "已收集" : "未收集" }}
       </div>
       <p class="tip">左右滑动切换卡片</p>
       <div class="content"></div>
+      <p class="save-tip">长按卡片即可保存到相册</p>
     </div>
   </div>
 </template>
@@ -53,8 +61,8 @@ export default {
       width: 110px;
       height: 61px;
       position: absolute;
-      right: 94px;
-      top: 58px;
+      left: 66px;
+      top: 70px;
       background: url(~@assets/images/HistoryCard/circle.png);
       background-size: 100%;
       color: #fc9456;
@@ -85,6 +93,13 @@ export default {
       margin-top: 157px;
       background-color: #fcddbc;
       border-radius: 10px;
+    }
+    .save-tip {
+      color: #FBE6AD;
+      font-size: 28px;
+      position: absolute;
+      bottom: -30px;
+      right: 51px;
     }
   }
 }
