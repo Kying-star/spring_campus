@@ -2,7 +2,7 @@
  * @Author: myjdml
  * @Date: 2021-05-31 14:10:20
  * @LastEditors: myjdml
- * @LastEditTime: 2021-06-08 16:06:16
+ * @LastEditTime: 2021-06-08 16:32:08
  * @Description: 
 -->
 <template>
@@ -30,8 +30,7 @@ export default {
   },
   setup(props) {
     console.log(props);
-    return {
-    };
+    return {};
   }
 };
 </script>
@@ -95,7 +94,7 @@ export default {
       border-radius: 10px;
     }
     .save-tip {
-      color: #FBE6AD;
+      color: #fbe6ad;
       font-size: 28px;
       position: absolute;
       bottom: -30px;

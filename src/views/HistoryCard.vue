@@ -20,7 +20,7 @@
 </template>
 
 <script>
-// import { ref } from "vue";
+import { ref } from "vue";
 import HistoryCardHeader from "@/components/HistoryCardHeader";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/swiper.scss";
@@ -35,6 +35,8 @@ export default {
     SwiperSlide
   },
   setup() {
+    const cardImage = ref([]);
+
     const downloadCanvasImage = (imageSrc, name) => {
       const image = new Image();
       // 解决跨域 Canvas 污染问题
@@ -92,7 +94,8 @@ export default {
     };
     return {
       downloadCanvasImage,
-      saveImg
+      saveImg,
+      cardImage
     };
   }
 };

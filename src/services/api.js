@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2020-12-29 17:12:32
- * @LastEditTime: 2021-05-29 18:43:09
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-06-08 16:33:42
+ * @LastEditors: myjdml
  * @Description: In User Settings Edit
  * @FilePath: /nineteenth-committee-fe/src/services/api.js
  */
@@ -95,3 +95,5 @@ export const getSchools = () => get(`/schools`);
  */
 
 export const getQuestionInfo = () => get(`/problem/getPro?type=3`);
+
+// 校史卡片页面
