@@ -1,9 +1,9 @@
 <template>
   <div class="user-info mask">
-<!--    <div class="toast" v-show="isShowToast">-->
-<!--      <div class="mask"></div>-->
-<!--      <div class="content">{{ toast }}</div>-->
-<!--    </div>-->
+    <!--    <div class="toast" v-show="isShowToast">-->
+    <!--      <div class="mask"></div>-->
+    <!--      <div class="content">{{ toast }}</div>-->
+    <!--    </div>-->
     <div class="box">
       <div class="title">个人信息</div>
       <div class="form">
