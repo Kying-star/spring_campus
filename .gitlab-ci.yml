@@ -97,7 +97,7 @@ deploy_dev:
     - sed -i "s/_NAMESPACE_/${NAMESPACE}/" /deploy.yaml
     - sed -i "s/_VERSION_/${VERSION}/" /deploy.yaml
     - sed -i "s/_REPO_NAME_/${REPO_NAME}/" /deploy.yaml
-    - sed -i "s/8080/80/" /deploy.yaml
+    - sed -i "s/8080/80/g" /deploy.yaml
     - kubectl apply -f /deploy.yaml
   environment:
     name: $REPO_NAME-dev
@@ -118,7 +118,7 @@ deploy_prod:
     - sed -i "s/_NAMESPACE_/${NAMESPACE}/" /deploy.yaml
     - sed -i "s/_VERSION_/${VERSION}/" /deploy.yaml
     - sed -i "s/_REPO_NAME_/${REPO_NAME}/" /deploy.yaml
-    - sed -i "s/8080/80/" /deploy.yaml
+    - sed -i "s/8080/80/g" /deploy.yaml
     - kubectl apply -f /deploy.yaml
   environment:
     name: $REPO_NAME-prod
