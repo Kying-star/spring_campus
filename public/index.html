@@ -8,15 +8,19 @@
     <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
     <title>校园之春</title>
     <script>
+        function getQueryString(name) {
+            let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            let r = window.location.search.substr(1).match(reg);
+            if (r != null) {
+                return decodeURIComponent(r[2]);
+            };
+            return null;
+        }
         // const token =
         //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcGVuaWQiOiJvdVJDeWppeVkzQVZkZ0w3RTZDQlRHTFpzWTNrIiwiZXhwIjo1MjA5MjQ3NzMxLCJpc3MiOiJteS1wcm9qZWN0In0.JCXT0t0y-fKAYcUmqj4rTR_APeEbsCfCsQ8nKUBDMUk#/";
-        const token = document.location.href.split("token=")[1];
+        const openid = getQueryString("openid")
         if (token && token.length) {
-            localStorage.setItem("openid_token2", token);
-            const {
-                exp,
-                openid
-            } = JSON.parse(atob(token.split(".")[1]));
+            localStorage.setItem("openid_token2", openid);
             if (!openid) {
                 localStorage.removeItem("openid_token2");
                 window.location.href =
