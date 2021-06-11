@@ -19,7 +19,7 @@
         // const token =
         //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcGVuaWQiOiJvdVJDeWppeVkzQVZkZ0w3RTZDQlRHTFpzWTNrIiwiZXhwIjo1MjA5MjQ3NzMxLCJpc3MiOiJteS1wcm9qZWN0In0.JCXT0t0y-fKAYcUmqj4rTR_APeEbsCfCsQ8nKUBDMUk#/";
         const openid = getQueryString("openid")
-        if (token && token.length) {
+        if (openid && openid.length) {
             localStorage.setItem("openid_token2", openid);
             if (!openid) {
                 localStorage.removeItem("openid_token2");
