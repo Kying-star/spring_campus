@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-05-28 11:23:49
- * @LastEditTime: 2021-05-30 21:50:54
+ * @LastEditTime: 2021-06-11 21:20:09
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /spring_campus/vue.config.js
@@ -17,7 +17,7 @@ module.exports = {
   outputDir: "build",
   publicPath:
     process.env.NODE_ENV === "production"
-      ? "/game/nineteenth-committee-fe/"
+      ? "/spring-campus/"
       : "./",
   chainWebpack: config => {
     config.resolve.alias
