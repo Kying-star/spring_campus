@@ -15,10 +15,7 @@ function resolve(dir) {
 module.exports = {
   productionSourceMap: false,
   outputDir: "build",
-  publicPath:
-    process.env.NODE_ENV === "production"
-      ? "/spring-campus/"
-      : "./",
+  publicPath: process.env.NODE_ENV === "production" ? "/spring-campus/" : "./",
   chainWebpack: config => {
     config.resolve.alias
       .set("@", resolve("src"))

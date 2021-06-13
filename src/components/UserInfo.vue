@@ -65,7 +65,7 @@
 
 <script>
 import { ref } from "vue";
-import { getSchools, getUserInfo, updateUserInfo } from "@/services/api";
+import { getSchools, updateUserInfo } from "@/services/api";
 
 getSchools().then(e => {
   console.log(e);
@@ -157,12 +157,12 @@ export default {
       //   }
       // }
     };
-    const fetchUserInfo = async () => {
-      const { data } = await getUserInfo();
-      name.value = data.name;
-      school.value = data.school;
-      phone.value = data.phone;
-    };
+    // const fetchUserInfo = async () => {
+    //   const { data } = await getUserInfo();
+    //   name.value = data.name;
+    //   school.value = data.school;
+    //   phone.value = data.phone;
+    // };
     const fetchSchoolInfo = async () => {
       const { data } = await getSchools();
       schoolList.value = data.data;
@@ -276,7 +276,7 @@ export default {
         showToast();
       }
     };
-    fetchUserInfo();
+    //fetchUserInfo();
     fetchSchoolInfo();
     return {
       schoolList,
