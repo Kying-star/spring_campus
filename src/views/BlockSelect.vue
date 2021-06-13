@@ -1,39 +1,47 @@
 <template>
-  <div class='block'>
-    <div class='background'></div>
+  <div class="block">
+    <div class="background"></div>
     <ActivityRule
-      v-show='isShowActivityRule'
-      :start='isShowActivityRule'
-      @close='showActivityRule(false)'
+      v-show="isShowActivityRule"
+      :start="isShowActivityRule"
+      @close="showActivityRule(false)"
     />
     <header>
       <!-- <div class='backHome' @click='gotoHome'></div> -->
-      <div class='catalogue' @click='showActivityRule(true)'></div>
+      <div class="catalogue" @click="showActivityRule(true)"></div>
     </header>
     <main>
-      <div class='blocks'>
+      <div class="blocks">
         <div
-          class='block'
-          v-for='(block, index) in blockList'
-          :key='block'
-          @click='toGame(index + 1)'
+          class="block"
+          v-for="(block, index) in blockList"
+          :key="block"
+          @click="toGame(index + 1)"
         >
           <!-- <TipBlock v-show='block.isAnswer' :count='block.count' /> -->
-          <div class='blockInner'>
-            <div class='blockTitle'>{{ block.txt }}</div>
-            <div class='blockBottom'>
-              <div class='blockAccuracy' v-if='block.opportunity != 3'>{{ block.accuracy }}</div>
-              <div class='blockFooter' v-if='block.opportunity != 3'>{{ block.time }}</div>
-              <div class='blockFooter' v-if='block.opportunity == 3'>未完成</div>
-              <div class='blockChance' v-if='block.opportunity > 0'>剩余次数: {{ block.opportunity }}</div>
+          <div class="blockInner">
+            <div class="blockTitle">{{ block.txt }}</div>
+            <div class="blockBottom">
+              <div class="blockAccuracy" v-if="block.opportunity != 3">
+                {{ block.accuracy }}
+              </div>
+              <div class="blockFooter" v-if="block.opportunity != 3">
+                {{ block.time }}
+              </div>
+              <div class="blockFooter" v-if="block.opportunity == 3">
+                未完成
+              </div>
+              <div class="blockChance" v-if="block.opportunity > 0">
+                剩余次数: {{ block.opportunity }}
+              </div>
             </div>
           </div>
         </div>
       </div>
     </main>
     <footer>
-      <div class='roll' @click='gotoRoll()'></div>
-      <div class='checkCard' @click='gotoHistoryCard()'></div>
+      <div class="roll" @click="gotoRoll()"></div>
+      <div class="checkCard" @click="gotoHistoryCard()"></div>
     </footer>
   </div>
 </template>
@@ -49,17 +57,17 @@ export default {
   setup() {
     const isShowActivityRule = ref(false);
     const router = useRouter();
-    getScore().then((e) => {
+    getScore().then(e => {
       console.log(e);
     });
-    getProgress(1).then((e) => {
+    getProgress(1).then(e => {
       console.log(e);
     });
-    const toGame = (type) => {
+    const toGame = type => {
       console.log(1);
       router.push(`/game?type=${type}`);
     };
-    const showActivityRule = (status) => {
+    const showActivityRule = status => {
       isShowActivityRule.value = status;
     };
     const gotoRoll = () => router.push(`/roll`);
@@ -73,7 +81,7 @@ export default {
         footer: "[等你答题]",
         accuracy: "正确率：24/50",
         time: "用时：05:22:09",
-        opportunity: 1,
+        opportunity: 1
       },
       {
         isAnswer: true,
@@ -83,7 +91,7 @@ export default {
         footer: "[解锁时间：2020年12月25日]",
         accuracy: "正确率：24/50",
         time: "用时：05:22:09",
-        opportunity: 3,
+        opportunity: 3
       },
       {
         isAnswer: true,
@@ -93,7 +101,7 @@ export default {
         footer: "[解锁时间：2020年12月25日]",
         accuracy: "正确率：24/50",
         time: "用时：05:22:09",
-        opportunity: 0,
+        opportunity: 0
       },
       {
         isAnswer: true,
@@ -103,8 +111,8 @@ export default {
         footer: "[解锁时间：2020年12月25日]",
         accuracy: "正确率：24/50",
         time: "用时：05:22:09",
-        opportunity: 0,
-      },
+        opportunity: 0
+      }
     ]);
 
     // 修改图片
@@ -148,9 +156,9 @@ export default {
       toGame,
       gotoRoll,
       gotoHome,
-      gotoHistoryCard,
+      gotoHistoryCard
     };
-  },
+  }
 };
 </script>
 
