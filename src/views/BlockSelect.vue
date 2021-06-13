@@ -41,7 +41,7 @@
     </main>
     <footer>
       <div class="roll" @click="gotoRoll()"></div>
-      <div class="checkCard"></div>
+      <div class="checkCard" @click="gotoHistoryCard()"></div>
     </footer>
   </div>
 </template>
@@ -71,6 +71,7 @@ export default {
       isShowActivityRule.value = status;
     };
     const gotoRoll = () => router.push(`/roll`);
+    const gotoHistoryCard = () => router.push(`/history-card`);
     const blockList = ref([
       {
         isAnswer: true,
@@ -156,7 +157,8 @@ export default {
       blockList,
       toGame,
       gotoRoll,
-      gotoHome
+      gotoHome,
+      gotoHistoryCard
     };
   }
 };

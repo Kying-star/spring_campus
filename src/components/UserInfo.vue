@@ -53,6 +53,8 @@
                 {{ item }}
               </li>
             </ul>
+
+            <div :class="selecting ? `selectTab` : `unSelectTab`"></div>
           </div>
           <div class="outline"></div>
         </div>
@@ -479,6 +481,34 @@ export default {
       .phone {
         .input {
           font-size: 31px;
+        }
+      }
+      .school {
+        .select {
+          position: relative;
+          .selectTab {
+            width: 14px;
+            height: 17px;
+            position: absolute;
+            top: 40px;
+            left: 300px;
+            background: url("~@assets/images/home/user/left-arrow.png");
+            background-size: 100%;
+            background-repeat: no-repeat;
+            transform: rotate(-90deg);
+            transition: all 0.5s;
+          }
+          .unSelectTab {
+            width: 14px;
+            height: 17px;
+            position: absolute;
+            top: 40px;
+            left: 300px;
+            background: url("~@assets/images/home/user/left-arrow.png");
+            background-size: 100%;
+            background-repeat: no-repeat;
+            transition: all 0.5s;
+          }
         }
       }
       ::-webkit-input-placeholder {

@@ -1,8 +1,13 @@
 /*
  * @Author: your name
  * @Date: 2020-12-29 17:12:32
+<<<<<<< HEAD
  * @LastEditTime: 2021-06-13 15:51:21
  * @LastEditors: Please set LastEditors
+=======
+ * @LastEditTime: 2021-06-13 16:00:42
+ * @LastEditors: myjdml
+>>>>>>> b84946a8079323697b2f65cba7166bc914789133
  * @Description: In User Settings Edit
  * @FilePath: /nineteenth-committee-fe/src/services/api.js
  */

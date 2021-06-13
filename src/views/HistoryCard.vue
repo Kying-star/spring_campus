@@ -1,18 +1,19 @@
 <template>
   <div class="history-card">
-    <history-card-header></history-card-header>
-    <swiper
-      class="cards"
-      :slides-per-view="1"
-      :space-between="50"
-      loop="true"
-      @swiper="onSwiper"
-      @slideChange="onSlideChange"
-    >
-      <swiper-slide class="card">
-        <card title="1982年“校园之春”" :collection-state="true"></card>
-      </swiper-slide>
-    </swiper>
+    <history-card-header
+      @clickModuleIndex="clickModuleIndex"
+    ></history-card-header>
+
+    <swipe class="cards" indicator-color="white">
+      <swipe-item class="card" v-for="(item, index) in cardImage" :key="index">
+        <card
+          :title="item.description"
+          :imageSrc="item.url"
+          :collection-state="item.ok"
+        ></card>
+        <!-- <card title="alalal" :collection-state="true"></card> -->
+      </swipe-item>
+    </swipe>
     <footer>
       <div
         class="btn-save"
@@ -28,21 +29,24 @@
 </template>
 
 <script>
-// import { ref } from "vue";
+import { ref } from "vue";
 import HistoryCardHeader from "@/components/HistoryCardHeader";
-import { Swiper, SwiperSlide } from "swiper/vue";
-import "swiper/swiper.scss";
 import Card from "@/components/Card";
+import { Swipe, SwipeItem } from "vant";
+import { useRouter } from "vue-router";
+import { getHistoryCardPicList } from "@/services/api";
 
 export default {
   name: "HistoryCard",
   components: {
-    Card,
     HistoryCardHeader,
-    Swiper,
-    SwiperSlide
+    Card,
+    Swipe,
+    SwipeItem
   },
   setup() {
+    const cardImage = ref([]);
+    const router = useRouter();
     const downloadCanvasImage = (imageSrc, name) => {
       const image = new Image();
       // 解决跨域 Canvas 污染问题
@@ -98,9 +102,22 @@ export default {
       a.dispatchEvent(e);
       URL.revokeObjectURL(url);
     };
+    const fetchPicList = async type => {
+      const { data } = await getHistoryCardPicList(type);
+      cardImage.value = data.data;
+      console.log(cardImage.value);
+    };
+    const clickModuleIndex = index => {
+      fetchPicList(index + 1);
+    };
+    const back = () => router.back();
+    fetchPicList(1);
     return {
       downloadCanvasImage,
-      saveImg
+      saveImg,
+      clickModuleIndex,
+      back,
+      cardImage
     };
   }
 };
@@ -122,22 +139,13 @@ export default {
   .card {
   }
 }
-.btn-save {
-  width: 358px;
-  height: 181px;
-  background: url(~@assets/images/HistoryCard/btn-save.png);
-  background-size: 100%;
-  position: absolute;
-  bottom: 25px;
-  left: 34px;
-}
 .btn-bac {
-  width: 322px;
-  height: 184px;
+  width: 381px;
+  height: 178px;
   background: url(~@assets/images/HistoryCard/btn-bac.png);
   background-size: 100%;
   position: absolute;
-  bottom: 27px;
-  right: 35px;
+  bottom: 29px;
+  left: 185px;
 }
 </style>
