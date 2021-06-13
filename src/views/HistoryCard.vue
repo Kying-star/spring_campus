@@ -1,20 +1,21 @@
 <template>
   <div class="history-card">
-    <history-card-header></history-card-header>
-    <swiper
-      class="cards"
-      :slides-per-view="1"
-      :space-between="50"
-      loop="true"
-      @swiper="onSwiper"
-      @slideChange="onSlideChange"
-    >
-      <swiper-slide class="card">
-        <card title="1982年“校园之春”" :collection-state="true"></card>
-      </swiper-slide>
-    </swiper>
+    <history-card-header
+      @clickModuleIndex="clickModuleIndex"
+    ></history-card-header>
+
+    <swipe class="cards" indicator-color="white">
+      <swipe-item class="card" v-for="(item, index) in cardImage" :key="index">
+        <card
+          :title="item.description"
+          :imageSrc="item.url"
+          :collection-state="item.ok"
+        ></card>
+        <!-- <card title="alalal" :collection-state="true"></card> -->
+      </swipe-item>
+    </swipe>
     <footer>
-      <div class="btn-bac"></div>
+      <div class="btn-bac" @click="back()"></div>
     </footer>
   </div>
 </template>
@@ -22,21 +23,22 @@
 <script>
 import { ref } from "vue";
 import HistoryCardHeader from "@/components/HistoryCardHeader";
-import { Swiper, SwiperSlide } from "swiper/vue";
-import "swiper/swiper.scss";
 import Card from "@/components/Card";
+import { Swipe, SwipeItem } from "vant";
+import { useRouter } from "vue-router";
+import { getHistoryCardPicList } from "@/services/api";
 
 export default {
   name: "HistoryCard",
   components: {
-    Card,
     HistoryCardHeader,
-    Swiper,
-    SwiperSlide
+    Card,
+    Swipe,
+    SwipeItem
   },
   setup() {
     const cardImage = ref([]);
-
+    const router = useRouter();
     const downloadCanvasImage = (imageSrc, name) => {
       const image = new Image();
       // 解决跨域 Canvas 污染问题
@@ -92,9 +94,21 @@ export default {
       a.dispatchEvent(e);
       URL.revokeObjectURL(url);
     };
+    const fetchPicList = async type => {
+      const { data } = await getHistoryCardPicList(type);
+      cardImage.value = data.data;
+      console.log(cardImage.value);
+    };
+    const clickModuleIndex = index => {
+      fetchPicList(index + 1);
+    };
+    const back = () => router.back();
+    fetchPicList(1);
     return {
       downloadCanvasImage,
       saveImg,
+      clickModuleIndex,
+      back,
       cardImage
     };
   }

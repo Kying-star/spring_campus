@@ -2,28 +2,68 @@
  * @Author: myjdml
  * @Date: 2021-05-30 20:21:01
  * @LastEditors: myjdml
- * @LastEditTime: 2021-06-08 14:45:43
+ * @LastEditTime: 2021-06-11 18:42:34
  * @Description: 校史卡片板块头部
 -->
 <template>
   <div class="history-card-header">
     <div class="card-list">
-      <div class="cards" v-for="(item, index) in cardListInner" :key="index">
-        {{ item }}
+      <div
+        :class="item.state ? `cards selectTab` : `cards unSelectTab`"
+        v-for="(item, index) in cardListInner"
+        :key="index"
+        @click="clickModule(index)"
+      >
+        {{ item.name }}
       </div>
     </div>
   </div>
 </template>
 
 <script>
-// import { ref } from "vue";
+import { ref } from "vue";
 
 export default {
   name: "HistoryCardHeader",
-  setup() {
-    const cardListInner = ["板块一", "板块二", "板块三", "板块四"];
+  setup(props, ctx) {
+    const cardListInner = ref([
+      {
+        name: "板块一",
+        state: true
+      },
+      {
+        name: "板块二",
+        state: false
+      },
+      {
+        name: "板块三",
+        state: false
+      },
+      {
+        name: "板块四",
+        state: false
+      }
+    ]);
+    /**
+     * @description: 点击事件，切换Tab的CSS样式
+     * @param {*} index
+     * @return {*}
+     * @author: myjdml
+     */
+    const clickModule = index => {
+      cardListInner.value.forEach(item => {
+        item.state = false;
+      });
+      cardListInner.value[index].state = true;
+      // 向外传递点击事件点击的板块
+      ctx.emit("clickModuleIndex", index);
+    };
+    const imageUpdate = () => {};
+    console.log(props, ctx);
     return {
-      cardListInner
+      cardListInner,
+      clickModule,
+      imageUpdate
     };
   }
 };
@@ -69,6 +109,15 @@ export default {
     top: 33px;
     left: 578px;
     transform: rotate(-2deg);
+  }
+  .selectTab {
+    background: url(~@assets/images/HistoryCard/board-select.png);
+    background-size: 100%;
+    color: white;
+  }
+  .unSelectTab {
+    background: url(~@assets/images/HistoryCard/board.png);
+    background-size: 100%;
   }
 }
 </style>

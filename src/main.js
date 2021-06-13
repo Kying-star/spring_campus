@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2020-12-29 17:12:32
- * @LastEditTime: 2020-12-30 12:15:41
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-06-12 22:20:07
+ * @LastEditors: myjdml
  * @Description: In User Settings Edit
  * @FilePath: /nineteenth-committee-fe/src/main.js
  */
