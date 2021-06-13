@@ -112,15 +112,13 @@ export default {
     const lockTime = ["6月20日", "7月1日", "10月1日", "10月1日"];
     const gotoHome = () => router.push("/");
     const getBlockDetail = async () => {
-      const { data } = await getBlock();
+      const { data } = await getScore();
       console.log(data);
       let temp = [];
       data.forEach((e, index) => {
         const item = {};
         item.count = e.opportunity;
         item.footer = getMin(e.score, index);
-        item.txt = type.value[index];
-        item.type = img.value[index];
         item.isAnswer = index > 2 ? e.opportunity > 0 : false;
         temp.push(item);
       });
