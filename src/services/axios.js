@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2021-06-11 21:21:52
+ * @LastEditTime: 2021-06-13 11:43:34
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /spring_campus/src/services/axios.js
+ */
 /**
  * axios配置
  */
@@ -11,9 +19,6 @@ axios.defaults.timeout = 6000;
 // http request 拦截器
 axios.interceptors.request.use(
   config => {
-    config.headers = {
-      token: token
-    };
     return config;
   },
   err => {
