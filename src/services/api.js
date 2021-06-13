@@ -67,7 +67,7 @@ export const getScore = () => get("/score", { openid });
  * @description 获取当前分数
  * @param {number} type 板块类型
  */
-export const getProgress = (type) => get("/progress", { openid, type });
+export const getProgress = type => get("/progress", { openid, type });
 
 /**
  *
@@ -94,4 +94,3 @@ export const getBlock = () => get(`/plate?openid=${openid}`);
  */
 
 export const getSchools = () => get(`/schools`);
-
