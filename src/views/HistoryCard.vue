@@ -15,7 +15,15 @@
       </swipe-item>
     </swipe>
     <footer>
-      <div class="btn-bac" @click="back()"></div>
+      <div
+        class="btn-save"
+        @click="
+          saveImg(
+            'https://play-lh.googleusercontent.com/IPPHiII0GMURiVumaN0zT9iJRj8OTCP65xllc8ptBQNAhYhlv67ZRsGGxcIhRHbM5c45'
+          )
+        "
+      ></div>
+      <div class="btn-bac"></div>
     </footer>
   </div>
 </template>
