@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-06-11 21:21:52
- * @LastEditTime: 2021-06-13 11:43:34
+ * @LastEditTime: 2021-06-13 11:48:32
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /spring_campus/src/services/axios.js
@@ -11,7 +11,7 @@
  */
 
 import axios from "axios";
-import { baseURL, token } from "./config";
+import { baseURL } from "./config";
 axios.defaults.baseURL = baseURL;
 // axios.defaults.withCredentials = true;
 axios.defaults.timeout = 6000;
