@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-29 17:12:32
- * @LastEditTime: 2021-06-13 21:15:48
+ * @LastEditTime: 2021-06-13 21:17:30
  * @LastEditors: myjdml
  * @Description: In User Settings Edit
  * @FilePath: /nineteenth-committee-fe/src/services/api.js
@@ -94,3 +94,9 @@ export const getBlock = () => get(`/plate?openid=${openid}`);
  */
 
 export const getSchools = () => get(`/schools`);
+/**
+ * @description: 校史卡片页面
+ */
+
+export const getHistoryCardPicList = type =>
+  get(`/images?openid=${openid}&type=${type}`);

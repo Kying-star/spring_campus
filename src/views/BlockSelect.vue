@@ -11,30 +11,28 @@
       <div class="catalogue" @click="showActivityRule(true)"></div>
     </header>
     <main>
-      <div class="blocks">
-        <div
-          class="block"
-          v-for="(block, index) in blockList"
-          :key="block"
-          @click="toGame(index + 1)"
-        >
+      <div class='blocks'>
+        <div class='block' v-for='block in blockList' :key='block' @click='toGame(block.type)'>
           <!-- <TipBlock v-show='block.isAnswer' :count='block.count' /> -->
-          <div class="blockInner">
-            <div class="blockTitle">{{ block.txt }}</div>
-            <div class="blockBottom">
-              <div class="blockAccuracy" v-if="block.opportunity != 3">
-                {{ block.accuracy }}
-              </div>
-              <div class="blockFooter" v-if="block.opportunity != 3">
-                {{ block.time }}
-              </div>
-              <div class="blockFooter" v-if="block.opportunity == 3">
-                未完成
-              </div>
-              <div class="blockChance" v-if="block.opportunity > 0">
-                剩余次数: {{ block.opportunity }}
-              </div>
+          <div class='blockInner'>
+            <div class='blockTitle'>{{ block.txt }}</div>
+            <div class='blockBottom'>
+              <div
+                class='blockAccuracy'
+                v-if='block.isOpen && block.time != 0'
+              >正确率：{{ block.accuracy }}/50</div>
+              <div
+                class='blockFooter'
+                v-if='block.isOpen && block.time != 0'
+              >{{ format(block.time) }}</div>
+              <div class='blockFooter' v-if='block.isOpen && block.time == 0'>未完成</div>
+              <div
+                class='blockChance'
+                v-if='block.isOpen && block.opportunity < 0'
+              >剩余次数: {{ block.opportunity + 1}}</div>
             </div>
+            <div class='blockFooter' v-if='!block.isOpen'>版块解锁时间：</div>
+            <div class='blockFooter' v-if='!block.isOpen'>{{}}</div>
           </div>
         </div>
       </div>
@@ -51,6 +49,7 @@ import ActivityRule from "@components/ActivityRule";
 // import TipBlock from "@components/TipBlock";
 import { getProgress, getScore } from "@/services/api";
 import { ref } from "vue";
+import { format } from "../tools/format";
 import { useRouter } from "vue-router";
 export default {
   components: { ActivityRule },
@@ -115,21 +114,31 @@ export default {
       }
     ]);
 
-    // 修改图片
-    // const img = ref(["basic", "achievement", "target", "plan"]);
+    const txt = [
+      "新民主主义 革命史",
+      "社会主义革命 建设史",
+      "改革开放 与社会主义 现代化建设史",
+      "新时代 中国特色 社会主义史",
+    ];
     const lockTime = ["6月20日", "7月1日", "10月1日", "10月1日"];
     const gotoHome = () => router.push("/");
     const getBlockDetail = async () => {
       const { data } = await getScore();
       console.log(data);
       let temp = [];
-      data.forEach((e, index) => {
+      data.data.forEach((e, index) => {
         const item = {};
-        item.count = e.opportunity;
+        item.opportunity = e.opportunity;
         item.footer = getMin(e.score, index);
-        item.isAnswer = index > 2 ? e.opportunity > 0 : false;
+        item.score = e.score;
+        item.accuracy = e.score / 2;
+        item.time = e.spend_time;
+        item.type = e.type;
+        item.txt = txt[index];
+        item.isOpen = e.is_open;
         temp.push(item);
       });
+      console.log(temp);
       blockList.value = temp;
       // blockList.value = data
     };
@@ -156,7 +165,8 @@ export default {
       toGame,
       gotoRoll,
       gotoHome,
-      gotoHistoryCard
+      gotoHistoryCard,
+      format,
     };
   }
 };
