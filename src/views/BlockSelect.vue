@@ -1,35 +1,35 @@
 <template>
-  <div class="block">
-    <div class="background"></div>
+  <div class='block'>
+    <div class='background'></div>
     <ActivityRule
-      v-show="isShowActivityRule"
-      :start="isShowActivityRule"
-      @close="showActivityRule(false)"
+      v-show='isShowActivityRule'
+      :start='isShowActivityRule'
+      @close='showActivityRule(false)'
     />
     <header>
       <!-- <div class='backHome' @click='gotoHome'></div> -->
-      <div class="catalogue" @click="showActivityRule(true)"></div>
+      <div class='catalogue' @click='showActivityRule(true)'></div>
     </header>
     <main>
-      <div class="blocks">
+      <div class='blocks'>
         <div
-          class="block"
-          v-for="(block, index) in blockList"
-          :key="block"
-          @click="toGame(index + 1)"
+          class='block'
+          v-for='(block, index) in blockList'
+          :key='block'
+          @click='toGame(index + 1)'
         >
           <!-- <TipBlock v-show='block.isAnswer' :count='block.count' /> -->
-          <div class="blockInner">
-            <div class="blockTitle">{{ block.txt }}</div>
-            <div class="blockAccuracy">{{ block.accuracy }}</div>
-            <div class="blockFooter">{{ block.time }}</div>
+          <div class='blockInner'>
+            <div class='blockTitle'>{{ block.txt }}</div>
+            <div class='blockAccuracy'>{{ block.accuracy }}</div>
+            <div class='blockFooter'>{{ block.time }}</div>
           </div>
         </div>
       </div>
     </main>
     <footer>
-      <div class="roll" @click="gotoRoll()"></div>
-      <div class="checkCard"></div>
+      <div class='roll' @click='gotoRoll()'></div>
+      <div class='checkCard'></div>
     </footer>
   </div>
 </template>
@@ -37,6 +37,7 @@
 <script>
 import ActivityRule from "@components/ActivityRule";
 // import TipBlock from "@components/TipBlock";
+import { getProgress, getScore } from "@/services/api";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 export default {
@@ -44,11 +45,17 @@ export default {
   setup() {
     const isShowActivityRule = ref(false);
     const router = useRouter();
-    const toGame = type => {
+    getScore().then((e) => {
+      console.log(e);
+    });
+    getProgress(1).then((e) => {
+      console.log(e);
+    });
+    const toGame = (type) => {
       console.log(1);
       router.push(`/game?type=${type}`);
     };
-    const showActivityRule = status => {
+    const showActivityRule = (status) => {
       isShowActivityRule.value = status;
     };
     const gotoRoll = () => router.push(`/roll`);
@@ -60,7 +67,7 @@ export default {
         txt: "新民主主义 革命史",
         footer: "[等你答题]",
         accuracy: "正确率：24/50",
-        time: "用时：05:22:09"
+        time: "用时：05:22:09",
       },
       {
         isAnswer: true,
@@ -69,7 +76,7 @@ export default {
         txt: "社会主义革命 建设史",
         footer: "[解锁时间：2020年12月25日]",
         accuracy: "正确率：24/50",
-        time: "用时：05:22:09"
+        time: "用时：05:22:09",
       },
       {
         isAnswer: true,
@@ -78,7 +85,7 @@ export default {
         txt: "改革开放 与社会主义 现代化建设史",
         footer: "[解锁时间：2020年12月25日]",
         accuracy: "正确率：24/50",
-        time: "用时：05:22:09"
+        time: "用时：05:22:09",
       },
       {
         isAnswer: true,
@@ -87,8 +94,8 @@ export default {
         txt: "新时代 中国特色 社会主义史",
         footer: "[解锁时间：2020年12月25日]",
         accuracy: "正确率：24/50",
-        time: "用时：05:22:09"
-      }
+        time: "用时：05:22:09",
+      },
     ]);
 
     // 修改图片
@@ -133,9 +140,9 @@ export default {
       blockList,
       toGame,
       gotoRoll,
-      gotoHome
+      gotoHome,
     };
-  }
+  },
 };
 </script>
 

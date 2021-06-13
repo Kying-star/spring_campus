@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-29 17:12:32
- * @LastEditTime: 2021-05-29 18:43:09
+ * @LastEditTime: 2021-06-13 15:51:21
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /nineteenth-committee-fe/src/services/api.js
@@ -59,10 +59,15 @@ export const getQuestion = type => get("/problem/getPro", { type });
 export const getAnalysis = type => get("/analysis", { type });
 
 /**
- *
- * @param {string} type 题目所属于板块
+ * @description 获取当前分数
  */
-export const getScore = (type, score) => get("/score", { type, openid, score });
+export const getScore = () => get("/score", { openid });
+
+/**
+ * @description 获取当前分数
+ * @param {number} type 板块类型
+ */
+export const getProgress = (type) => get("/progress", { openid, type });
 
 /**
  *
@@ -90,8 +95,3 @@ export const getBlock = () => get(`/plate?openid=${openid}`);
 
 export const getSchools = () => get(`/schools`);
 
-/**
- * @description: 获取学校名单
- */
-
-export const getQuestionInfo = () => get(`/problem/getPro?type=3`);
