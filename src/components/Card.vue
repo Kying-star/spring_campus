@@ -6,14 +6,19 @@
  * @Description: 
 -->
 <template>
- 
   <div class="card">
     <div class="background">
       <!-- <div class="icon"></div> -->
       <div class="collection-state">
         {{ collectionState ? "已收集" : "未收集" }}
       </div>
-      <div :class="collectionState ? 'collection-state-icon-check':'collection-state-icon-false'"></div>
+      <div
+        :class="
+          collectionState
+            ? 'collection-state-icon-check'
+            : 'collection-state-icon-false'
+        "
+      ></div>
       <p class="tip">左右滑动切换卡片</p>
       <div class="content">
         <img :src="imageSrc" alt="" />
@@ -120,7 +125,7 @@ export default {
         top: 37px;
       }
       .title {
-        color: #EE742A;
+        color: #ee742a;
         font-size: 28px;
         position: absolute;
         top: 426px;
@@ -130,7 +135,7 @@ export default {
     .cover {
       width: 522px;
       height: 644px;
-      background-color: rgba($color: #000000, $alpha: .35);
+      background-color: rgba($color: #000000, $alpha: 0.35);
       border-radius: 10px;
       position: absolute;
       top: 113px;

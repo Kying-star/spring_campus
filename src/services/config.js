@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2020-12-28 19:52:32
- * @LastEditTime: 2020-12-28 20:12:00
- * @LastEditors: your name
+ * @LastEditTime: 2021-06-13 20:45:13
+ * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/services/config.js
  */
@@ -11,5 +11,7 @@ export const baseURL =
     ? "https://be-prod.redrock.team/spring-campus"
     : "/api";
 
-export const openid = localStorage.getItem("openid");
+// export const openid = localStorage.getItem("openid");
+export const openid =
+  process.env.NODE_ENV === "production" ? localStorage.getItem("openid") : 123;
 export const token = localStorage.getItem("openid_token2");
