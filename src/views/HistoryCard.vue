@@ -4,7 +4,7 @@
       @clickModuleIndex="clickModuleIndex"
     ></history-card-header>
 
-    <swipe class="cards" indicator-color="white">
+    <swipe class="cards" indicator-color="white" :show-indicators="false">
       <swipe-item class="card" v-for="(item, index) in cardImage" :key="index">
         <card
           :title="item.description"
@@ -15,14 +15,14 @@
       </swipe-item>
     </swipe>
     <footer>
-      <div
+      <!-- <div
         class="btn-save"
         @click="
           saveImg(
             'https://play-lh.googleusercontent.com/IPPHiII0GMURiVumaN0zT9iJRj8OTCP65xllc8ptBQNAhYhlv67ZRsGGxcIhRHbM5c45'
           )
         "
-      ></div>
+      ></div> -->
       <div class="btn-bac"></div>
     </footer>
   </div>
@@ -127,7 +127,7 @@ export default {
 .history-card {
   height: 100vh;
   background: url(~@assets/images/base/inner-bk.png);
-  background-size: 100%;
+  background-size: 100% 100%;
   background-position: center bottom;
   background-repeat: no-repeat;
   position: relative;
@@ -143,7 +143,7 @@ export default {
   width: 381px;
   height: 178px;
   background: url(~@assets/images/HistoryCard/btn-bac.png);
-  background-size: 100%;
+  background-size: 100% 100%;
   position: absolute;
   bottom: 29px;
   left: 185px;

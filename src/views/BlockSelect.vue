@@ -68,8 +68,14 @@ export default {
     getProgress(1).then(e => {
       console.log(e);
     });
+<<<<<<< HEAD
     const toGame = (type, opportunity) => {
       opportunity < 0 ? "" : router.push(`/game?type=${type}`);
+=======
+    const toGame = type => {
+      console.log(1);
+      router.push(`/game?type=${type}`);
+>>>>>>> d7fe03fbed3b0bf408d269063d1e257d10c8dd8b
     };
     const showActivityRule = status => {
       isShowActivityRule.value = status;
