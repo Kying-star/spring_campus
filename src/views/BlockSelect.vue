@@ -1,51 +1,51 @@
 <template>
-  <div class="block">
-    <div class="background"></div>
+  <div class='block'>
+    <div class='background'></div>
     <ActivityRule
-      v-show="isShowActivityRule"
-      :start="isShowActivityRule"
-      @close="showActivityRule(false)"
+      v-show='isShowActivityRule'
+      :start='isShowActivityRule'
+      @close='showActivityRule(false)'
     />
     <header>
       <!-- <div class='backHome' @click='gotoHome'></div> -->
-      <div class="catalogue" @click="showActivityRule(true)"></div>
+      <div class='catalogue' @click='showActivityRule(true)'></div>
     </header>
     <main>
-      <div class="blocks">
+      <div class='blocks'>
         <div
-          class="block"
-          v-for="(block, index) in blockList"
-          :key="block"
-          @click="toGame(index + 1, block.opportunity)"
+          class='block'
+          v-for='(block, index) in blockList'
+          :key='block'
+          @click='toGame(index + 1, block.opportunity)'
         >
           <!-- <TipBlock v-show='block.isAnswer' :count='block.count' /> -->
-          <div class="blockInner">
-            <div class="blockTitle">{{ block.txt }}</div>
-            <div class="blockBottom">
-              <div class="blockAccuracy" v-if="block.isOpen && block.time != 0">
-                正确率：{{ block.accuracy }}/50
-              </div>
-              <div class="blockFooter" v-if="block.isOpen && block.time != 0">
-                {{ format(block.time) }}
-              </div>
-              <div class="blockFooter" v-if="block.isOpen && block.time == 0">
-                未完成
-              </div>
-              <div class="blockChance" v-if="block.isOpen">
-                剩余次数: {{ block.opportunity + 1 }}
-              </div>
-            </div>
-            <div class="blockFooter" v-if="!block.isOpen">版块解锁时间：</div>
-            <div class="blockFooter" v-if="!block.isOpen">
-              {{ lockTime[index] }}
+          <div class='blockInner'>
+            <div class='blockTitle'>{{ block.txt }}</div>
+            <div class='blockBottom'>
+              <div
+                class='blockAccuracy'
+                v-if='block.isOpen && block.time != 0 && block.id >= 49'
+              >正确率：{{ block.accuracy }}/50</div>
+              <div
+                class='blockFooter'
+                v-if='block.isOpen && block.time != 0 && block.id >= 49'
+              >用时：{{ format(block.time) }}</div>
+              <div class='blockFooter' v-if='block.isOpen && block.id == 0'>未完成</div>
+              <div
+                class='blockFooter'
+                v-if='block.isOpen && block.id < 49 && block.id != 0'
+              >完成进度：{{block.id}}/50</div>
+              <div class='blockChance' v-if='block.isOpen'>剩余次数: {{ block.opportunity + 1 }}</div>
+              <div class='blockFooter' v-if='!block.isOpen'>版块解锁时间：</div>
+              <div class='blockFooter' v-if='!block.isOpen'>{{ lockTime[index] }}</div>
             </div>
           </div>
         </div>
       </div>
     </main>
     <footer>
-      <div class="roll" @click="gotoRoll()"></div>
-      <div class="checkCard" @click="gotoHistoryCard()"></div>
+      <div class='roll' @click='gotoRoll()'></div>
+      <div class='checkCard' @click='gotoHistoryCard()'></div>
     </footer>
   </div>
 </template>
@@ -62,16 +62,13 @@ export default {
   setup() {
     const isShowActivityRule = ref(false);
     const router = useRouter();
-    getScore().then(e => {
-      console.log(e);
-    });
-    getProgress(1).then(e => {
+    getScore().then((e) => {
       console.log(e);
     });
     const toGame = (type, opportunity) => {
       opportunity < 0 ? "" : router.push(`/game?type=${type}`);
     };
-    const showActivityRule = status => {
+    const showActivityRule = (status) => {
       isShowActivityRule.value = status;
     };
     const gotoRoll = () => router.push(`/roll`);
@@ -85,7 +82,7 @@ export default {
         footer: "[等你答题]",
         accuracy: "正确率：24/50",
         time: "用时：05:22:09",
-        opportunity: 1
+        opportunity: 1,
       },
       {
         isAnswer: true,
@@ -95,7 +92,7 @@ export default {
         footer: "[解锁时间：2020年12月25日]",
         accuracy: "正确率：24/50",
         time: "用时：05:22:09",
-        opportunity: 3
+        opportunity: 3,
       },
       {
         isAnswer: true,
@@ -105,7 +102,7 @@ export default {
         footer: "[解锁时间：2020年12月25日]",
         accuracy: "正确率：24/50",
         time: "用时：05:22:09",
-        opportunity: 0
+        opportunity: 0,
       },
       {
         isAnswer: true,
@@ -115,15 +112,15 @@ export default {
         footer: "[解锁时间：2020年12月25日]",
         accuracy: "正确率：24/50",
         time: "用时：05:22:09",
-        opportunity: 0
-      }
+        opportunity: 0,
+      },
     ]);
 
     const txt = [
       "新民主主义 革命史",
       "社会主义革命 建设史",
       "改革开放 与社会主义 现代化建设史",
-      "新时代 中国特色 社会主义史"
+      "新时代 中国特色 社会主义史",
     ];
     const lockTime = ["6月20日", "7月1日", "10月1日", "10月1日"];
     const gotoHome = () => router.push("/");
@@ -131,7 +128,14 @@ export default {
       const { data } = await getScore();
       console.log(data);
       let temp = [];
-      data.data.forEach((e, index) => {
+      let id = [];
+      for (let i = 1; i < 5; i++) {
+        const { data } = await getProgress(i);
+        console.log(data.data);
+        data.data == null ? id.push(0) : id.push(data.data.id);
+      }
+      console.log(id);
+      data.data.forEach(async (e, index) => {
         const item = {};
         item.opportunity = e.opportunity;
         item.footer = getMin(e.score, index);
@@ -140,7 +144,8 @@ export default {
         item.time = e.spend_time;
         item.type = e.type;
         item.txt = txt[index];
-        item.isOpen = e.is_open;
+        item.isOpen = true;
+        item.id = id[index];
         temp.push(item);
       });
       console.log(temp);
@@ -172,9 +177,9 @@ export default {
       gotoHome,
       gotoHistoryCard,
       format,
-      lockTime
+      lockTime,
     };
-  }
+  },
 };
 </script>
 
