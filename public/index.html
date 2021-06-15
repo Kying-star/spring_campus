@@ -17,20 +17,34 @@
             };
             return null;
         }
-
-        const openid = getQueryString("openid")
-        const nickName = getQueryString("nickname");
-        const headUrl = getQueryString("headimgurl");
-        console.log(openid);
-        console.log(nickName);
-        console.log(headUrl);
+        function parseQueryString (url) {
+            var obj = {}
+            var keyvalue = []
+            var key = ''
+            var value = ''
+            var paraString = url.substring(url.indexOf('?') + 1, url.length).split('&')
+            for (var i in paraString) {
+                keyvalue = paraString[i].split('=')
+                key = keyvalue[0]
+                value = keyvalue[1]
+                obj[key] = value.replace(/%20/g, '+').replace(/%2F/g, '/').replace(/%3D/g, '=').replace(/%3A/g, ':')
+            }
+            return obj
+        }
+        const urlParams = parseQueryString(window.location.href)
+        // console.log(urlParams);
+        const openid = getQueryString("openid");
+        // console.log(openid);
         if (openid && openid.length) {
             localStorage.setItem("openid", openid);
         }
+        const nickName = urlParams.nickname;
+        // console.log(nickName);
         if (nickName && nickName.length) {
             localStorage.setItem("nick_name", nickName);
         }
-
+        const headUrl = urlParams.headimgurl;
+        // console.log(headUrl);
         if (headUrl && headUrl.length) {
             localStorage.setItem("head_url", headUrl);
         }
