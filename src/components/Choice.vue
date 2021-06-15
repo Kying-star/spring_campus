@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-27 16:02:54
- * @LastEditTime: 2021-05-30 00:03:14
+ * @LastEditTime: 2021-06-13 21:27:32
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/components/Choice.vue
@@ -135,7 +135,7 @@ export default {
 
 <style lang="scss" scoped>
 .edit {
-  transform: translateY(-60px);
+  transform: translateY(-90px);
   .tip {
     font-size: 28px;
     font-family: SJbangshu;

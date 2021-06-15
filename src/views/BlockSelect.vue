@@ -11,28 +11,46 @@
       <div class="catalogue" @click="showActivityRule(true)"></div>
     </header>
     <main>
-      <div class='blocks'>
-        <div class='block' v-for='block in blockList' :key='block' @click='toGame(block.type)'>
+      <div class="blocks">
+        <div
+          class="block"
+          v-for="(block, index) in blockList"
+          :key="block"
+          @click="toGame(index + 1, block.opportunity)"
+        >
           <!-- <TipBlock v-show='block.isAnswer' :count='block.count' /> -->
-          <div class='blockInner'>
-            <div class='blockTitle'>{{ block.txt }}</div>
-            <div class='blockBottom'>
+          <div class="blockInner">
+            <div class="blockTitle">{{ block.txt }}</div>
+            <div class="blockBottom">
               <div
-                class='blockAccuracy'
-                v-if='block.isOpen && block.time != 0'
-              >正确率：{{ block.accuracy }}/50</div>
+                class="blockAccuracy"
+                v-if="block.isOpen && block.time != 0 && block.id >= 49"
+              >
+                正确率：{{ block.accuracy }}/50
+              </div>
               <div
-                class='blockFooter'
-                v-if='block.isOpen && block.time != 0'
-              >{{ format(block.time) }}</div>
-              <div class='blockFooter' v-if='block.isOpen && block.time == 0'>未完成</div>
+                class="blockFooter"
+                v-if="block.isOpen && block.time != 0 && block.id >= 49"
+              >
+                用时：{{ format(block.time) }}
+              </div>
+              <div class="blockFooter" v-if="block.isOpen && block.id == 0">
+                未完成
+              </div>
               <div
-                class='blockChance'
-                v-if='block.isOpen && block.opportunity < 0'
-              >剩余次数: {{ block.opportunity + 1}}</div>
+                class="blockFooter"
+                v-if="block.isOpen && block.id < 49 && block.id != 0"
+              >
+                完成进度：{{ block.id }}/50
+              </div>
+              <div class="blockChance" v-if="block.isOpen">
+                剩余次数: {{ block.opportunity + 1 }}
+              </div>
+              <div class="blockFooter" v-if="!block.isOpen">版块解锁时间：</div>
+              <div class="blockFooter" v-if="!block.isOpen">
+                {{ lockTime[index] }}
+              </div>
             </div>
-            <div class='blockFooter' v-if='!block.isOpen'>版块解锁时间：</div>
-            <div class='blockFooter' v-if='!block.isOpen'>{{}}</div>
           </div>
         </div>
       </div>
@@ -59,12 +77,8 @@ export default {
     getScore().then(e => {
       console.log(e);
     });
-    getProgress(1).then(e => {
-      console.log(e);
-    });
-    const toGame = type => {
-      console.log(1);
-      router.push(`/game?type=${type}`);
+    const toGame = (type, opportunity) => {
+      opportunity < 0 ? "" : router.push(`/game?type=${type}`);
     };
     const showActivityRule = status => {
       isShowActivityRule.value = status;
@@ -118,7 +132,7 @@ export default {
       "新民主主义 革命史",
       "社会主义革命 建设史",
       "改革开放 与社会主义 现代化建设史",
-      "新时代 中国特色 社会主义史",
+      "新时代 中国特色 社会主义史"
     ];
     const lockTime = ["6月20日", "7月1日", "10月1日", "10月1日"];
     const gotoHome = () => router.push("/");
@@ -126,16 +140,24 @@ export default {
       const { data } = await getScore();
       console.log(data);
       let temp = [];
-      data.data.forEach((e, index) => {
+      let id = [];
+      for (let i = 1; i < 5; i++) {
+        const { data } = await getProgress(i);
+        console.log(data.data);
+        data.data == null ? id.push(0) : id.push(data.data.id);
+      }
+      console.log(id);
+      data.data.forEach(async (e, index) => {
         const item = {};
         item.opportunity = e.opportunity;
         item.footer = getMin(e.score, index);
         item.score = e.score;
-        item.accuracy = e.score / 2;
+        item.accuracy = e.score;
         item.time = e.spend_time;
         item.type = e.type;
         item.txt = txt[index];
-        item.isOpen = e.is_open;
+        item.isOpen = true;
+        item.id = id[index];
         temp.push(item);
       });
       console.log(temp);
@@ -167,6 +189,7 @@ export default {
       gotoHome,
       gotoHistoryCard,
       format,
+      lockTime
     };
   }
 };

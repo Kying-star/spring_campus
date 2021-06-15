@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-01-01 15:08:43
- * @LastEditTime: 2021-06-13 17:26:49
+ * @LastEditTime: 2021-06-13 21:13:43
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /nineteenth-committee-fe/src/components/ActivityRule.vue
@@ -35,9 +35,7 @@
           6、活动结束后，排行榜前xx名可以获得奖励，工作人员会通过用户在个人信息中填写的电话号码进行联系，发布奖品。
         </p>
       </div>
-      <div class="close" @click="clicked && close">
-        确认{{ grtInfo(clickNum) }}
-      </div>
+      <div class="close" @click="close">确认{{ grtInfo(clickNum) }}</div>
     </div>
   </div>
 </template>
@@ -52,14 +50,15 @@ export default {
     const startState = ref(props.start);
     const clickNum = ref(10);
     const clicked = ref(false);
-    const close = () => ctx.emit("close");
+    const close = () => (clicked.value ? ctx.emit("close") : "");
     let reciprocal = () => {
       let timer = setInterval(() => {
         clickNum.value--;
         if (clickNum.value < 1) {
-          clearInterval(timer);
           clicked.value = true;
+          clearInterval(timer);
         }
+        console.log(clicked.value);
       }, 1000);
     };
     const grtInfo = num => (num >= 1 ? `(${num})` : ``);

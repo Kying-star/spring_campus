@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2020-12-29 17:12:32
- * @LastEditTime: 2021-06-13 21:17:30
- * @LastEditors: myjdml
+ * @LastEditTime: 2021-06-15 09:43:45
+ * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /nineteenth-committee-fe/src/services/api.js
  */
@@ -79,6 +79,15 @@ export const updateScore = (type, score, spend_time) =>
   post("/score", { openid, type, score, spend_time });
 
 /**
+ * @description 更新进度
+ * @param {string} type 题目所属于板块
+ * @param {string} score 正确题目个数
+ * @param {string} spend_time 答题时间
+ */
+export const updateProgress = (type, score, spend_time, id) =>
+  post("/progress", { openid, type, score, spend_time, id });
+
+/**
  * @description: 获取排行榜
  */
 export const getRank = () => get("/list");
@@ -100,3 +109,16 @@ export const getSchools = () => get(`/schools`);
 
 export const getHistoryCardPicList = type =>
   get(`/images?openid=${openid}&type=${type}`);
+
+/**
+ * @description: 获取图片
+ */
+
+export const getCardPic = PictureID =>
+  post(`/collection`, { openid, PictureID });
+
+/**
+ * @description: 获得当前排名
+ */
+
+export const getUserRank = () => get(`rank`, { openid });
