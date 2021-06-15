@@ -7,56 +7,58 @@
  * @FilePath: /the-19th-committee/src/views/RollList.vue
 -->
 <template>
-  <div class='home'>
-    <div class='bgRoll'></div>
+  <div class="home">
+    <div class="bgRoll"></div>
     <header>
-      <div class='score-head'>
-        <div class='score-head-inner'>
+      <div class="score-head">
+        <div class="score-head-inner">
           <div
-            v-for='(item,index) in array'
-            :key='item.index'
-            @click='showList(index)'
-            :class='index == title_index?`on`:`default`'
-          >{{item}}</div>
+            v-for="(item, index) in array"
+            :key="item.index"
+            @click="showList(index)"
+            :class="index === title_index ? `on` : `default`"
+          >
+            {{ item }}
+          </div>
         </div>
       </div>
-      <div class='score'>
-        <div class='title'>我的成绩</div>
+      <div class="score">
+        <div class="title">我的成绩</div>
         <!-- <div class='scoreInfo'>未完成全部版块</div> -->
-        <div class='score-inner'>
+        <div class="score-inner">
           <div>
-            <p>{{score/2}}分</p>
+            <p>{{ score / 2 }}分</p>
             <p>分数</p>
           </div>
           <div>
-            <p>{{format(time)}}</p>
+            <p>{{ format(time) }}</p>
             <p>用时</p>
           </div>
           <div>
-            <p>{{order}}</p>
+            <p>{{ order }}</p>
             <p>排名</p>
           </div>
         </div>
       </div>
     </header>
     <main>
-      <div class='inner'>
-        <div class='tip'>“校园之春”党史知识问答 排行榜</div>
-        <div class='list' v-if='!IsVoid'>
+      <div class="inner">
+        <div class="tip">“校园之春”党史知识问答 排行榜</div>
+        <div class="list" v-if="!IsVoid">
           <RollItem
-            v-for='item in rollList'
-            :key='item'
-            :order='item.order'
-            :nickname='item.nickname'
-            :time='item.time'
-            :Avatar='item.avatar'
-            :score='item.score'
+            v-for="item in rollList"
+            :key="item"
+            :order="item.order"
+            :nickname="item.nickname"
+            :time="item.time"
+            :Avatar="item.avatar"
+            :score="item.score"
           />
         </div>
-        <div class='listVoid' v-if='IsVoid'>
+        <div class="listVoid" v-if="IsVoid">
           <p>目前还没有人完成全部版块 排行榜空空如也</p>
         </div>
-        <div class='back' @click='back()'></div>
+        <div class="back" @click="back()"></div>
       </div>
     </main>
   </div>
@@ -67,18 +69,19 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { getRank, getUserRank } from "@/services/api";
 import RollItem from "@components/RollItem";
-import { format } from "../tools/format";
+import { format } from "@/tools/format";
 export default {
   components: { RollItem },
   setup() {
     // 板块基本信息修改
+    const lockTime = [1624118400,1625068800,1633017600,1633017600,1633017600]
     const array = ["板块一", "板块二", "板块三", "板块四", "总排行"];
     const buttonList = ref([
       { info: "全会 情况" },
       { info: "十三五成就" },
       { info: "远景 目标" },
       { info: "十四五规划" },
-      { info: "总排行" },
+      { info: "总排行" }
     ]);
     const order = ref(0);
     const score = ref(0);
@@ -103,7 +106,7 @@ export default {
       const { data } = await getRank();
       // console.log(data, index);
       let temp = [];
-      data.data[title_index.value].data.forEach((e) => {
+      data.data[title_index.value].data.forEach(e => {
         //console.log(e);
         let item = {};
         item.order = e.ranking;
@@ -117,11 +120,11 @@ export default {
       console.log(temp);
       rollList.value = temp;
     };
-    const showList = (index) => {
+    const showList = index => {
       // console.log(index);
-      // if (title_index.value > 1) {
-      //   return;
-      // }
+      if (lockTime[index] > (Date.parse( new Date())/1000)) {
+        return;
+      }
       // 写的跟屎一样的刷新，回来再改
       title_index.value = index;
       fetchRank(title_index.value);
@@ -140,9 +143,9 @@ export default {
       score,
       time,
       format,
-      array,
+      array
     };
-  },
+  }
 };
 </script>
 

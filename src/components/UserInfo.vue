@@ -1,53 +1,66 @@
 <template>
-  <div class='user-info mask'>
+  <div class="user-info mask">
     <!--    <div class="toast" v-show="isShowToast">-->
     <!--      <div class="mask"></div>-->
     <!--      <div class="content">{{ toast }}</div>-->
     <!--    </div>-->
-    <div class='box'>
-      <div class='title'>个人信息</div>
-      <div class='form'>
-        <div class='item name'>
-          <div class='errorInfo'>{{ errorInfo.name }}</div>
-          <div class='label'>姓名：</div>
-          <input type='text' class='input' v-model='name' placeholder='请填写姓名' />
-          <div class='outline'></div>
+    <div class="box">
+      <div class="title">个人信息</div>
+      <div class="form">
+        <div class="item name">
+          <div class="errorInfo">{{ errorInfo.name }}</div>
+          <div class="label">姓名：</div>
+          <input
+            type="text"
+            class="input"
+            v-model="name"
+            placeholder="请填写姓名"
+          />
+          <div class="outline"></div>
         </div>
-        <div class='item phone'>
-          <div class='errorInfo'>{{ errorInfo.phone }}</div>
-          <div class='label'>手机：</div>
-          <input type='tel' class='input' @input='inputPhone' v-model='phone' placeholder='请填写联系电话' />
-          <div class='outline'></div>
+        <div class="item phone">
+          <div class="errorInfo">{{ errorInfo.phone }}</div>
+          <div class="label">手机：</div>
+          <input
+            type="tel"
+            class="input"
+            @input="inputPhone"
+            v-model="phone"
+            placeholder="请填写联系电话"
+          />
+          <div class="outline"></div>
         </div>
-        <div class='item school'>
-          <div class='errorInfo'>{{ errorInfo.school }}</div>
-          <div class='label'>学校：</div>
-          <div class='select'>
+        <div class="item school">
+          <div class="errorInfo">{{ errorInfo.school }}</div>
+          <div class="label">学校：</div>
+          <div class="select">
             <!--            {{ school }}-->
             <input
-              type='school'
-              class='input schoolInput'
-              v-model='school'
-              placeholder='请选择所属学校'
-              @input='searchSchoolFun'
-              @focus='selecting = true'
+              type="school"
+              class="input schoolInput"
+              v-model="school"
+              placeholder="请选择所属学校"
+              @input="searchSchoolFun"
+              @focus="selecting = true"
             />
-            <ul class='contaniner' v-show='selecting'>
+            <ul class="contaniner" v-show="selecting">
               <li
-                v-for='item of searchSchoolList'
-                :key='item'
-                class='option'
-                @click='select(item)'
-              >{{ item }}</li>
+                v-for="item of searchSchoolList"
+                :key="item"
+                class="option"
+                @click="select(item)"
+              >
+                {{ item }}
+              </li>
             </ul>
 
-            <div :class='selecting ? `selectTab` : `unSelectTab`'></div>
+            <div :class="selecting ? `selectTab` : `unSelectTab`"></div>
           </div>
-          <div class='outline'></div>
+          <div class="outline"></div>
         </div>
       </div>
       <!--      <div class="tips">完善个人信息有利于最后的活动 领奖通知哦~</div>-->
-      <div class='submit' @click='submit'></div>
+      <div class="submit" @click="submit"></div>
     </div>
   </div>
 </template>
@@ -56,7 +69,7 @@
 import { ref } from "vue";
 import { getSchools, updateUserInfo } from "@/services/api";
 
-getSchools().then((e) => {
+getSchools().then(e => {
   console.log(e);
 });
 console.log();
@@ -69,7 +82,7 @@ export default {
     const errorInfo = ref({
       name: "",
       phone: "",
-      school: "",
+      school: ""
     });
     const name = ref("");
     const school = ref("");
@@ -78,7 +91,7 @@ export default {
     const selecting = ref(false);
     const isSelect = ref(false);
     const isShowToast = ref(false);
-    const select = (item) => {
+    const select = item => {
       school.value = item;
       isSelect.value = true;
       selecting.value = false;
@@ -157,7 +170,7 @@ export default {
       schoolList.value = data.data;
       searchSchoolList.value = searchSchoolInfo
         .search([...schoolList.value], school.value)
-        .map((item) => {
+        .map(item => {
           return item.replace(/["("]/g, "").replace(/[")"]/g, "");
         });
       // eslint-disable-next-line vue/no-ref-as-operand
@@ -165,7 +178,7 @@ export default {
     };
     const searchSchoolInfo = (() => {
       let escapeRegExp = /[-#$^*()+[\]{}|\\,.?\s]/g;
-      let escapeReg = (reg) => reg.replace(escapeRegExp, "\\$&");
+      let escapeReg = reg => reg.replace(escapeRegExp, "\\$&");
       //groupLeft 与 groupRight是对结果进一步处理所使用的分割符，可以修改
       let groupLeft = "(",
         groupRight = ")";
@@ -178,7 +191,7 @@ export default {
       let findMax = (str, keyword) => {
         let max = 0;
         keyword = groupLeft + keyword + groupRight;
-        str.replace(groupExtractReg, (m) => {
+        str.replace(groupExtractReg, m => {
           //keyword完整的出现在str中，则优秀级最高，排前面
           if (keyword === m) {
             max = Number.MAX_SAFE_INTEGER;
@@ -189,7 +202,7 @@ export default {
         });
         return max;
       };
-      let keyReg = (key) => {
+      let keyReg = key => {
         let src = ["(.*?)("];
         let ks = key.split("");
         if (ks.length) {
@@ -213,7 +226,7 @@ export default {
 
         return {
           regexp: reg,
-          replacement: replacer.join(""),
+          replacement: replacer.join("")
         };
       };
 
@@ -238,13 +251,13 @@ export default {
             (a, b) => findMax(b, keyword) - findMax(a, keyword)
           );
           return result;
-        },
+        }
       };
     })();
-    const searchSchoolFun = (e) => {
+    const searchSchoolFun = e => {
       const searchInfo = searchSchoolInfo
         .search([...schoolList.value], e.target.value)
-        .map((item) => {
+        .map(item => {
           return item.replace(/["("]/g, "").replace(/[")"]/g, "");
         });
       // console.log(e);
@@ -259,7 +272,7 @@ export default {
         updateUserInfo({
           name: name.value,
           school: school.value,
-          phone: phone.value,
+          phone: phone.value
         });
         ctx.emit("after-submit");
       } else {
@@ -282,9 +295,9 @@ export default {
       selecting,
       isSelect,
       select,
-      searchSchoolFun,
+      searchSchoolFun
     };
-  },
+  }
 };
 </script>
 
