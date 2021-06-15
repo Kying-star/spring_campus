@@ -1,40 +1,62 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:47:00
- * @LastEditTime: 2021-05-30 21:55:27
+ * @LastEditTime: 2021-06-15 19:41:29
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/views/RollList.vue
 -->
 <template>
-  <div class="home">
-    <div class="bgRoll"></div>
+  <div class='home'>
+    <div class='bgRoll'></div>
     <header>
-      <div class="score">
-        <div class="title">我的成绩</div>
-        <div class="scoreInfo">未完成全部版块</div>
+      <div class='score-head'>
+        <div class='score-head-inner'>
+          <div
+            v-for='(item,index) in array'
+            :key='item.index'
+            @click='showList(index)'
+            :class='index == title_index?`on`:`default`'
+          >{{item}}</div>
+        </div>
+      </div>
+      <div class='score'>
+        <div class='title'>我的成绩</div>
+        <!-- <div class='scoreInfo'>未完成全部版块</div> -->
+        <div class='score-inner'>
+          <div>
+            <p>{{score/2}}分</p>
+            <p>分数</p>
+          </div>
+          <div>
+            <p>{{format(time)}}</p>
+            <p>用时</p>
+          </div>
+          <div>
+            <p>{{order}}</p>
+            <p>排名</p>
+          </div>
+        </div>
       </div>
     </header>
     <main>
-      <div class="inner">
-        <div class="tip">“校园之春”党史知识问答 排行榜</div>
-        <div class="list" v-if="!IsVoid">
+      <div class='inner'>
+        <div class='tip'>“校园之春”党史知识问答 排行榜</div>
+        <div class='list' v-if='!IsVoid'>
           <RollItem
-            v-for="item in rollList"
-            :key="item"
-            :order="item.order"
-            :nickname="item.nickname"
-            :time="item.time"
-            :Avatar="item.avatar"
-            :score="item.score"
+            v-for='item in rollList'
+            :key='item'
+            :order='item.order'
+            :nickname='item.nickname'
+            :time='item.time'
+            :Avatar='item.avatar'
+            :score='item.score'
           />
         </div>
-        <div class="listVoid" v-if="IsVoid">
-          <p>
-            目前还没有人完成全部版块 排行榜空空如也
-          </p>
+        <div class='listVoid' v-if='IsVoid'>
+          <p>目前还没有人完成全部版块 排行榜空空如也</p>
         </div>
-        <div class="back" @click="back()"></div>
+        <div class='back' @click='back()'></div>
       </div>
     </main>
   </div>
@@ -43,62 +65,69 @@
 <script>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import { getRank } from "@/services/api";
+import { getRank, getUserRank } from "@/services/api";
 import RollItem from "@components/RollItem";
+import { format } from "../tools/format";
 export default {
   components: { RollItem },
   setup() {
     // 板块基本信息修改
-
+    const array = ["板块一", "板块二", "板块三", "板块四", "总排行"];
     const buttonList = ref([
       { info: "全会 情况" },
       { info: "十三五成就" },
       { info: "远景 目标" },
       { info: "十四五规划" },
-      { info: "总排行" }
+      { info: "总排行" },
     ]);
-    const title_index = ref(4);
+    const order = ref(0);
+    const score = ref(0);
+    const time = ref(0);
+    const title_index = ref(0);
     const router = useRouter();
     const IsVoid = ref(false);
     const rollList = ref([
       // { order: 1, nickname: "卷卷一号", time: "00:10:20", avatar: "" },
     ]);
-    const type_index = ref(4);
+    // const type_index = ref(4);
     const back = () => router.push("/block");
+    const fetchScore = async () => {
+      const { data } = await getUserRank();
+      console.log(1);
+      console.log(data.data);
+      order.value = data.data.ranking;
+      score.value = data.data.score;
+      time.value = data.data.spendTime;
+    };
     const fetchRank = async () => {
       const { data } = await getRank();
       // console.log(data, index);
       let temp = [];
-      // console.log(data[index].data);
-      data.data.forEach(e => {
+      data.data[title_index.value].data.forEach((e) => {
+        //console.log(e);
         let item = {};
         item.order = e.ranking;
         item.nickname = e.nick_name;
         item.avatar = e.avatar;
         item.score = e.score / 2;
-        item.time = e.score / 1000;
+        item.time = e.score;
         temp.push(item);
       });
       IsVoid.value = temp.length == 0;
       console.log(temp);
       rollList.value = temp;
     };
-    const showList = index => {
+    const showList = (index) => {
       // console.log(index);
-      type_index.value = index;
-      if (type_index.value > 4) {
-        return;
-      }
+      // if (title_index.value > 1) {
+      //   return;
+      // }
       // 写的跟屎一样的刷新，回来再改
       title_index.value = index;
-      fetchRank(type_index.value);
+      fetchRank(title_index.value);
     };
-    // const getMin = ms => {
-    //   const minutes = parseInt((ms % (1000 * 60 * 60)) / (1000 * 60));
-    //   const seconds = (ms % (1000 * 60)) / 1000;
-    //   return `${minutes * 60 + seconds}S`;
-    // };
-    fetchRank(type_index.value);
+    fetchRank(title_index.value);
+    fetchScore();
     return {
       title_index,
       buttonList,
@@ -106,9 +135,14 @@ export default {
       RollItem,
       back,
       showList,
-      IsVoid
+      IsVoid,
+      order,
+      score,
+      time,
+      format,
+      array,
     };
-  }
+  },
 };
 </script>
 
@@ -134,8 +168,48 @@ export default {
   header {
     margin: 49px 20px 0px 20px;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    .score-head-inner {
+      height: 91px;
+      width: 800px;
+      display: flex;
+    }
+    .score-head {
+      width: 660px;
+      height: 91px;
+      display: flex;
+      overflow-x: auto;
+      box-sizing: content-box;
+      padding-right: 17px;
+      .on {
+        width: 135px;
+        height: 81px;
+        margin: 5px;
+        font-size: 32px;
+        font-family: HappyZcool-2016;
+        font-weight: 400;
+        color: #fff9f2;
+        line-height: 81px;
+        text-align: center;
+        background-image: url(~@assets/images/roll/on.png);
+        background-size: cover;
+      }
+      .default {
+        width: 135px;
+        height: 81px;
+        margin: 5px;
+        font-size: 32px;
+        font-family: HappyZcool-2016;
+        font-weight: 400;
+        color: #ff914f;
+        line-height: 81px;
+        text-align: center;
+        background-image: url(~@assets/images/roll/off.png);
+        background-size: cover;
+      }
+    }
     .score {
       margin: 0 auto;
       width: 660px;
@@ -147,11 +221,14 @@ export default {
       text-align: center;
 
       .title {
+        width: 660px;
+        height: 36px;
         margin-top: 80px;
         font-size: 40px;
         font-family: HappyZcool-2016;
         font-weight: bold;
         color: #ee5d2a;
+        word-break: keep-all;
         line-height: 12px;
       }
       .scoreInfo {
@@ -162,15 +239,38 @@ export default {
         color: #ff753f;
         line-height: 35px;
       }
+      .score-inner {
+        margin-top: 15px;
+        display: flex;
+        justify-content: center;
+        div {
+          width: 200px;
+          p:nth-child(1) {
+            font-size: 38px;
+            font-family: 华康少女;
+            font-weight: 400;
+            color: #fc6d34;
+            line-height: 30px;
+          }
+          p:nth-child(2) {
+            margin-top: 20px;
+            font-size: 30px;
+            font-family: 华康少女;
+            font-weight: 400;
+            color: #fc9456;
+            line-height: 30px;
+          }
+        }
+      }
     }
   }
   main {
     width: 100%;
     margin-top: 30px;
     .inner {
-      margin: 20px auto;
+      margin: 0px auto;
       width: 660px;
-      height: 842px;
+      height: 774px;
       background-image: url(~@assets/images/roll/roll-bk.png);
       background-size: cover;
       border-radius: 15px;
