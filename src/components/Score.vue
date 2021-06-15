@@ -1,30 +1,31 @@
 <template>
-  <div class='score mask'>
-    <div class='box'>
-      <div class='title'>成绩</div>
-      <div class='text'>
-        <li class='text-title'>
+  <div class="score mask">
+    <div class="box">
+      <div class="title">成绩</div>
+      <div class="text">
+        <li class="text-title">
           恭喜你完成了
-          <span class='type'>{{ name }}</span>板块的党史知识问答。
+          <span class="type">{{ name }}</span
+          >板块的党史知识问答。
         </li>
-        <li class='text-accuracy'>
-          <p class='text-left'>答题正确率 :</p>
-          <p class='text-right'>{{score}}/50</p>
+        <li class="text-accuracy">
+          <p class="text-left">答题正确率 :</p>
+          <p class="text-right">{{ score }}/50</p>
         </li>
-        <li class='text-time'>
-          <p class='text-left'>答题用时 :</p>
-          <p class='text-right'>{{ format(time) }}</p>
+        <li class="text-time">
+          <p class="text-left">答题用时 :</p>
+          <p class="text-right">{{ format(time) }}</p>
         </li>
-        <li class='text-roll'>
-          <p class='text-left'>排名 :</p>
-          <p class='text-right'>{{ rank }}</p>
+        <li class="text-roll">
+          <p class="text-left">排名 :</p>
+          <p class="text-right">{{ rank }}</p>
         </li>
       </div>
-      <div class='cy-icon'></div>
+      <div class="cy-icon"></div>
     </div>
-    <div class='control'>
-      <div class='back button' @click='complete(`/block`)'></div>
-      <div class='rank button' @click='complete(`/roll`)'></div>
+    <div class="control">
+      <div class="back button" @click="complete(`/block`)"></div>
+      <div class="rank button" @click="complete(`/roll`)"></div>
     </div>
   </div>
 </template>
@@ -40,7 +41,7 @@ export default {
     rank: String,
     percent: String,
     type: String,
-    time: Number,
+    time: Number
   },
   setup(props, ctx) {
     const route = useRoute();
@@ -48,7 +49,7 @@ export default {
       basic: "2021-01-06 00:00:00",
       achievement: "2021-01-06 00:00:00",
       target: "2021-01-06 00:00:00",
-      plan: "2021-01-06 00:00:00",
+      plan: "2021-01-06 00:00:00"
     };
     const isShowRank = computed(
       () =>
@@ -56,14 +57,14 @@ export default {
         route.query.opportunity > 0
     );
     const close = () => ctx.emit("close");
-    const complete = (router) => ctx.emit("complete", router);
+    const complete = router => ctx.emit("complete", router);
     return {
       close,
       complete,
       isShowRank,
-      format,
+      format
     };
-  },
+  }
 };
 </script>
 
