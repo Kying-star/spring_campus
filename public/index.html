@@ -9,6 +9,10 @@
     <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
     <title>校园之春</title>
     <script>
+        if (!localStorage.getItem("openid")) {
+            window.location.href =
+                "https://be-prod.redrock.team/magicloop/rushb?b=https://fe-prod.redrock.team/spring-campus/&scope=oldphp";
+        }
         function getQueryString(name) {
             let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
             let r = window.location.search.substr(1).match(reg);
@@ -17,7 +21,7 @@
             };
             return null;
         }
-        function parseQueryString (url) {
+        function parseQueryString(url) {
             var obj = {}
             var keyvalue = []
             var key = ''
@@ -47,10 +51,6 @@
         // console.log(headUrl);
         if (headUrl && headUrl.length) {
             localStorage.setItem("head_url", headUrl);
-        }
-        if (!localStorage.getItem("openid")) {
-            window.location.href =
-                "https://be-prod.redrock.team/magicloop/rushb?b=https://fe-prod.redrock.team/spring-campus/&scope=oldphp";
         }
     </script>
     <style>
