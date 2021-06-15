@@ -74,7 +74,13 @@ export default {
   components: { RollItem },
   setup() {
     // 板块基本信息修改
-    const lockTime = [1624118400,1625068800,1633017600,1633017600,1633017600]
+    const lockTime = [
+      1624118400,
+      1625068800,
+      1633017600,
+      1633017600,
+      1633017600
+    ];
     const array = ["板块一", "板块二", "板块三", "板块四", "总排行"];
     const buttonList = ref([
       { info: "全会 情况" },
@@ -122,7 +128,7 @@ export default {
     };
     const showList = index => {
       // console.log(index);
-      if (lockTime[index] > (Date.parse( new Date())/1000)) {
+      if (lockTime[index] > Date.parse(new Date()) / 1000) {
         return;
       }
       // 写的跟屎一样的刷新，回来再改
