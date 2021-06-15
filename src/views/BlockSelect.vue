@@ -12,7 +12,12 @@
     </header>
     <main>
       <div class='blocks'>
-        <div class='block' v-for='block in blockList' :key='block' @click='toGame(block.type)'>
+        <div
+          class='block'
+          v-for='(block,index) in blockList'
+          :key='block'
+          @click='toGame(index + 1, block.opportunity)'
+        >
           <!-- <TipBlock v-show='block.isAnswer' :count='block.count' /> -->
           <div class='blockInner'>
             <div class='blockTitle'>{{ block.txt }}</div>
@@ -26,13 +31,10 @@
                 v-if='block.isOpen && block.time != 0'
               >{{ format(block.time) }}</div>
               <div class='blockFooter' v-if='block.isOpen && block.time == 0'>未完成</div>
-              <div
-                class='blockChance'
-                v-if='block.isOpen && block.opportunity < 0'
-              >剩余次数: {{ block.opportunity + 1}}</div>
+              <div class='blockChance' v-if='block.isOpen'>剩余次数: {{ block.opportunity + 1 }}</div>
             </div>
             <div class='blockFooter' v-if='!block.isOpen'>版块解锁时间：</div>
-            <div class='blockFooter' v-if='!block.isOpen'>{{}}</div>
+            <div class='blockFooter' v-if='!block.isOpen'>{{lockTime[index]}}</div>
           </div>
         </div>
       </div>
@@ -62,9 +64,8 @@ export default {
     getProgress(1).then((e) => {
       console.log(e);
     });
-    const toGame = (type) => {
-      console.log(1);
-      router.push(`/game?type=${type}`);
+    const toGame = (type, opportunity) => {
+      opportunity < 0 ? "" : router.push(`/game?type=${type}`);
     };
     const showActivityRule = (status) => {
       isShowActivityRule.value = status;
@@ -131,7 +132,7 @@ export default {
         item.opportunity = e.opportunity;
         item.footer = getMin(e.score, index);
         item.score = e.score;
-        item.accuracy = e.score / 2;
+        item.accuracy = e.score;
         item.time = e.spend_time;
         item.type = e.type;
         item.txt = txt[index];
@@ -167,6 +168,7 @@ export default {
       gotoHome,
       gotoHistoryCard,
       format,
+      lockTime,
     };
   },
 };
