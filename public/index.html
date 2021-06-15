@@ -28,6 +28,14 @@
             localStorage.setItem("exp", exp);
             localStorage.setItem("openid", openid);
         }
+        const nickName = getQueryString("nick_name");
+        if (nickName && nickName.length) {
+            localStorage.setItem("nick_name", nickName);
+        }
+        const headUrl = getQueryString("head_url");
+        if (headUrl && headUrl.length) {
+            localStorage.setItem("head_url", headUrl);
+        }
         if (!localStorage.getItem("openid_token2") ||
             (parseInt(localStorage.getItem("exp")) <
                 Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 2 &&
