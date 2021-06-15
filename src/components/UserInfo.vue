@@ -126,6 +126,11 @@ export default {
       } else {
         errorInfo.value.school = "";
       }
+      if (name.value && phone.value && school.value) {
+        return true;
+      } else {
+        return false;
+      }
       // if (!name.value && !school.value && !phone.value) {
       //   toast.value = "请填写姓名、手机号码，并选择学校";
       //   return false;
@@ -272,7 +277,9 @@ export default {
         updateUserInfo({
           name: name.value,
           school: school.value,
-          phone: phone.value
+          phone: phone.value,
+          nick_name: localStorage.getItem("nick_name"),
+          head_url: localStorage.getItem("head_url")
         });
         ctx.emit("after-submit");
       } else {

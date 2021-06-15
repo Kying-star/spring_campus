@@ -2,13 +2,13 @@
  * @Author: myjdml
  * @Date: 2021-05-31 14:10:20
  * @LastEditors: myjdml
- * @LastEditTime: 2021-06-13 17:21:02
+ * @LastEditTime: 2021-06-15 19:24:50
  * @Description: 
 -->
 <template>
   <div class="card">
     <div class="background">
-      <!-- <div class="icon"></div> -->
+      <div class="icon"></div>
       <div class="collection-state">
         {{ collectionState ? "已收集" : "未收集" }}
       </div>
@@ -91,13 +91,14 @@ export default {
       background-size: 100%;
     }
     .icon {
-      width: 140px;
-      height: 140px;
-      background: url(~@assets/images/HistoryCard/icon.png);
+      width: 114px;
+      height: 108px;
+      background: url(~@assets/images/HistoryCard/flower.png);
       background-size: 100%;
       position: absolute;
-      right: 53px;
-      bottom: 62px;
+      left: -4px;
+      bottom: 30px;
+      z-index: 3;
     }
     .tip {
       color: white;
