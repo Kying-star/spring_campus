@@ -24,17 +24,17 @@
             <div class="blockBottom">
               <div
                 class="blockAccuracy"
-                v-if="block.isOpen && block.time != 0 && block.id >= 49"
+                v-if="block.isOpen && block.opportunity != 3"
               >
                 正确率：{{ block.accuracy }}/50
               </div>
               <div
                 class="blockFooter"
-                v-if="block.isOpen && block.time != 0 && block.id >= 49"
+                v-if="block.isOpen && block.time != 0 && block.opportunity != 3"
               >
                 用时：{{ format(block.time) }}
               </div>
-              <div class="blockFooter" v-if="block.isOpen && block.id == 0">
+              <div class="blockFooter" v-if="block.isOpen && block.opportunity == 3">
                 未完成
               </div>
               <div
@@ -44,7 +44,7 @@
                 完成进度：{{ block.id }}/50
               </div>
               <div class="blockChance" v-if="block.isOpen">
-                剩余次数: {{ block.opportunity + 1 }}
+                剩余次数: {{ block.opportunity }}
               </div>
               <div class="blockFooter" v-if="!block.isOpen">版块解锁时间：</div>
               <div class="blockFooter" v-if="!block.isOpen">

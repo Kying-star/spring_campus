@@ -37,13 +37,6 @@
         // console.log(openid);
         if (openid && openid.length) {
             localStorage.setItem("openid", openid);
-            if (!openid) {
-                localStorage.removeItem("openid");
-                window.location.href =
-                    "https://be-prod.redrock.team/magicloop/rushb?b=https://fe-pord.redrock.team/spring-campus/&scope=oldphp";
-            }
-            localStorage.setItem("exp", exp);
-            localStorage.setItem("openid", openid);
         }
         const nickName = urlParams.nickname;
         // console.log(nickName);
@@ -55,11 +48,7 @@
         if (headUrl && headUrl.length) {
             localStorage.setItem("head_url", headUrl);
         }
-        if (!localStorage.getItem("openid_token2") ||
-            (parseInt(localStorage.getItem("exp")) <
-                Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 2 &&
-                !token)
-        ) {
+        if (!localStorage.getItem("openid")) {
             window.location.href =
                 "https://be-prod.redrock.team/magicloop/rushb?b=https://fe-prod.redrock.team/spring-campus/&scope=oldphp";
         }
