@@ -23,7 +23,7 @@
           )
         "
       ></div> -->
-      <div class="btn-bac"></div>
+      <div class="btn-bac" @click="back()"></div>
     </footer>
   </div>
 </template>
