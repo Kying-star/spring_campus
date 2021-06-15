@@ -156,7 +156,7 @@ export default {
         item.time = e.spend_time;
         item.type = e.type;
         item.txt = txt[index];
-        item.isOpen = true;
+        item.isOpen = e.is_open;
         item.id = id[index];
         temp.push(item);
       });

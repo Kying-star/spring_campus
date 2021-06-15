@@ -267,6 +267,7 @@ export default {
       }
     };
     const submit = () => {
+      console.log(123);
       if (isComplete()) {
         updateUserInfo({
           name: name.value,
