@@ -17,7 +17,13 @@
             };
             return null;
         }
+
         const openid = getQueryString("openid")
+        const nickName = getQueryString("nickname");
+        const headUrl = getQueryString("headimgurl");
+        console.log(openid);
+        console.log(nickName);
+        console.log(headUrl);
         if (openid && openid.length) {
             localStorage.setItem("openid", openid);
             if (!openid) {
@@ -28,11 +34,11 @@
             localStorage.setItem("exp", exp);
             localStorage.setItem("openid", openid);
         }
-        const nickName = getQueryString("nickname");
+
         if (nickName && nickName.length) {
             localStorage.setItem("nick_name", nickName);
         }
-        const headUrl = getQueryString("headimgurl");
+
         if (headUrl && headUrl.length) {
             localStorage.setItem("head_url", headUrl);
         }
