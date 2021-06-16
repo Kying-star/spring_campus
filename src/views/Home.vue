@@ -16,6 +16,7 @@
     <footer>
       <p class="ref">©红岩网校工作站</p>
     </footer>
+    <popup title="个人信息保存成功" v-show="isShowPopup"></popup>
   </div>
 </template>
 
@@ -24,18 +25,33 @@ import UserInfo from "@components/UserInfo";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { getUserInfo } from "@/services/api";
+import Popup from "@/components/Popup.vue";
 export default {
-  components: { UserInfo },
+  components: {
+    UserInfo,
+    Popup
+  },
   setup() {
     const isShowUserInfo = ref(false);
+    const isShowPopup = ref(false);
     const router = useRouter();
     const showUserInfo = status => {
       isShowUserInfo.value = status;
+      if (!status) {
+        showPopup(true);
+      }
     };
     const fetchUserInfo = async () => {
       const { data } = await getUserInfo();
       if (!data.name) isShowUserInfo.value = true;
     };
+    const showPopup = status => {
+      isShowPopup.value = status;
+      console.log("qqqqqqq");
+      setTimeout(() => {
+        isShowPopup.value = !status;
+      }, 2000);
+    }
 
     const toSelect = () => {
       router.push("/block");
@@ -43,7 +59,9 @@ export default {
     fetchUserInfo();
     return {
       isShowUserInfo,
+      isShowPopup,
       showUserInfo,
+      showPopup,
       toSelect
     };
   }
