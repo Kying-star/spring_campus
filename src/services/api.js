@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2020-12-29 17:12:32
- * @LastEditTime: 2021-06-15 20:38:32
- * @LastEditors: myjdml
+ * @LastEditTime: 2021-06-16 12:48:43
+ * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /nineteenth-committee-fe/src/services/api.js
  */
@@ -18,7 +18,7 @@ export const getUserInfo2 = () => get("/utest");
 /**
  * 获取个人信息
  */
-export const getUserInfo = () => get("/user", { openid });
+export const getUserInfo = () => get("/signIn/check", { openid });
 
 /**
  *
@@ -114,8 +114,8 @@ export const getHistoryCardPicList = type =>
  * @description: 获取图片
  */
 
-export const getCardPic = PictureID =>
-  post(`/collection`, { openid, PictureID });
+export const getCardPic = picture_id =>
+  post(`/collection`, { openid, picture_id });
 
 /**
  * @description: 获得当前排名

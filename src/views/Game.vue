@@ -1,50 +1,50 @@
 <template>
-  <div class="game" v-if="!destory">
-    <div class="activity-rule mask" v-if="isShowPhotoPopup">
-      <div class="box">
-        <div class="title">
+  <div class='game' v-if='!destory'>
+    <div class='activity-rule mask' v-if='isShowPhotoPopup'>
+      <div class='box'>
+        <div class='title'>
           <p>恭喜你 获得了一张校史卡片！</p>
         </div>
-        <div class="inner">
-          <img :src="nowPopImage" alt />
-          <div class="hr"></div>
-          <div class="inner-txt">{{ nowPopInfo }}</div>
-          <div class="inner-footer">
-            <div class="left-txt">©重庆邮电大学档案馆</div>
-            <dir class="right-icon"></dir>
+        <div class='inner'>
+          <img :src='nowPopImage' alt />
+          <div class='hr'></div>
+          <div class='inner-txt'>{{ nowPopInfo }}</div>
+          <div class='inner-footer'>
+            <div class='left-txt'>©重庆邮电大学档案馆</div>
+            <dir class='right-icon'></dir>
           </div>
         </div>
-        <div class="box-footer">长按卡片即可保存到相册</div>
+        <div class='box-footer'>长按卡片即可保存到相册</div>
       </div>
-      <div class="btn" v-if="isOk" @click="close"></div>
-      <div class="get-btn" v-if="!isOk" @click="gotoScore"></div>
+      <div class='btn' v-if='isOk' @click='close'></div>
+      <div class='get-btn' v-if='!isOk' @click='gotoScore'></div>
     </div>
     <header>
-      <div class="time">
-        <div class="icon">计时</div>
-        <div class="text">{{ format(clock.timeStamp) }}</div>
+      <div class='time'>
+        <div class='icon'>计时</div>
+        <div class='text'>{{ format(clock.timeStamp) }}</div>
       </div>
       <!-- <div class='tip_time' v-if='stayTime < 10000'>{{ Math.ceil((10000 - stayTime) / 1000) }}s</div> -->
       <!-- <div v-else class='tip_button' @click='showTip(!isShowTip)'></div> -->
     </header>
     <main>
       <component
-        :is="item"
-        v-for="(item, index) of components"
-        :key="questions[index].order"
-        :index="questions[index].order - (type - 1) * 50"
-        :question="questions[index].question"
-        :answers="questions[index].answer"
-        :answerKey="
+        :is='item'
+        v-for='(item, index) of components'
+        :key='questions[index].order'
+        :index='questions[index].order - (type - 1) * 50'
+        :question='questions[index].question'
+        :answers='questions[index].answer'
+        :answerKey='
           questions[index].topic_type === `click`
             ? ``
             : questions[index].right_answer
-        "
-        v-show="questions[index].order - (type - 1) * 50 === showIndex + 1"
-        @next="nextQuestion"
-        :isShowTip="isShowTip"
-        @onselecting="showTip(false)"
-        :total="questions.length"
+        '
+        v-show='questions[index].order - (type - 1) * 50 === showIndex + 1'
+        @next='nextQuestion'
+        :isShowTip='isShowTip'
+        @onselecting='showTip(false)'
+        :total='questions.length'
       />
     </main>
     <!-- <QuestionTip
@@ -55,14 +55,14 @@
       :last='isComplete'
     />-->
     <Score
-      v-show="isShowScore"
-      :name="txt[type - 1]"
-      :score="correctNum"
-      :rank="ranking"
-      :percent="score.percent"
-      :time="clock.timeStamp"
-      @complete="hideScore"
-      :type="type"
+      v-show='isShowScore'
+      :name='txt[type - 1]'
+      :score='correctNum'
+      :rank='ranking'
+      :percent='score.percent'
+      :time='clock.timeStamp'
+      @complete='hideScore'
+      :type='type'
     />
   </div>
 </template>
@@ -84,7 +84,7 @@ import {
   getCardPic,
   updateProgress,
   getUserRank,
-  getProgress
+  getProgress,
 } from "@/services/api";
 import router from "@/router";
 export default {
@@ -97,16 +97,16 @@ export default {
       timer: null,
       enter: 0,
       timeStamp: 0,
-      pre: +new Date()
+      pre: +new Date(),
     });
     const txt = [
       "新民主主义革命史",
       "社会主义革命建设史",
       "改革开放与社会主义现代化建设史",
-      "新时代中国特色社会主义史"
+      "新时代中国特色社会主义史",
     ];
     const isShowPhotoPopup = ref(false);
-    const showPhotoPopup = state => {
+    const showPhotoPopup = (state) => {
       isShowPhotoPopup.value = state;
     };
     const nowPopImage = ref("");
@@ -121,7 +121,7 @@ export default {
       name: "",
       score: "",
       ranking: "",
-      percent: ""
+      percent: "",
     });
     const isShowTip = ref(false);
     const isShowQuestionTip = ref(false);
@@ -138,13 +138,13 @@ export default {
       });
     });
     const stayTime = computed(() => clock.timeStamp - clock.enter);
-    const hideScore = to => {
+    const hideScore = (to) => {
       isShowScore.value = false;
       destory.value = true;
       router.push(to);
     };
     const isOk = ref(true);
-    const nextQuestion = async isCorrect => {
+    const nextQuestion = async (isCorrect) => {
       //console.log(isCorrect);
       isCorrect ? correctNum.value++ : "";
       //console.log("正确个数" + correctNum.value);
@@ -160,9 +160,9 @@ export default {
       } else {
         setTimeout(async () => {
           showIndex.value++;
-          console.log("offset" + (parseInt(showIndex.value / 10) + type - 1));
-          if (showIndex.value % 10 == 0) {
-            let offset = parseInt(showIndex.value / 10);
+          console.log("offset" + (parseInt(showIndex.value / 5) + type - 1));
+          if (showIndex.value % 5 == 0) {
+            let offset = parseInt(showIndex.value / 5);
             offset = offset + parseInt(type) - 1;
             const { data } = await getCardPic(offset);
             nowPopImage.value = data.data.url;
@@ -188,7 +188,7 @@ export default {
     //   const { data } = await getAnalysis(type);
     //   questionTip.value = data.data;
     // };
-    const format = msTime => {
+    const format = (msTime) => {
       let time = msTime / 1000;
       let hour = Math.floor(time / 60 / 60);
       hour = hour.toString().padStart(2, "0");
@@ -217,7 +217,7 @@ export default {
         showIndex.value
       );
     };
-    const toDub = n => {
+    const toDub = (n) => {
       //补0操作
       if (n < 10) {
         return "0" + n;
@@ -228,12 +228,12 @@ export default {
     const stop = () => {
       clearInterval(clock.timer);
     };
-    const showTip = status => {
+    const showTip = (status) => {
       if (stayTime.value >= 10000) {
         isShowTip.value = status;
       }
     };
-    const showQuestionTip = async status => {
+    const showQuestionTip = async (status) => {
       isShowQuestionTip.value = status;
       if (status) {
         stop();
@@ -314,9 +314,9 @@ export default {
       gotoScore,
       txt,
       ranking,
-      correctNum
+      correctNum,
     };
-  }
+  },
 };
 </script>
 
@@ -458,7 +458,6 @@ export default {
         font-weight: 400;
         color: #ee742a;
         line-height: 36px;
-        word-break: keep-all;
       }
       .inner-footer {
         width: 468px;
