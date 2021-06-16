@@ -1,20 +1,19 @@
 <template>
-  <div class="home">
-    <div class="bg"></div>
-    <UserInfo v-show="isShowUserInfo" @after-submit="showUserInfo(false)" />
+  <div class='home'>
+    <div class='bg'></div>
+    <UserInfo v-show='isShowUserInfo' @after-submit='showUserInfo(false)' />
     <header>
-      <div class="icon">
-        <div class="redrock"></div>
-        <div class="study"></div>
-        <div class="school"></div>
+      <div class='icon'>
+        <div class='redrock'></div>
+        <div class='school'></div>
       </div>
-      <div class="user" @click="showUserInfo(true)"></div>
+      <div class='user' @click='showUserInfo(true)'></div>
     </header>
     <main>
-      <div class="start" @click="toSelect"></div>
+      <div class='start' @click='toSelect'></div>
     </main>
     <footer>
-      <p class="ref">©红岩网校工作站</p>
+      <p class='ref'>©红岩网校工作站</p>
     </footer>
   </div>
 </template>
@@ -29,12 +28,13 @@ export default {
   setup() {
     const isShowUserInfo = ref(false);
     const router = useRouter();
-    const showUserInfo = status => {
+    const showUserInfo = (status) => {
       isShowUserInfo.value = status;
     };
     const fetchUserInfo = async () => {
       const { data } = await getUserInfo();
-      if (!data.name) isShowUserInfo.value = true;
+      console.log(data);
+      if (!data.data) isShowUserInfo.value = true;
     };
 
     const toSelect = () => {
@@ -44,9 +44,9 @@ export default {
     return {
       isShowUserInfo,
       showUserInfo,
-      toSelect
+      toSelect,
     };
-  }
+  },
 };
 </script>
 
@@ -95,11 +95,21 @@ export default {
       }
     }
     .user {
-      width: 56px;
-      height: 59px;
+      width: 84px;
+      height: 84px;
       background-image: url(~@assets/images/home/user.png);
       background-size: contain;
       background-repeat: no-repeat;
+    }
+    .user::before {
+      position: relative;
+      top: 74px;
+      content: "个人信息";
+      font-size: 22px;
+      font-family: HappyZcool-2016;
+      font-weight: 400;
+      color: #a1bb16;
+      word-break: keep-all;
     }
   }
   main {

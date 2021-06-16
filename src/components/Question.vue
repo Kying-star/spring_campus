@@ -1,8 +1,16 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-06-11 21:21:52
+ * @LastEditTime: 2021-06-16 13:23:43
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /spring_campus/src/components/Question.vue
+-->
 <template>
-  <div class="question">
-    <div class="title">第{{ index }}/{{ total }}题</div>
-    <div class="content" v-html="showText"></div>
-    <div class="tip">请选择正确选项</div>
+  <div class='question'>
+    <div class='title'>第{{ index }}/{{ total }}题</div>
+    <div class='content' v-html='showText'></div>
+    <div class='tip'>请选择正确选项</div>
   </div>
 </template>
 
@@ -11,18 +19,18 @@ export default {
   props: {
     index: {
       type: Number,
-      required: true
+      required: true,
     },
     showText: {
       type: String,
-      required: true
+      required: true,
     },
     isShowWrong: {
       type: Boolean,
-      required: true
+      required: true,
     },
-    total: Number
-  }
+    total: Number,
+  },
 };
 </script>
 
@@ -34,7 +42,7 @@ export default {
   box-sizing: border-box;
   width: 100%;
   border-radius: 20px;
-  padding: 31px 41px 97px;
+  padding: 31px 55px 97px;
   text-align: center;
   position: relative;
   background-image: url(~@assets/images/game/question-bk.png);
@@ -43,7 +51,6 @@ export default {
     margin-top: 107px;
     font-size: 48px;
     font-family: HappyZcool-2016;
-    font-weight: bold;
     color: #ee5d2a;
     line-height: 12px;
     margin-bottom: 58px;
@@ -60,7 +67,8 @@ export default {
     text-align: left;
   }
   .tip {
-    margin-top: 23px;
+    top: 460px;
+    position: absolute;
     text-align: left;
     font-size: 32px;
     font-family: HappyZcool-2016;

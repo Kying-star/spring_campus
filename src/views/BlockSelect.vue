@@ -16,7 +16,7 @@
           class='block'
           v-for='(block, index) in blockList'
           :key='block'
-          @click='toGame(index + 1, block.opportunity)'
+          @click='toGame(index + 1)'
         >
           <!-- <TipBlock v-show='block.isAnswer' :count='block.count' /> -->
           <div class='blockInner'>
@@ -65,8 +65,8 @@ export default {
     getScore().then((e) => {
       console.log(e);
     });
-    const toGame = (type, opportunity) => {
-      opportunity <= 0 ? "" : router.push(`/game?type=${type}`);
+    const toGame = (type) => {
+      router.push(`/game?type=${type}`);
     };
     const showActivityRule = (status) => {
       isShowActivityRule.value = status;
@@ -223,11 +223,11 @@ export default {
       white-space: nowrap;
       position: relative;
       top: 84px;
-      left: -5px;
+      left: -1px;
       content: "活动规则";
       font-size: 22px;
       font-family: HappyZcool-2016;
-      font-weight: 400;
+
       color: #ffdf6e;
     }
   }

@@ -458,7 +458,6 @@ export default {
         font-weight: 400;
         color: #ee742a;
         line-height: 36px;
-        word-break: keep-all;
       }
       .inner-footer {
         width: 468px;
