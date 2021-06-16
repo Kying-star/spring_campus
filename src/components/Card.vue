@@ -2,7 +2,7 @@
  * @Author: myjdml
  * @Date: 2021-05-31 14:10:20
  * @LastEditors: myjdml
- * @LastEditTime: 2021-06-15 19:24:50
+ * @LastEditTime: 2021-06-16 21:40:12
  * @Description: 
 -->
 <template>
@@ -126,6 +126,7 @@ export default {
         top: 37px;
       }
       .title {
+        width: 446px;
         color: #ee742a;
         font-size: 28px;
         position: absolute;

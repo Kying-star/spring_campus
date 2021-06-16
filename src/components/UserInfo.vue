@@ -396,7 +396,7 @@ export default {
         }
         .errorInfo {
           position: absolute;
-          top: 80px;
+          top: 85px;
           left: 180px;
           color: #fc8449;
           font-size: 28px;
