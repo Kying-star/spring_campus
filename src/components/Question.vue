@@ -7,10 +7,10 @@
  * @FilePath: /spring_campus/src/components/Question.vue
 -->
 <template>
-  <div class='question'>
-    <div class='title'>第{{ index }}/{{ total }}题</div>
-    <div class='content' v-html='showText'></div>
-    <div class='tip'>请选择正确选项</div>
+  <div class="question">
+    <div class="title">第{{ index }}/{{ total }}题</div>
+    <div class="content" v-html="showText"></div>
+    <div class="tip">请选择正确选项</div>
   </div>
 </template>
 
@@ -19,18 +19,18 @@ export default {
   props: {
     index: {
       type: Number,
-      required: true,
+      required: true
     },
     showText: {
       type: String,
-      required: true,
+      required: true
     },
     isShowWrong: {
       type: Boolean,
-      required: true,
+      required: true
     },
-    total: Number,
-  },
+    total: Number
+  }
 };
 </script>
 
