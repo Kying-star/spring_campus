@@ -281,7 +281,7 @@ export default {
           school: school.value,
           phone: phone.value,
           nick_name: localStorage.getItem("nick_name"),
-          head_url: localStorage.getItem("head_url")
+          heard_url: localStorage.getItem("head_url")
         });
         ctx.emit("after-submit");
       } else {

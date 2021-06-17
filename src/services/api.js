@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2020-12-29 17:12:32
- * @LastEditTime: 2021-06-16 12:48:43
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-06-17 16:56:03
+ * @LastEditors: myjdml
  * @Description: In User Settings Edit
  * @FilePath: /nineteenth-committee-fe/src/services/api.js
  */
@@ -27,8 +27,15 @@ export const getUserInfo = () => get("/signIn/check", { openid });
  * @param {string} school 学校
  * @param {string} phone 电话
  */
-export const updateUserInfo = ({ name, school, phone, nick_name, head_url }) =>
-  post("/signIn", { name, school, phone, openid, nick_name, head_url });
+export const updateUserInfo = ({ name, school, phone, nick_name, heard_url }) =>
+  post("/signIn", {
+    name,
+    school,
+    phone,
+    open_id: openid,
+    nick_name,
+    heard_url
+  });
 
 //排行榜页面
 
