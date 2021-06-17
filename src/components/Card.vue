@@ -2,7 +2,7 @@
  * @Author: myjdml
  * @Date: 2021-05-31 14:10:20
  * @LastEditors: myjdml
- * @LastEditTime: 2021-06-16 22:05:52
+ * @LastEditTime: 2021-06-17 18:48:55
  * @Description: 
 -->
 <template>
@@ -58,6 +58,7 @@ export default {
     width: 676px;
     height: 842px;
     margin-left: 25px;
+    margin-bottom: 50px;
     background: url(~@assets/images/HistoryCard/card-bk.png);
     background-size: 100%;
     position: relative;
