@@ -32,7 +32,7 @@
         </div>
         <div class="item school">
           <div class="errorInfo">{{ errorInfo.school }}</div>
-          <div class="label">学校：</div>
+          <div class="label">学院：</div>
           <div class="select">
             <!--            {{ school }}-->
             <input
@@ -92,7 +92,7 @@ export default {
     const isSelect = ref(false);
     const isShowToast = ref(false);
     const select = item => {
-      school.value = item;
+      school.value = truncatedStringTooLong(item, 7);
       isSelect.value = true;
       selecting.value = false;
     };
@@ -126,7 +126,7 @@ export default {
       } else {
         errorInfo.value.school = "";
       }
-      if (name.value && phone.value && school.value) {
+      if (name.value && !errorInfo.value.phone && school.value) {
         return true;
       } else {
         return false;
@@ -286,6 +286,20 @@ export default {
         showToast();
       }
     };
+    /**
+     * @description: 处理过长的字符串
+     * @param {*} str
+     * @param {*} len
+     * @return {*}
+     * @author: myjdml
+     */
+    const truncatedStringTooLong = (str, len) => {
+      if (str.length < len) {
+        return str;
+      } else {
+        return `${str.slice(0, len)}...`;
+      }
+    };
     //fetchUserInfo();
     fetchSchoolInfo();
     return {
@@ -302,7 +316,8 @@ export default {
       selecting,
       isSelect,
       select,
-      searchSchoolFun
+      searchSchoolFun,
+      truncatedStringTooLong
     };
   }
 };
