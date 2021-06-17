@@ -38,7 +38,7 @@
             <input
               type="school"
               class="input schoolInput"
-              v-model="school"
+              v-model="schoolShowText"
               placeholder="请选择所属学校"
               @input="searchSchoolFun"
               @focus="selecting = true"
@@ -86,13 +86,15 @@ export default {
     });
     const name = ref("");
     const school = ref("");
+    const schoolShowText = ref("");
     const phone = ref("");
     const toast = ref("");
     const selecting = ref(false);
     const isSelect = ref(false);
     const isShowToast = ref(false);
     const select = item => {
-      school.value = truncatedStringTooLong(item, 7);
+      school.value = item;
+      schoolShowText.value = truncatedStringTooLong(item, 7);
       isSelect.value = true;
       selecting.value = false;
     };
@@ -306,6 +308,7 @@ export default {
       schoolList,
       searchSchoolList,
       school,
+      schoolShowText,
       phone,
       inputPhone,
       submit,

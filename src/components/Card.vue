@@ -2,7 +2,7 @@
  * @Author: myjdml
  * @Date: 2021-05-31 14:10:20
  * @LastEditors: myjdml
- * @LastEditTime: 2021-06-16 21:40:12
+ * @LastEditTime: 2021-06-16 22:05:52
  * @Description: 
 -->
 <template>
@@ -132,6 +132,7 @@ export default {
         position: absolute;
         top: 426px;
         left: 42px;
+        letter-spacing: 3px;
       }
     }
     .cover {
