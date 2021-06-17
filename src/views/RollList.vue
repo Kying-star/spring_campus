@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:47:00
- * @LastEditTime: 2021-06-16 13:48:04
+ * @LastEditTime: 2021-06-16 22:06:00
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/views/RollList.vue
@@ -9,6 +9,7 @@
 <template>
   <div class='home'>
     <div class='bgRoll'></div>
+    <div class='flower'></div>
     <header>
       <div class='score-head'>
         <div class='score-head-inner'>
@@ -160,6 +161,15 @@ export default {
   flex-direction: column;
   position: relative;
   font-family: "SimHei";
+  .flower {
+    position: absolute;
+    width: 110px;
+    height: 105px;
+    left: 617px;
+    top: 343px;
+    background-image: url(~@assets/images/roll/flower.png);
+    background-size: cover;
+  }
   .bgRoll {
     position: absolute;
     top: 0;
@@ -192,7 +202,7 @@ export default {
       .on {
         width: 135px;
         height: 81px;
-        margin: 5px;
+        margin-left: 19px;
         font-size: 32px;
         font-family: HappyZcool-2016;
         font-weight: 400;
@@ -205,7 +215,7 @@ export default {
       .default {
         width: 135px;
         height: 81px;
-        margin: 5px;
+        margin-left: 19px;
         font-size: 32px;
         font-family: HappyZcool-2016;
         font-weight: 400;
@@ -272,7 +282,7 @@ export default {
   }
   main {
     width: 100%;
-    margin-top: 30px;
+    margin-top: 15px;
     .inner {
       margin: 0px auto;
       width: 660px;

@@ -36,7 +36,6 @@ export default {
       console.log(data);
       if (!data.data) isShowUserInfo.value = true;
     };
-
     const toSelect = () => {
       router.push("/block");
     };
@@ -102,6 +101,7 @@ export default {
       background-repeat: no-repeat;
     }
     .user::before {
+      z-index: -1;
       position: relative;
       top: 74px;
       content: "个人信息";

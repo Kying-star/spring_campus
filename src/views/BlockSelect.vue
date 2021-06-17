@@ -12,6 +12,7 @@
     </header>
     <main>
       <div class='blocks'>
+        <div class='flower'></div>
         <div
           class='block'
           v-for='(block, index) in blockList'
@@ -247,6 +248,16 @@ export default {
       flex-wrap: wrap;
       justify-content: center;
       margin-top: 13px;
+      .flower {
+        position: absolute;
+        width: 79px;
+        height: 112px;
+        left: 0px;
+        top: 400px;
+        z-index: 10;
+        background-image: url(~@assets/images/home/flower.png);
+        background-size: cover;
+      }
       .block {
         position: relative;
         width: 329px;
