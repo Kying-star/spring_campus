@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 23:04:50
- * @LastEditTime: 2021-05-30 21:55:34
+ * @LastEditTime: 2021-06-17 19:46:06
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/components/RollItem.vue
@@ -11,7 +11,7 @@
     <div class="personDetail">
       <div class="rank">{{ rank }}</div>
       <img class="Avatar" :src="Avatar" />
-      <div class="nickname">{{ nick }}</div>
+      <div class="nickname">{{ decodeURI(nick) }}</div>
     </div>
     <div class="times">
       <div class="score">{{ score }}分</div>

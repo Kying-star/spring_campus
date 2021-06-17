@@ -1,8 +1,8 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:47:00
- * @LastEditTime: 2021-06-17 17:56:24
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-06-17 20:51:57
+ * @LastEditors: myjdml
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/views/RollList.vue
 -->
@@ -16,8 +16,8 @@
           <div
             v-for="(item, index) in array"
             :key="item.index"
-            @click="showList(index)"
-            :class="index === title_index ? `on` : `default`"
+            @click="showList(index + 1)"
+            :class="index + 1 === title_index ? `on` : `default`"
           >
             {{ item }}
           </div>
@@ -25,10 +25,10 @@
       </div>
       <div class="score">
         <div class="title">我的成绩</div>
-        <!-- <div class='scoreInfo'>未完成全部版块</div> -->
-        <div class="score-inner">
+        <div class="scoreInfo" v-if="!isOnRank">未完成全部版块</div>
+        <div class="score-inner" v-if="isOnRank">
           <div>
-            <p>{{ score / 2 }}分</p>
+            <p>{{ score * 2 }}分</p>
             <p>分数</p>
           </div>
           <div>
@@ -53,7 +53,7 @@
             :nickname="item.nickname"
             :time="item.time"
             :Avatar="item.avatar"
-            :score="item.score"
+            :score="title_index === 0 ? item.score / 2 : item.score * 2"
           />
         </div>
         <div class="listVoid" v-if="IsVoid">
@@ -93,12 +93,13 @@ export default {
     const order = ref(0);
     const score = ref(0);
     const time = ref(0);
-    const title_index = ref(0);
+    const title_index = ref(1);
     const router = useRouter();
     const IsVoid = ref(false);
     const rollList = ref([
       // { order: 1, nickname: "卷卷一号", time: "00:10:20", avatar: "" },
     ]);
+    const isOnRank = ref(true);
     // const type_index = ref(4);
     const back = () => router.push("/block");
     const fetchScore = async () => {
@@ -106,6 +107,9 @@ export default {
       console.log(1);
       console.log(data.data);
       order.value = data.data.ranking;
+      if (data.data.ranking < 0) {
+        isOnRank.value = false;
+      }
       score.value = data.data.score;
       time.value = data.data.spendTime;
     };
@@ -122,8 +126,8 @@ export default {
         item.order = e.ranking;
         item.nickname = e.nick_name;
         item.avatar = e.avatar;
-        item.score = e.score / 2;
-        item.time = e.score;
+        item.score = e.score;
+        item.time = e.spend_time;
         temp.push(item);
       });
 
@@ -136,12 +140,16 @@ export default {
         return;
       }
       // 写的跟屎一样的刷新，回来再改
-      title_index.value = index;
+      title_index.value = index == 5 ? 0 : index;
       fetchRank(title_index.value);
     };
     fetchRank(title_index.value);
     fetchScore();
+    const sayhi = () => {
+      console.log(1);
+    };
     return {
+      isOnRank,
       title_index,
       buttonList,
       rollList,
@@ -153,7 +161,8 @@ export default {
       score,
       time,
       format,
-      array
+      array,
+      sayhi
     };
   }
 };
