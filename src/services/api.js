@@ -128,4 +128,4 @@ export const getCardPic = picture_id =>
  * @description: 获得当前排名
  */
 
-export const getUserRank = (type) => get(`rank`, { openid ,type});
+export const getUserRank = type => get(`rank`, { openid, type });

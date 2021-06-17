@@ -39,7 +39,7 @@
               type="school"
               class="input schoolInput"
               v-model="schoolShowText"
-              placeholder="请选择所属学校"
+              placeholder="请选择所属学院"
               @input="searchSchoolFun"
               @focus="selecting = true"
             />
@@ -384,7 +384,7 @@ export default {
     .title {
       font-size: 48px;
       //font-family: SJbangshu;
-      color: #ff4f35;
+      color: #ee5d2a;
       margin-top: 173px;
     }
     .form {
@@ -398,6 +398,7 @@ export default {
           margin-bottom: 0;
         }
         .errorInfo {
+          font-family: 华康少女;
           position: absolute;
           top: 85px;
           left: 180px;
@@ -411,10 +412,11 @@ export default {
           margin-left: 40px;
         }
         .input {
+          font-family: 华康少女;
           box-sizing: border-box;
           width: 380px;
           height: 88px;
-          color: #ffc171;
+          color: #fc6d34;
           padding: 30px 0 30px 20px;
           border: none;
           outline: none;
@@ -423,12 +425,16 @@ export default {
           background-size: 100% 100%;
           background-repeat: no-repeat;
         }
+        input::-webkit-input-placeholder {
+          color: #ffc171;
+        }
         .schoolInput {
           margin-left: -20px;
           margin-top: -40px;
           width: 320px;
         }
         .select {
+          font-family: 华康少女;
           box-sizing: border-box;
           font-size: 32px;
           font-weight: 500;
