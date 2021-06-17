@@ -7,15 +7,15 @@
  * @FilePath: /spring_campus/src/components/QuestionTip.vue
 -->
 <template>
-  <div class='question-tip mask'>
-    <div class='box'>
-      <div class='title'>题目解析</div>
-      <div class='content'>
-        <img :src='imgUrl' />
-        <p class='text'>{{ text }}</p>
+  <div class="question-tip mask">
+    <div class="box">
+      <div class="title">题目解析</div>
+      <div class="content">
+        <img :src="imgUrl" />
+        <p class="text">{{ text }}</p>
       </div>
     </div>
-    <div class='close' @click='close' :class='{ last: last }'></div>
+    <div class="close" @click="close" :class="{ last: last }"></div>
   </div>
 </template>
 
@@ -24,14 +24,14 @@ export default {
   props: {
     imgUrl: String,
     text: String,
-    last: Boolean,
+    last: Boolean
   },
   setup(props, ctx) {
     const close = () => ctx.emit("close");
     return {
-      close,
+      close
     };
-  },
+  }
 };
 </script>
 
