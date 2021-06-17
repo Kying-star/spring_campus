@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-01-01 15:08:43
- * @LastEditTime: 2021-06-14 12:34:01
+ * @LastEditTime: 2021-06-17 20:47:57
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /nineteenth-committee-fe/src/components/ActivityRule.vue
@@ -29,7 +29,7 @@ export default {
     const clickNum = ref(10);
     const clicked = ref(false);
     const close = () => ctx.emit("close");
-    console.log(props.index);
+    // console.log(props.index);
     return {
       close,
       clickNum,
