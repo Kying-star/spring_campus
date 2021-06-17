@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:47:00
- * @LastEditTime: 2021-06-17 20:17:47
+ * @LastEditTime: 2021-06-17 20:22:26
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/views/RollList.vue
@@ -126,7 +126,7 @@ export default {
         item.order = e.ranking;
         item.nickname = e.nick_name;
         item.avatar = e.avatar;
-        item.score = e.score / 2;
+        item.score = e.score;
         item.time = e.spend_time;
         temp.push(item);
       });
