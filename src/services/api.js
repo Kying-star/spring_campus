@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2020-12-29 17:12:32
- * @LastEditTime: 2021-06-17 16:56:03
- * @LastEditors: myjdml
+ * @LastEditTime: 2021-06-17 17:48:41
+ * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /nineteenth-committee-fe/src/services/api.js
  */
@@ -128,4 +128,4 @@ export const getCardPic = picture_id =>
  * @description: 获得当前排名
  */
 
-export const getUserRank = () => get(`rank`, { openid });
+export const getUserRank = (type) => get(`rank`, { openid ,type});
