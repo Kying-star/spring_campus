@@ -1,13 +1,13 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:47:00
- * @LastEditTime: 2021-06-18 20:18:29
+ * @LastEditTime: 2021-06-18 20:58:31
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/views/RollList.vue
 -->
 <template>
-  <div class='home'>
+  <div class='rollhome'>
     <div class='bgRoll'></div>
     <div class='flower'></div>
     <header>
@@ -16,7 +16,7 @@
           <div
             v-for='(item, index) in array'
             :key='item.index'
-            @click='showList(index + 1)'
+            @click='showList(index)'
             :class='index + 1 === title_index ? `on` : `default`'
           >{{ item }}</div>
         </div>
@@ -133,6 +133,7 @@ export default {
     };
     const showList = (index) => {
       // console.log(index);
+      console.log(lockTime[index], Date.parse(new Date()) / 1000);
       if (lockTime[index] > Date.parse(new Date()) / 1000) {
         return;
       }
@@ -166,7 +167,7 @@ export default {
 </script>
 
 <style lang="scss" socped>
-.home {
+.rollhome {
   width: 100%;
   height: 100vh;
   display: flex;
