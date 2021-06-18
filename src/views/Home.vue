@@ -1,21 +1,21 @@
 <template>
-  <div class="home">
-    <div class="bg"></div>
-    <UserInfo v-show="isShowUserInfo" @after-submit="showUserInfo(false)" />
+  <div class='home'>
+    <div class='bg'></div>
+    <UserInfo v-show='isShowUserInfo' @after-submit='showUserInfo(false)' />
     <header>
-      <div class="icon">
-        <div class="redrock"></div>
-        <div class="school"></div>
+      <div class='icon'>
+        <div class='redrock'></div>
+        <div class='school'></div>
       </div>
-      <div class="user" @click="showUserInfo(true)"></div>
+      <div class='user' @click='showUserInfo(true)'></div>
     </header>
     <main>
-      <div class="start" @click="toSelect"></div>
+      <div class='start' @click='toSelect'></div>
     </main>
     <footer>
-      <p class="ref">©红岩网校工作站</p>
+      <!-- <p class="ref">©红岩网校工作站</p> -->
     </footer>
-    <popup title="个人信息保存成功" v-show="isShowPopup"></popup>
+    <popup title='个人信息保存成功' v-show='isShowPopup'></popup>
   </div>
 </template>
 
@@ -28,13 +28,13 @@ import Popup from "@/components/Popup.vue";
 export default {
   components: {
     UserInfo,
-    Popup
+    Popup,
   },
   setup() {
     const isShowUserInfo = ref(false);
     const isShowPopup = ref(false);
     const router = useRouter();
-    const showUserInfo = status => {
+    const showUserInfo = (status) => {
       isShowUserInfo.value = status;
       if (!status) {
         showPopup(true);
@@ -45,7 +45,7 @@ export default {
       console.log(data);
       if (!data.data) isShowUserInfo.value = true;
     };
-    const showPopup = status => {
+    const showPopup = (status) => {
       isShowPopup.value = status;
       console.log("qqqqqqq");
       setTimeout(() => {
@@ -62,9 +62,9 @@ export default {
       isShowPopup,
       showUserInfo,
       showPopup,
-      toSelect
+      toSelect,
     };
-  }
+  },
 };
 </script>
 
