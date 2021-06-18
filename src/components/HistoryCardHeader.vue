@@ -2,7 +2,7 @@
  * @Author: myjdml
  * @Date: 2021-05-30 20:21:01
  * @LastEditors: myjdml
- * @LastEditTime: 2021-06-11 18:42:34
+ * @LastEditTime: 2021-06-18 16:44:08
  * @Description: 校史卡片板块头部
 -->
 <template>
@@ -26,6 +26,7 @@ import { ref } from "vue";
 export default {
   name: "HistoryCardHeader",
   setup(props, ctx) {
+    const lockTime = [1624118400, 1625068800, 1633017600, 1633017600];
     const cardListInner = ref([
       {
         name: "板块一",
@@ -51,6 +52,9 @@ export default {
      * @author: myjdml
      */
     const clickModule = index => {
+      if (lockTime[index] > Date.parse(new Date()) / 1000) {
+        return;
+      }
       cardListInner.value.forEach(item => {
         item.state = false;
       });
