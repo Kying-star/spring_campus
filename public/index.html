@@ -9,7 +9,13 @@
     <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
     <title>追忆党史“邮”我来</title>
     <script>
-        if (!localStorage.getItem("openid")) {
+        if (
+            !localStorage.getItem("openid")
+            &&
+            !localStorage.getItem("nick_name", nickName)
+            &&
+            !localStorage.setItem("head_url", headUrl)
+        ) {
             window.location.href =
                 "https://be-prod.redrock.team/magicloop/rushb?b=https://fe-prod.redrock.team/spring-campus/&scope=oldphp";
         }
