@@ -12,9 +12,6 @@
     <main>
       <div class='start' @click='toSelect'></div>
     </main>
-    <footer>
-      <!-- <p class="ref">©红岩网校工作站</p> -->
-    </footer>
     <popup title='个人信息保存成功' v-show='isShowPopup'></popup>
   </div>
 </template>
@@ -74,6 +71,7 @@ export default {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   position: relative;
   .bg {
     position: absolute;
@@ -134,7 +132,7 @@ export default {
   main {
     width: 100%;
     .start {
-      margin: 710px auto 0 auto;
+      margin: 710px auto 154px auto;
       width: 577px;
       height: 265px;
       background-image: url(~@assets/images/home/start_button.png);
