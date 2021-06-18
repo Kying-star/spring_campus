@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:47:00
- * @LastEditTime: 2021-06-18 19:47:36
+ * @LastEditTime: 2021-06-18 20:18:29
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/views/RollList.vue
@@ -44,7 +44,7 @@
       <div class='inner'>
         <div class='tip'>
           {{buttonList[title_index].info}}
-          <br />排行榜
+          <br />答题排行榜
         </div>
         <div class='list' v-if='!IsVoid'>
           <RollItem
