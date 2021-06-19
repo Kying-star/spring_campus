@@ -1,8 +1,8 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:47:00
- * @LastEditTime: 2021-06-18 20:58:31
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-06-19 17:00:56
+ * @LastEditors: myjdml
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/views/RollList.vue
 -->
@@ -77,7 +77,11 @@ export default {
   setup() {
     // 板块基本信息修改
     const lockTime = [
-      1624118400, 1625068800, 1633017600, 1633017600, 1633017600,
+      1624291200,
+      1625068800,
+      1633017600,
+      1633017600,
+      1633017600
     ];
     const array = ["板块一", "板块二", "板块三", "板块四", "总排行"];
     const buttonList = ref([
@@ -85,7 +89,7 @@ export default {
       { info: "新民主主义革命史" },
       { info: "社会主义革命建设史" },
       { info: "改革开放与社会主义现代化建设史" },
-      { info: "新时代中国特色社会主义史" },
+      { info: "新时代中国特色社会主义史" }
     ]);
     const order = ref(0);
     const score = ref(0);

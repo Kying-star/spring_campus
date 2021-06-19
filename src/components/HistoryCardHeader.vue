@@ -2,7 +2,7 @@
  * @Author: myjdml
  * @Date: 2021-05-30 20:21:01
  * @LastEditors: myjdml
- * @LastEditTime: 2021-06-18 16:44:08
+ * @LastEditTime: 2021-06-19 16:59:57
  * @Description: 校史卡片板块头部
 -->
 <template>
@@ -26,7 +26,7 @@ import { ref } from "vue";
 export default {
   name: "HistoryCardHeader",
   setup(props, ctx) {
-    const lockTime = [1624118400, 1625068800, 1633017600, 1633017600];
+    const lockTime = [1624291200, 1625068800, 1633017600, 1633017600];
     const cardListInner = ref([
       {
         name: "板块一",
