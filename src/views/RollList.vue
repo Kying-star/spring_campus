@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:47:00
- * @LastEditTime: 2021-06-18 20:58:31
+ * @LastEditTime: 2021-06-20 21:57:26
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/views/RollList.vue
@@ -77,7 +77,7 @@ export default {
   setup() {
     // 板块基本信息修改
     const lockTime = [
-      1624118400, 1625068800, 1633017600, 1633017600, 1633017600,
+      1624118400, 1625068800, 1633017600, 1633017600, 1633881600,
     ];
     const array = ["板块一", "板块二", "板块三", "板块四", "总排行"];
     const buttonList = ref([

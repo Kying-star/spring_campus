@@ -126,7 +126,7 @@ export default {
       "改革开放 与社会主义 现代化建设史",
       "新时代 中国特色 社会主义史",
     ];
-    const lockTime = ["6月20日", "7月1日", "10月1日", "10月1日"];
+    const lockTime = ["6月22日", "7月1日", "10月1日", "10月11日"];
     const gotoHome = () => router.push("/");
     const getBlockDetail = async () => {
       const { data } = await getScore();
