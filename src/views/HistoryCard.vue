@@ -127,8 +127,8 @@ export default {
 .history-card {
   height: 100vh;
   background: url(~@assets/images/base/inner-bk.png);
-  background-size: 100% 100%;
-  background-position: center bottom;
+  background-size: 100%;
+  background-position: center;
   background-repeat: no-repeat;
   position: relative;
 }
