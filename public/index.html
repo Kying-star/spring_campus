@@ -14,9 +14,9 @@
         console.log(localStorage.setItem("head_url"));
         if (
             !localStorage.getItem("openid")
-            ||
+            &&
             !localStorage.getItem("nick_name")
-            ||
+            &&
             !localStorage.getItem("head_url")
         ) {
             window.location.href =
