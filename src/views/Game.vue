@@ -154,7 +154,7 @@ export default {
       if (showIndex.value >= 49) {
         stop();
         isOk.value = false;
-        let offset = parseInt(showIndex.value + 1 / 5);
+        let offset = parseInt((showIndex.value + 1) / 5);
         offset = offset + (parseInt(type) - 1) * 10;
         const { data } = await getCardPic(offset);
         nowPopImage.value = data.data.url;
@@ -168,7 +168,7 @@ export default {
           showIndex.value++;
           console.log("offset" + (parseInt(showIndex.value / 5) + type - 1));
           if (showIndex.value % 5 == 0) {
-            let offset = parseInt(showIndex.value + 1 / 5);
+            let offset = parseInt((showIndex.value + 1) / 5);
             offset = offset + (parseInt(type) - 1) * 10;
             const { data } = await getCardPic(offset);
             nowPopImage.value = data.data.url;
