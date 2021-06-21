@@ -1,13 +1,8 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:47:00
-<<<<<<< HEAD
- * @LastEditTime: 2021-06-20 21:59:16
- * @LastEditors: Please set LastEditors
-=======
- * @LastEditTime: 2021-06-19 17:00:56
+ * @LastEditTime: 2021-06-21 12:31:10
  * @LastEditors: myjdml
->>>>>>> 09783124ce76c94b8353bd4e9fd2e1380685abe3
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/views/RollList.vue
 -->
