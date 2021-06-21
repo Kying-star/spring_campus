@@ -466,13 +466,14 @@ export default {
           .option {
             color: #ffc171;
             width: 100%;
-            font-size: 23px;
+            font-size: 28px;
             margin: 20px 20px 0;
             padding: 10px 0 10px 5px;
             border-radius: 20px;
             &:hover,
             &:active {
-              background-color: #ff533b;
+              background-color: #f06a39;
+              color: white;
             }
           }
           .arrow {
