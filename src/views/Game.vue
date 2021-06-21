@@ -169,7 +169,7 @@ export default {
           console.log("offset" + (parseInt(showIndex.value / 5) + type - 1));
           if (showIndex.value % 5 == 0) {
             let offset = parseInt(showIndex.value / 5);
-            offset = offset + parseInt(type) - 1;
+            offset = offset + (parseInt(type) - 1) * 10;
             const { data } = await getCardPic(offset);
             nowPopImage.value = data.data.url;
             nowPopInfo.value = data.data.description;
