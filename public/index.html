@@ -11,13 +11,13 @@
     <script>
         console.log(localStorage.getItem("openid"));
         console.log(localStorage.getItem("nick_name"));
-        console.log(localStorage.setItem("head_url"));
+        console.log(localStorage.getItem("head_url"));
+        // &&
+        // !localStorage.getItem("nick_name")
+        // &&
+        // !localStorage.getItem("head_url")
         if (
             !localStorage.getItem("openid")
-            &&
-            !localStorage.getItem("nick_name")
-            &&
-            !localStorage.getItem("head_url")
         ) {
             window.location.href =
                 "https://be-prod.redrock.team/magicloop/rushb?b=https://fe-prod.redrock.team/spring-campus/&scope=oldphp";
