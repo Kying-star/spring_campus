@@ -154,9 +154,7 @@ export default {
       if (showIndex.value >= 49) {
         stop();
         isOk.value = false;
-        let offset = parseInt((showIndex.value + 1) / 5);
-        offset = offset + (parseInt(type) - 1) * 10;
-        const { data } = await getCardPic(offset);
+        const { data } = await getCardPic(type * 10);
         nowPopImage.value = data.data.url;
         nowPopInfo.value = data.data.description;
         showPhotoPopup(true);
