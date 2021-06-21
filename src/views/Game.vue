@@ -14,7 +14,7 @@
             <dir class="right-icon"></dir>
           </div>
         </div>
-        <div class="box-footer">长按卡片即可保存到相册</div>
+        <div class="box-footer">长按图片即可保存到相册</div>
       </div>
       <div class="btn" v-if="isOk" @click="close"></div>
       <div class="get-btn" v-if="!isOk" @click="gotoScore"></div>
