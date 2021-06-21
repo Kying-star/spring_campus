@@ -9,11 +9,14 @@
     <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
     <title>追忆党史“邮”我来</title>
     <script>
+        console.log(localStorage.getItem("openid"));
+        console.log(localStorage.getItem("nick_name"));
+        console.log(localStorage.setItem("head_url"));
         if (
             !localStorage.getItem("openid")
-            &&
+            ||
             !localStorage.getItem("nick_name")
-            &&
+            ||
             !localStorage.setItem("head_url")
         ) {
             window.location.href =
