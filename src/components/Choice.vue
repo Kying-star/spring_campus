@@ -1,31 +1,24 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-27 16:02:54
- * @LastEditTime: 2021-06-16 13:16:05
+ * @LastEditTime: 2021-06-21 19:36:55
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/components/Choice.vue
 -->
 <template>
-  <div class="fill-blank">
-    <Question
-      :index="index"
-      :showText="showText"
-      :isShowWrong="isShowWrong"
-      :total="total"
-    />
-    <div class="edit">
-      <div class="answers">
+  <div class='fill-blank'>
+    <Question :index='index' :showText='showText' :isShowWrong='isShowWrong' :total='total' />
+    <div class='edit'>
+      <div class='answers'>
         <div
-          :class="getClass(index, item.isCorrect)"
-          v-for="(item, index) of answersForSelect"
-          :key="item.index"
-          @click="isClicked && select(item.isCorrect, index)"
+          :class='getClass(index, item.isCorrect)'
+          v-for='(item, index) of answersForSelect'
+          :key='item.index'
+          @click='isClicked && select(item.isCorrect, index)'
         >
-          <div class="innerTxt">
-            {{ String.fromCharCode(index + 65) }}.{{ item.answer }}
-          </div>
-          <div :class="getIconClass(index, item.isCorrect)"></div>
+          <div class='innerTxt'>{{ String.fromCharCode(index + 65) }}.{{ item.answer }}</div>
+          <div :class='getIconClass(index, item.isCorrect)'></div>
         </div>
       </div>
     </div>
@@ -40,22 +33,22 @@ export default {
   props: {
     question: {
       type: String,
-      required: true
+      required: true,
     },
     index: {
       type: Number,
-      required: true
+      required: true,
     },
     answers: {
       type: Array,
-      required: true
+      required: true,
     },
     answerKey: {
       type: String,
-      required: true
+      required: true,
     },
     total: Number,
-    isShowTip: Boolean
+    isShowTip: Boolean,
   },
   setup(props, ctx) {
     const answersForSelect = computed(() => {
@@ -63,7 +56,7 @@ export default {
         answer: item.split(".")[1],
         selected: false,
         index,
-        isCorrect: item.split(".")[0] == props.answerKey
+        isCorrect: item.split(".")[0] == props.answerKey,
       }));
       console.log(array);
       // 洗牌算法，随机打乱
@@ -73,7 +66,7 @@ export default {
         array[i] = array[index];
         array[index] = tmp;
       }
-      props.answers.map(index => array[index]);
+      props.answers.map((index) => array[index]);
       return array;
     });
     const isClicked = ref(true);
@@ -127,9 +120,9 @@ export default {
       isShowWrong,
       selectAnswer,
       getClass,
-      isClicked
+      isClicked,
     };
-  }
+  },
 };
 </script>
 
@@ -190,7 +183,6 @@ export default {
       background-image: url(~@assets/images/game/default-bk.png);
       background-size: cover;
       background-repeat: round;
-      border: 1px solid #a2b2ee;
       border-radius: 20px;
       margin-top: 16px;
       display: flex;
