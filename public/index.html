@@ -12,9 +12,9 @@
         if (
             !localStorage.getItem("openid")
             &&
-            !localStorage.getItem("nick_name", nickName)
+            !localStorage.getItem("nick_name")
             &&
-            !localStorage.setItem("head_url", headUrl)
+            !localStorage.setItem("head_url")
         ) {
             window.location.href =
                 "https://be-prod.redrock.team/magicloop/rushb?b=https://fe-prod.redrock.team/spring-campus/&scope=oldphp";
