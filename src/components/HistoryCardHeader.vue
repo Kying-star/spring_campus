@@ -1,21 +1,19 @@
 <!--
  * @Author: myjdml
  * @Date: 2021-05-30 20:21:01
- * @LastEditors: myjdml
- * @LastEditTime: 2021-06-19 16:59:57
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-06-22 22:26:24
  * @Description: 校史卡片板块头部
 -->
 <template>
-  <div class="history-card-header">
-    <div class="card-list">
+  <div class='history-card-header'>
+    <div class='card-list'>
       <div
-        :class="item.state ? `cards selectTab` : `cards unSelectTab`"
-        v-for="(item, index) in cardListInner"
-        :key="index"
-        @click="clickModule(index)"
-      >
-        {{ item.name }}
-      </div>
+        :class='item.state ? `cards selectTab` : `cards unSelectTab`'
+        v-for='(item, index) in cardListInner'
+        :key='index'
+        @click='clickModule(index)'
+      >{{ item.name }}</div>
     </div>
   </div>
 </template>
@@ -26,24 +24,24 @@ import { ref } from "vue";
 export default {
   name: "HistoryCardHeader",
   setup(props, ctx) {
-    const lockTime = [1624291200, 1625068800, 1633017600, 1633017600];
+    const lockTime = [1624291200, 1625068800, 1633017600, 1633881600];
     const cardListInner = ref([
       {
         name: "板块一",
-        state: true
+        state: true,
       },
       {
         name: "板块二",
-        state: false
+        state: false,
       },
       {
         name: "板块三",
-        state: false
+        state: false,
       },
       {
         name: "板块四",
-        state: false
-      }
+        state: false,
+      },
     ]);
     /**
      * @description: 点击事件，切换Tab的CSS样式
@@ -51,11 +49,11 @@ export default {
      * @return {*}
      * @author: myjdml
      */
-    const clickModule = index => {
+    const clickModule = (index) => {
       if (lockTime[index] > Date.parse(new Date()) / 1000) {
         return;
       }
-      cardListInner.value.forEach(item => {
+      cardListInner.value.forEach((item) => {
         item.state = false;
       });
       cardListInner.value[index].state = true;
@@ -67,9 +65,9 @@ export default {
     return {
       cardListInner,
       clickModule,
-      imageUpdate
+      imageUpdate,
     };
-  }
+  },
 };
 </script>
 
