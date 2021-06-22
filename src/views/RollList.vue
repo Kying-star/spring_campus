@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:47:00
- * @LastEditTime: 2021-06-21 23:48:33
+ * @LastEditTime: 2021-06-22 13:04:26
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/views/RollList.vue
@@ -58,7 +58,7 @@
           />
         </div>
         <div class='listVoid' v-if='IsVoid'>
-          <p>目前还没有人完成全部版块 排行榜空空如也</p>
+          <p>目前还没有人完成该版块 排行榜空空如也</p>
         </div>
         <div class='back' @click='back()'></div>
       </div>
