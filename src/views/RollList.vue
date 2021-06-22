@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:47:00
- * @LastEditTime: 2021-06-22 21:13:36
+ * @LastEditTime: 2021-06-22 21:31:02
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/views/RollList.vue
@@ -17,7 +17,7 @@
             v-for='(item, index) in array'
             :key='item.index'
             @click='showList(index)'
-            :class='index + 1 === title_index ? `on` : `default`'
+            :class='index === show_index ? `on` : `default`'
           >{{ item }}</div>
         </div>
       </div>
@@ -91,6 +91,7 @@ export default {
     const score = ref(0);
     const time = ref(0);
     const title_index = ref(1);
+    const show_index = ref(1);
     const router = useRouter();
     const IsVoid = ref(false);
     const rollList = ref([
@@ -138,6 +139,7 @@ export default {
       if (lockTime[nowIndex] > Date.parse(new Date()) / 1000) {
         return;
       }
+      show_index.value = index;
       // 写的跟屎一样的刷新，回来再改
       title_index.value = index == 4 ? 0 : index + 1;
       fetchRank(title_index.value);
@@ -162,6 +164,7 @@ export default {
       format,
       array,
       sayhi,
+      show_index,
     };
   },
 };
