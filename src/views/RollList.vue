@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:47:00
- * @LastEditTime: 2021-06-22 21:31:02
+ * @LastEditTime: 2021-06-22 21:47:22
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/views/RollList.vue
@@ -91,7 +91,7 @@ export default {
     const score = ref(0);
     const time = ref(0);
     const title_index = ref(1);
-    const show_index = ref(1);
+    const show_index = ref(0);
     const router = useRouter();
     const IsVoid = ref(false);
     const rollList = ref([
