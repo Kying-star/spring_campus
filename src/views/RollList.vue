@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:47:00
- * @LastEditTime: 2021-07-01 12:01:09
+ * @LastEditTime: 2021-07-01 18:05:44
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/views/RollList.vue
@@ -143,6 +143,7 @@ export default {
       show_index.value = index;
       // 写的跟屎一样的刷新，回来再改
       title_index.value = index == 4 ? 0 : index + 1;
+      fetchScore(title_index.value);
       fetchRank(title_index.value);
     };
     fetchRank(title_index.value);
