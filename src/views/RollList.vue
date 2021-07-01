@@ -1,30 +1,32 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:47:00
- * @LastEditTime: 2021-07-01 10:11:56
+ * @LastEditTime: 2021-07-01 10:19:17
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/views/RollList.vue
 -->
 <template>
-  <div class='rollhome'>
-    <div class='bgRoll'></div>
-    <div class='flower'></div>
+  <div class="rollhome">
+    <div class="bgRoll"></div>
+    <div class="flower"></div>
     <header>
-      <div class='score-head'>
-        <div class='score-head-inner'>
+      <div class="score-head">
+        <div class="score-head-inner">
           <div
-            v-for='(item, index) in array'
-            :key='item.index'
-            @click='showList(index)'
-            :class='index === show_index ? `on` : `default`'
-          >{{ item }}</div>
+            v-for="(item, index) in array"
+            :key="item.index"
+            @click="showList(index)"
+            :class="index === show_index ? `on` : `default`"
+          >
+            {{ item }}
+          </div>
         </div>
       </div>
-      <div class='score'>
-        <div class='title'>我的成绩</div>
-        <div class='scoreInfo' v-if='!isOnRank'>未完成该版块</div>
-        <div class='score-inner' v-if='isOnRank'>
+      <div class="score">
+        <div class="title">我的成绩</div>
+        <div class="scoreInfo" v-if="!isOnRank">未完成该版块</div>
+        <div class="score-inner" v-if="isOnRank">
           <div>
             <p>{{ score * 2 }}分</p>
             <p>分数</p>
@@ -41,26 +43,26 @@
       </div>
     </header>
     <main>
-      <div class='inner'>
-        <div class='tip'>
+      <div class="inner">
+        <div class="tip">
           {{ buttonList[title_index].info }}
           <br />答题排行榜
         </div>
-        <div class='list' v-if='!IsVoid'>
+        <div class="list" v-if="!IsVoid">
           <RollItem
-            v-for='item in rollList'
-            :key='item'
-            :order='item.order'
-            :nickname='item.nickname'
-            :time='item.time'
-            :Avatar='item.avatar'
-            :score='title_index === 0 ? item.score / 2 : item.score * 2'
+            v-for="item in rollList"
+            :key="item"
+            :order="item.order"
+            :nickname="item.nickname"
+            :time="item.time"
+            :Avatar="item.avatar"
+            :score="title_index === 0 ? item.score / 2 : item.score * 2"
           />
         </div>
-        <div class='listVoid' v-if='IsVoid'>
+        <div class="listVoid" v-if="IsVoid">
           <p>目前还没有人完成该版块 排行榜空空如也</p>
         </div>
-        <div class='back' @click='back()'></div>
+        <div class="back" @click="back()"></div>
       </div>
     </main>
   </div>
@@ -77,7 +79,11 @@ export default {
   setup() {
     // 板块基本信息修改
     const lockTime = [
-      1624118400, 1625068800, 1633017600, 1633017600, 1633881600,
+      1624118400,
+      1625068800,
+      1633017600,
+      1633017600,
+      1633881600
     ];
     const array = ["板块一", "板块二", "板块三", "板块四", "总排行"];
     const buttonList = ref([
@@ -85,7 +91,7 @@ export default {
       { info: "新民主主义革命史" },
       { info: "社会主义革命建设史" },
       { info: "改革开放与社会主义现代化建设史" },
-      { info: "新时代中国特色社会主义史" },
+      { info: "新时代中国特色社会主义史" }
     ]);
     const order = ref(0);
     const score = ref(0);
@@ -118,7 +124,7 @@ export default {
       if (data.data[title_index.value].data == null) {
         IsVoid.value = true;
       }
-      data.data[title_index.value].data.forEach((e) => {
+      data.data[title_index.value].data.forEach(e => {
         //console.log(e);
         let item = {};
         item.order = e.ranking;
@@ -132,7 +138,7 @@ export default {
       console.log(temp);
       rollList.value = temp;
     };
-    const showList = (index) => {
+    const showList = index => {
       // console.log(index);
       if (index > 2) return;
       let nowIndex = index == 4 ? 0 : index + 1;
@@ -165,9 +171,9 @@ export default {
       format,
       array,
       sayhi,
-      show_index,
+      show_index
     };
-  },
+  }
 };
 </script>
 

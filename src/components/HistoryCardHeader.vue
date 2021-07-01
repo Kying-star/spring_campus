@@ -6,14 +6,16 @@
  * @Description: 校史卡片板块头部
 -->
 <template>
-  <div class='history-card-header'>
-    <div class='card-list'>
+  <div class="history-card-header">
+    <div class="card-list">
       <div
-        :class='item.state ? `cards selectTab` : `cards unSelectTab`'
-        v-for='(item, index) in cardListInner'
-        :key='index'
-        @click='clickModule(index)'
-      >{{ item.name }}</div>
+        :class="item.state ? `cards selectTab` : `cards unSelectTab`"
+        v-for="(item, index) in cardListInner"
+        :key="index"
+        @click="clickModule(index)"
+      >
+        {{ item.name }}
+      </div>
     </div>
   </div>
 </template>
@@ -28,20 +30,20 @@ export default {
     const cardListInner = ref([
       {
         name: "板块一",
-        state: true,
+        state: true
       },
       {
         name: "板块二",
-        state: false,
+        state: false
       },
       {
         name: "板块三",
-        state: false,
+        state: false
       },
       {
         name: "板块四",
-        state: false,
-      },
+        state: false
+      }
     ]);
     /**
      * @description: 点击事件，切换Tab的CSS样式
@@ -49,11 +51,11 @@ export default {
      * @return {*}
      * @author: myjdml
      */
-    const clickModule = (index) => {
+    const clickModule = index => {
       if (lockTime[index] > Date.parse(new Date()) / 1000) {
         return;
       }
-      cardListInner.value.forEach((item) => {
+      cardListInner.value.forEach(item => {
         item.state = false;
       });
       cardListInner.value[index].state = true;
@@ -65,9 +67,9 @@ export default {
     return {
       cardListInner,
       clickModule,
-      imageUpdate,
+      imageUpdate
     };
-  },
+  }
 };
 </script>
 
