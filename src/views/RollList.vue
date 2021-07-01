@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-12-26 15:47:00
- * @LastEditTime: 2021-07-01 11:38:19
+ * @LastEditTime: 2021-07-01 12:01:09
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /the-19th-committee/src/views/RollList.vue
@@ -134,7 +134,7 @@ export default {
     };
     const showList = (index) => {
       // console.log(index);
-      if (index > 2) return;
+      if (index > 1) return;
       let nowIndex = index == 4 ? 0 : index + 1;
       console.log(lockTime[nowIndex], Date.parse(new Date()) / 1000);
       // if (lockTime[nowIndex] > Date.parse(new Date()) / 1000) {
