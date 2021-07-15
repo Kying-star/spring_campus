@@ -67,7 +67,7 @@ image_dev:
     - redrock-fe
   script:
     - echo -e "FROM reg.redrock.team/base/redrock-fe-env-caddy:latest\nADD ./build /build" > Dockerfile
-    - docker build --tag reg.redrock.team/fe-dev-artifacts/${REPO_NAME}:${CI_COMMIT_SHA} .
+    - docker build . -t reg.redrock.team/fe-dev-artifacts/${REPO_NAME}:${CI_COMMIT_SHA}
     - docker push "reg.redrock.team/fe-dev-artifacts/${REPO_NAME}:${CI_COMMIT_SHA}"
   only:
     - dev
@@ -79,8 +79,9 @@ image_prod:
     - redrock-fe
   script:
     - echo -e "FROM reg.redrock.team/base/redrock-fe-env-caddy:latest\nADD ./build /build" > Dockerfile
-    - docker build --tag reg.redrock.team/fe-prod-artifacts/${REPO_NAME}:${CI_COMMIT_SHA} .
+    - docker build . -t reg.redrock.team/fe-prod-artifacts/${REPO_NAME}:${CI_COMMIT_SHA}  -t ccr.ccs.tencentyun.com/redrock/fe-prod-artifacts:${REPO_NAME}-${CI_COMMIT_SHA}
     - docker push "reg.redrock.team/fe-prod-artifacts/${REPO_NAME}:${CI_COMMIT_SHA}"
+    - docker push "ccr.ccs.tencentyun.com/redrock/fe-prod-artifacts:${REPO_NAME}-${CI_COMMIT_SHA}"
   only:
     - master
 
@@ -120,6 +121,11 @@ deploy_prod:
     - sed -i "s/_REPO_NAME_/${REPO_NAME}/" /deploy.yaml
     - sed -i "s/8080/80/g" /deploy.yaml
     - kubectl apply -f /deploy.yaml
+    - sed -i "s/_NAMESPACE_/${NAMESPACE}/" /deploy-tx.yaml
+    - sed -i "s/_VERSION_/${VERSION}/" /deploy-tx.yaml
+    - sed -i "s/_REPO_NAME_/${REPO_NAME}/" /deploy-tx.yaml
+    - sed -i "s/8080/80/g" /deploy-tx.yaml
+    - kubectl --kubeconfig=/config-tx apply -f /deploy-tx.yaml
   environment:
     name: $REPO_NAME-prod
     url: https://$NAMESPACE.redrock.team/$REPO_NAME
